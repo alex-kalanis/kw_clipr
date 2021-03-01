@@ -3,6 +3,7 @@
     "description": "CLI Processor",
     "keywords": [
         "scripts",
+        "tasks",
         "cli"
     ],
     "license": "BSD-3-Clause",
