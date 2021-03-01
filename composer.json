@@ -1,0 +1,29 @@
+{
+    "name": "alex-kalanis/kw_clipr",
+    "description": "CLI Processor",
+    "keywords": [
+        "scripts",
+        "cli"
+    ],
+    "license": "BSD-3-Clause",
+    "type": "library",
+    "require": {
+        "ext-mbstring": "*",
+        "alex-kalanis/kw_input": ">=1.0",
+        "php": ">=7.2.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": ">=7.2"
+    },
+    "suggest": {
+    },
+    "autoload": {
+        "psr-4": {
+            "kalanis\\kw_clipr\\": "php-src/"
+        }
+    },
+    "scripts": {
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
