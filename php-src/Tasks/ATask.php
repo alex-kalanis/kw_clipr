@@ -18,11 +18,14 @@ use kalanis\kw_input\Interfaces\IEntry;
  * @property bool webOutput
  * @property bool noAppend
  * @property bool quiet
+ * @property bool help
  */
 abstract class ATask
 {
     use Output\TWrite;
 
+    /** @var TaskFactory */
+    protected $taskFactory = null;
     /** @var Output\AOutput */
     protected $translator = null;
     /** @var Params */
@@ -30,8 +33,9 @@ abstract class ATask
     /** @var IEntry[] */
     protected $inputs = [];
 
-    public function __construct(Output\AOutput $translator, array &$inputs)
+    public final function initTask(Output\AOutput $translator, array &$inputs, TaskFactory $taskFactory): void
     {
+        $this->taskFactory = $taskFactory;
         $this->translator = $translator;
         $this->params = new Params($inputs);
         $this->inputs = & $inputs;
@@ -40,7 +44,7 @@ abstract class ATask
 
     protected function startup(): void
     {
-        // you can set the variables here
+        // you can set your variables here
         $this->params->addParam('verbose', 'verbose', null, false, 'v', 'Verbose output');
         $this->params->addParam('noHeaders', 'no-headers', null, true, null, 'No headers from core');
         $this->params->addParam('noColor', 'no-color', null, false, 'c', 'Use no colors in output');

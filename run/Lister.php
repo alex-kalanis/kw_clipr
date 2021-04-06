@@ -28,16 +28,16 @@ class Lister extends ATask
 
     public function desc(): string
     {
-        return 'Render list of available tasks';
+        return 'Render list of tasks available in paths defined for lookup';
     }
 
     public function process(): void
     {
-        $this->writeLn('<yellow><bluebg>+==========================+</bluebg></yellow>');
-        $this->writeLn('<yellow><bluebg>|         kw_clipr         |</bluebg></yellow>');
-        $this->writeLn('<yellow><bluebg>+==========================+</bluebg></yellow>');
-        $this->writeLn('<yellow><bluebg>| List all available tasks |</bluebg></yellow>');
-        $this->writeLn('<yellow><bluebg>+==========================+</bluebg></yellow>');
+        $this->writeLn('<yellow><bluebg>+====================================+</bluebg></yellow>');
+        $this->writeLn('<yellow><bluebg>|              kw_clipr              |</bluebg></yellow>');
+        $this->writeLn('<yellow><bluebg>+====================================+</bluebg></yellow>');
+        $this->writeLn('<yellow><bluebg>| List all tasks available by lookup |</bluebg></yellow>');
+        $this->writeLn('<yellow><bluebg>+====================================+</bluebg></yellow>');
 
         $this->setTableHeaders(['Task name', 'Call target', 'Description']);
         $this->setTableColors(['lgreen', 'lcyan', '']);
@@ -73,9 +73,10 @@ class Lister extends ATask
             throw new CliprException(sprintf('<redbg> !!! </redbg> No usable files returned. Path: <yellow>%s</yellow>', $path));
         }
         foreach ($files as $fileName) {
-            $className = Paths::getInstance()->realToClass($path, $fileName);
+            $className = Paths::getInstance()->realFileToClass($path, $fileName);
             if ($className) {
-                $task = TaskFactory::getInstance()->getTask($this->translator, $this->inputs, $className, 999999);
+                $task = $this->taskFactory->getTask($className);
+                $task->initTask($this->translator, $this->inputs, $this->taskFactory);
                 $this->setTableDataLine([$className, TaskFactory::getTaskCall($task), $task->desc()]);
             }
         }

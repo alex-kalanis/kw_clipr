@@ -6,7 +6,6 @@ namespace kalanis\kw_clipr\Tasks;
 use kalanis\kw_clipr\Clipr\Paths;
 use kalanis\kw_clipr\CliprException;
 use kalanis\kw_clipr\Interfaces\ISources;
-use kalanis\kw_clipr\Output\AOutput;
 use kalanis\kw_input\Interfaces\IEntry;
 use kalanis\kw_input\Parsers;
 
@@ -21,66 +20,41 @@ use kalanis\kw_input\Parsers;
 class TaskFactory
 {
     const EXT_PHP = '.php';
-    protected static $instance = null;
+    /** @var ATask[] */
     protected $loadedClasses = [];
-    protected $paths = [];
-
-    public static function getInstance(): self
-    {
-        if (empty(static::$instance)) {
-            static::$instance = new static();
-        }
-        return static::$instance;
-    }
-
-    protected function __construct()
-    {
-    }
 
     /**
-     * @codeCoverageIgnore why someone would run that?!
-     */
-    private function __clone()
-    {
-    }
-
-    /**
-     * @param AOutput $translator
-     * @param array $inputs
+     * @param string|null $classFromParam
      * @param string $defaultTask
-     * @param int $paramPosition
      * @return ATask
      * @throws CliprException
      * For making instances from more than one path
      * Now it's possible to read from different paths as namespace sources
      * Also each class will be loaded only once
      */
-    public function getTask(AOutput $translator, array &$inputs, string $defaultTask = 'clipr\Info', int $paramPosition = 0): ATask
+    public function getTask(?string $classFromParam = null, string $defaultTask = 'clipr\Info'): ATask
     {
-        $classFromParam = TaskFactory::nthParam($inputs, $paramPosition);
         $classPath = TaskFactory::sanitizeClass($classFromParam ?: $defaultTask);
         if (empty($this->loadedClasses[$classPath])) {
-            $this->loadedClasses[$classPath] = $this->initTask($translator, $classPath, $inputs);
+            $this->loadedClasses[$classPath] = $this->initTask($classPath);
         }
         return $this->loadedClasses[$classPath];
     }
 
     /**
-     * @param AOutput $translator
      * @param string $classPath
-     * @param array $inputs
      * @return ATask
      * @throws CliprException
      */
-    protected function initTask(AOutput $translator, string $classPath, array &$inputs): ATask
+    protected function initTask(string $classPath): ATask
     {
         $paths = Paths::getInstance()->getPaths();
         foreach ($paths as $namespace => $path) {
             if ($this->containsPath($classPath, $namespace)) {
-                $translatedPath = Paths::getInstance()->classToReal($classPath, $namespace);
-                $realPath = $this->makeRealPath($path, $translatedPath);
+                $translatedPath = Paths::getInstance()->classToRealFile($classPath, $namespace);
+                $realPath = $this->makeRealFilePath($path, $translatedPath);
                 require_once $realPath;
-                $class = new $classPath($translator, $inputs);
+                $class = new $classPath();
                 return $class;
             }
         }
@@ -93,14 +67,14 @@ class TaskFactory
     }
 
     /**
-     * @param string $obtainedPath
-     * @param string $path
+     * @param string $namespacePath
+     * @param string $classPath
      * @return string
      * @throws CliprException
      */
-    protected function makeRealPath(string $path, string $obtainedPath): string
+    protected function makeRealFilePath(string $namespacePath, string $classPath): string
     {
-        $setPath = $path . $obtainedPath . ISources::EXT_PHP;
+        $setPath = $namespacePath . $classPath . ISources::EXT_PHP;
         $realPath = realpath($setPath);
         if (empty($realPath)) {
             throw new CliprException(sprintf('There is problem with path *%s* - it does not exists!', $setPath));
@@ -108,7 +82,7 @@ class TaskFactory
         return $realPath;
     }
 
-    public static function nthParam(array $inputs, $position = 0): ?string
+    public function nthParam(array $inputs, $position = 0): ?string
     {
         $nthKey = Parsers\Cli::UNSORTED_PARAM . $position;
         foreach ($inputs as $input) {

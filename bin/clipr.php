@@ -1,6 +1,6 @@
 <?php
 ## processor of CLI - simple mode
-## You want your own autoloader, mainly due need of storage or database connection.
+## You want your own autoloader, mainly due need of storage, database connection or the whole dependency injection.
 ## Because that this one is just basically example, although it can run basic programs.
 
 # autoloader for paths
@@ -20,7 +20,9 @@ spl_autoload_register('\kalanis\kw_autoload\Autoload::autoloading');
 
 try {
     $clipr = new \kalanis\kw_clipr\Clipr();
+    # define basic paths with tasks
     $clipr->addPath('clipr', __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'run');
+    # and run!
     $clipr->run(array_slice($argv, 1));
 } catch (\Exception $ex) {
     echo get_class($ex) . ': ' . $ex->getMessage() . ' in ' . $ex->getFile() . ':' . $ex->getLine() . PHP_EOL;

@@ -69,7 +69,7 @@ class Paths
         $this->paths = [];
     }
 
-    public function classToReal(string $classPath, string $namespace): string
+    public function classToRealFile(string $classPath, string $namespace): string
     {
         // remove ext
         $withExt = mb_strripos($classPath, ISources::EXT_PHP);
@@ -83,7 +83,7 @@ class Paths
         return mb_substr($classNoExt, mb_strlen($namespace));
     }
 
-    public function realToClass(string $dir, string $file): ?string
+    public function realFileToClass(string $dir, string $file): ?string
     {
         $dirLen = mb_strlen($dir);
         foreach ($this->paths as $namespace => $path) {

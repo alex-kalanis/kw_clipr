@@ -24,10 +24,15 @@ class Help extends ATask
         $this->writeLn('<yellow><bluebg>+======================+</bluebg></yellow>');
         $this->writeLn('<yellow><bluebg>|       kw_clipr       |</bluebg></yellow>');
         $this->writeLn('<yellow><bluebg>+======================+</bluebg></yellow>');
+        $this->writeLn('<yellow><bluebg>|    Help with task    |</bluebg></yellow>');
+        $this->writeLn('<yellow><bluebg>+======================+</bluebg></yellow>');
 
         try {
-            $task = TaskFactory::getInstance()->getTask($this->translator, $this->inputs, 'clipr\Help', 1);
-            $this->writeLn('<yellow>Command *' . TaskFactory::getTaskCall($task) . '*</yellow>');
+            $task = $this->taskFactory->getTask($this->taskFactory->nthParam($this->inputs, 1), 'clipr\Help');
+            $task->initTask($this->translator, $this->inputs, $this->taskFactory);
+            $this->writeLn();
+            $this->writeLn('<lcyan>Command:</lcyan>');
+            $this->writeLn('<yellow>' . TaskFactory::getTaskCall($task) . '</yellow>');
             $this->writeLn('<lcyan>Description:</lcyan>');
             $this->writeLn($task->desc());
             $this->writeLn('<lcyan>Available params:</lcyan>');

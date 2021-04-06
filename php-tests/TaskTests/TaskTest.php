@@ -6,6 +6,7 @@ namespace TaskTests;
 use CommonTestClass;
 use kalanis\kw_clipr\Output;
 use kalanis\kw_clipr\Tasks\DummyTask;
+use kalanis\kw_clipr\Tasks\TaskFactory;
 
 
 class TaskTest extends CommonTestClass
@@ -13,7 +14,8 @@ class TaskTest extends CommonTestClass
     public function testSimple()
     {
         $inputs = $this->getParams();
-        $instance = new XDummy(new Output\Web(), $inputs);
+        $instance = new XDummy();
+        $instance->initTask(new Output\Web(), $inputs, new TaskFactory());
         $this->assertEquals('Just dummy task for processing info from params', $instance->desc());
         $instance->process();
         $this->assertInstanceOf('\kalanis\kw_clipr\Output\AOutput', $instance->transl());

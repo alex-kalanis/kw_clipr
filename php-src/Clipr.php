@@ -41,13 +41,16 @@ class Clipr
         $this->inputs->setSource($cliArgs)->loadEntries();
         $inputAll = $this->inputs->intoKeyObjectArray($this->inputs->getIn());
 
+        $taskFactory = $this->getTaskFactory();
         // for parsing default params it's necessary to load another task
-        $dummy = new Tasks\DummyTask(new Output\Clear(), $inputAll);
+        $dummy = new Tasks\DummyTask();
+        $dummy->initTask(new Output\Clear(), $inputAll, $taskFactory);
         $this->sources->determineInput((bool)$dummy->webOutput, (bool)$dummy->noColor);
 
         // now we know necessary input data, so we can initialize real task
         $inputs = $this->inputs->intoKeyObjectArray($this->inputs->getIn(null, $this->sources->getEntryTypes()));
-        $task = Tasks\TaskFactory::getInstance()->getTask($this->sources->getOutput(), $inputs);
+        $task = $taskFactory->getTask($taskFactory->nthParam($inputs));
+        $task->initTask($this->sources->getOutput(), $inputs, $taskFactory);
 
         if (ISources::OUTPUT_STD != $task->outputFile) {
             ob_start();
@@ -66,5 +69,10 @@ class Clipr
         if (ISources::OUTPUT_STD != $task->outputFile) {
             file_put_contents($task->outputFile, ob_get_clean(), (false === $task->noAppend ? FILE_APPEND : 0));
         }
+    }
+
+    public function getTaskFactory(): Tasks\TaskFactory
+    {
+        return new Tasks\TaskFactory();
     }
 }

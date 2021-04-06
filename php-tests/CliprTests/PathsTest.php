@@ -49,7 +49,7 @@ class PathsTest extends CommonTestClass
     {
         $this->addPaths(true);
         $instance = Paths::getInstance();
-        $this->assertEquals($translatedPath, $instance->classToReal($classPath, $namespace));
+        $this->assertEquals($translatedPath, $instance->classToRealFile($classPath, $namespace));
         $instance->clearPaths();
     }
 
@@ -72,7 +72,7 @@ class PathsTest extends CommonTestClass
     {
         $this->addPaths(true);
         $instance = Paths::getInstance();
-        $this->assertEquals($translatedClass, $instance->realToClass($dir, $file));
+        $this->assertEquals($translatedClass, $instance->realFileToClass($dir, $file));
         $instance->clearPaths();
     }
 

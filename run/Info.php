@@ -24,6 +24,18 @@ class Info extends ATask
         $this->writeLn('<yellow><bluebg>+======================+</bluebg></yellow>');
         $this->writeLn('<yellow><bluebg>|  Info about system   |</bluebg></yellow>');
         $this->writeLn('<yellow><bluebg>+======================+</bluebg></yellow>');
+        $this->writeLn();
+        $this->writeLn('kw_clipr is a simple framework for running tasks from CLI.');
+        $this->writeLn('It calls task from predefined sources and allows them to run.');
+        $this->writeLn('Command line query is simple - "clipr task --rest-of-params"');
+        $this->writeLn('For list available tasks use following command:');
+        $this->writeLn('<lcyan>clipr clipr/Lister</lcyan>');
+        $this->writeLn('For info about task use following command:');
+        $this->writeLn('<lcyan>clipr clipr/Help task</lcyan>');
+        $this->writeLn('Help inside the task might show other things. That depends on task author.');
+        $this->writeLn('Also color output depends on task author. And terminal.');
+        $this->writeLn();
+        $this->writeLn('And this is list of default variables available for each task:');
         $this->setTableHeaders(['local variables', 'cli key', 'current value']);
         foreach ($this->params->getAvailableOptions() as $option) {
             /** @var Params\Option $option */
