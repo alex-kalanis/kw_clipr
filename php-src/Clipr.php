@@ -5,11 +5,18 @@ namespace kalanis\kw_clipr;
 
 use kalanis\kw_clipr\Interfaces\ISources;
 use kalanis\kw_input\Inputs;
+use kalanis\kw_input\Variables;
 
 
+/**
+ * Class Clipr
+ * @package kalanis\kw_clipr
+ * Main class which runs the whole task system
+ */
 class Clipr
 {
     protected $inputs = null;
+    protected $variables = null;
     protected $sources = null;
     protected $output = null;
 
@@ -17,6 +24,7 @@ class Clipr
     {
         $this->inputs = new Inputs();
         $this->sources = new Clipr\Sources();
+        $this->variables = new Variables($this->inputs);
     }
 
     /**
@@ -39,16 +47,15 @@ class Clipr
     {
         // void because echo must stay here - we have progress indicator and that needs access to output
         $this->inputs->setSource($cliArgs)->loadEntries();
-        $inputAll = $this->inputs->intoKeyObjectArray($this->inputs->getIn());
 
         $taskFactory = $this->getTaskFactory();
         // for parsing default params it's necessary to load another task
         $dummy = new Tasks\DummyTask();
-        $dummy->initTask(new Output\Clear(), $inputAll, $taskFactory);
+        $dummy->initTask(new Output\Clear(), $this->variables->getInArray(), $taskFactory);
         $this->sources->determineInput((bool)$dummy->webOutput, (bool)$dummy->noColor);
 
         // now we know necessary input data, so we can initialize real task
-        $inputs = $this->inputs->intoKeyObjectArray($this->inputs->getIn(null, $this->sources->getEntryTypes()));
+        $inputs = $this->variables->getInArray(null, $this->sources->getEntryTypes());
         $task = $taskFactory->getTask($taskFactory->nthParam($inputs));
         $task->initTask($this->sources->getOutput(), $inputs, $taskFactory);
 

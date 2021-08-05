@@ -33,7 +33,7 @@ abstract class ATask
     /** @var IEntry[] */
     protected $inputs = [];
 
-    public final function initTask(Output\AOutput $translator, array &$inputs, TaskFactory $taskFactory): void
+    public final function initTask(Output\AOutput $translator, array $inputs, TaskFactory $taskFactory): void
     {
         $this->taskFactory = $taskFactory;
         $this->translator = $translator;

@@ -4,15 +4,22 @@
 ## Because that this one is just basically example, although it can run basic programs.
 
 # autoloader for paths
-require_once(__DIR__ . implode(DIRECTORY_SEPARATOR, ['', '..', 'vendor', 'kalanis', 'kw_autoload', 'Autoload.php']));
+require_once(implode(DIRECTORY_SEPARATOR, [__DIR__, '..', 'vendor', 'kalanis', 'kw_autoload', 'Autoload.php']));
 
 \kalanis\kw_autoload\Autoload::setBasePath(realpath(__DIR__ . DIRECTORY_SEPARATOR . '..'));
-\kalanis\kw_autoload\Autoload::addPath('%2$s%1$svendor%1$s%3$s%1$s%4$s%1$ssrc%1$s');
-\kalanis\kw_autoload\Autoload::addPath('%2$s%1$svendor%1$s%3$s%1$s%4$s%1$s');
-\kalanis\kw_autoload\Autoload::addPath('%2$s%1$svendor%1$s%4$s%1$s');
-\kalanis\kw_autoload\Autoload::addPath('%2$s%1$svendor%1$s%3$s%1$s');
-\kalanis\kw_autoload\Autoload::addPath('%2$s%1$sphp-src%1$s');
-\kalanis\kw_autoload\Autoload::addPath('%2$s%1$srun%1$s');
+\kalanis\kw_autoload\Autoload::addPath('%2$s%1$svendor%1$s%3$s%1$s%4$s%1$ssrc%1$s%5$s%1$s%6$s');
+\kalanis\kw_autoload\Autoload::addPath('%2$s%1$svendor%1$s%3$s%1$s%4$s%1$ssrc%1$s%6$s');
+\kalanis\kw_autoload\Autoload::addPath('%2$s%1$svendor%1$s%3$s%1$s%4$s%1$s%5$s%1$s%6$s');
+\kalanis\kw_autoload\Autoload::addPath('%2$s%1$svendor%1$s%3$s%1$s%4$s%1$s%6$s');
+\kalanis\kw_autoload\Autoload::addPath('%2$s%1$svendor%1$s%4$s%1$s%5$s%1$s%6$s');
+\kalanis\kw_autoload\Autoload::addPath('%2$s%1$svendor%1$s%4$s%1$s%6$s');
+\kalanis\kw_autoload\Autoload::addPath('%2$s%1$svendor%1$s%3$s%1$s%5$s%1$s%6$s');
+\kalanis\kw_autoload\Autoload::addPath('%2$s%1$svendor%1$s%3$s%1$s%6$s');
+\kalanis\kw_autoload\Autoload::addPath('%2$s%1$sphp-src%1$s%5$s%1$s%6$s');
+\kalanis\kw_autoload\Autoload::addPath('%2$s%1$sphp-src%1$s%6$s');
+\kalanis\kw_autoload\Autoload::addPath('%2$s%1$srun%1$s%5$s%1$s%6$s');
+\kalanis\kw_autoload\Autoload::addPath('%2$s%1$srun%1$s%6$s');
+
 spl_autoload_register('\kalanis\kw_autoload\Autoload::autoloading');
 
 # set base for searching the files - now it's always against path of this script

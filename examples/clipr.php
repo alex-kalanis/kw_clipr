@@ -14,11 +14,23 @@ include_once '_app/config/init.php';
 # set base for searching the files - now it's always against path of this script (and usually project root)
 \kalanis\kw_input\Loaders\CliEntry::setBasicPath(__DIR__);
 
+# customized Clipr class where the DI is available
+class CliprDi extends \kalanis\kw_clipr\Clipr
+{
+    public function getTaskFactory(): \kalanis\kw_clipr\Tasks\TaskFactory
+    {
+        return new \kalanis\kw_clipr\Tasks\TaskFactoryDi((new \YourApplication\ContainerFactory())->create());
+    }
+}
+
+
 try {
-    $clipr = new \kalanis\kw_clipr\Clipr();
+    $clipr = new \kalanis\kw_clipr\Clipr(); // if you want basic one
+//    $clipr = new CliprDi(); // if you want DI use customized one
     # change to access basic tasks
     $clipr->addPath('clipr', implode(DIRECTORY_SEPARATOR, [__DIR__, 'vendor', 'kalanis', 'kw_clipr', 'run']));
     # add your namespaces and paths which target your tasks, not just
+    $clipr->addPath('YourApp\\Clipr', implode(DIRECTORY_SEPARATOR, [__DIR__, '_app', 'Clipr'])); // just example
 
     $clipr->run(array_slice($argv, 1));
 } catch (\Exception $ex) {
