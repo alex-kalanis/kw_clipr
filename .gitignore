@@ -16,6 +16,7 @@ __pycache__
 # checks
 phpunit
 phpunit-*
+.phpunit*
 
 # external libs
 php-tests/external/

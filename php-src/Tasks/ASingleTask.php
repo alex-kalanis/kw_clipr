@@ -8,6 +8,7 @@ namespace kalanis\kw_clipr\Tasks;
  * @package kalanis\kw_clipr\Tasks
  * @property bool singleInstance
  * @todo: Edit locks for Windows!!!
+ *  -- probably throw it under interface and into external classes
  */
 abstract class ASingleTask extends ATask
 {
