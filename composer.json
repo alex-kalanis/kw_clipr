@@ -17,6 +17,7 @@
         "phpunit/phpunit": ">=7.2"
     },
     "suggest": {
+        "alex-kalanis/kw_locks": "Locks in KWCMS",
         "psr/container": "PSR-11 - DI support - API"
     },
     "autoload": {

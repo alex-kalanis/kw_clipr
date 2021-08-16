@@ -3,16 +3,42 @@
 namespace kalanis\kw_clipr\Tasks;
 
 
+use kalanis\kw_locks\Interfaces\ILock;
+use kalanis\kw_locks\Interfaces\IPassedKey;
+use kalanis\kw_locks\LockException;
+use kalanis\kw_locks\Methods\PidLock;
+
+
 /**
  * Class ASingleTask
  * @package kalanis\kw_clipr\Tasks
  * @property bool singleInstance
- * @todo: Edit locks for Windows!!!
- *  -- probably throw it under interface and into external classes
  */
 abstract class ASingleTask extends ATask
 {
-    protected $lockFile = null;
+    protected $lock = null;
+
+    public function __construct(?ILock $lock = null)
+    {
+        $this->lock = empty($lock) ? $this->getPresetLock() : $lock;
+        if ($lock instanceof IPassedKey) {
+            $lock->setKey(str_replace('/', ':', get_class($this)) . ILock::LOCK_FILE);
+        } elseif (method_exists($lock, 'setClass')) {
+            $lock->setClass($this);
+        }
+        // temp dir path must go via lock's constructor
+        // when it comes via IStorage (StorageLock), it's possible to connect it into Redis or Memcache and then that path might not be necessary
+    }
+
+    protected function getPresetLock(): ILock
+    {
+        return new PidLock($this->getTempPath());
+    }
+
+    protected function getTempPath(): string
+    {
+        return '/tmp';
+    }
 
     protected function startup(): void
     {
@@ -24,10 +50,14 @@ abstract class ASingleTask extends ATask
 
     protected function checkSingleInstance()
     {
-        if ($this->isSingleInstance() && $this->isFileLocked()) {
-            // check if exists another instance
-            die('One script instance is already running under pid ' . trim(file_get_contents($this->getLockFileName())));
-            // create own lock file
+        try {
+            if ($this->isSingleInstance() && $this->isFileLocked()) {
+                // check if exists another instance
+                die('One script instance is already running!');
+                // create own lock file
+            }
+        } catch (LockException $ex) {
+            die('Locked by another user. Cannot unlock here.');
         }
     }
 
@@ -36,31 +66,21 @@ abstract class ASingleTask extends ATask
         return (true == $this->singleInstance);
     }
 
-    protected function isFileLocked()
+    /**
+     * @return bool
+     * @throws LockException
+     */
+    protected function isFileLocked(): bool
     {
-        if (file_exists($this->getLockFileName())) {
-            $lockingPID = trim(file_get_contents($this->getLockFileName()));
-            $pids = explode(PHP_EOL, trim(`ps -e | awk '{print $1}'`));
-            if (in_array($lockingPID, $pids)) {
-                return true;
+        try {
+            if (!$this->lock->has()) {
+                $this->lock->create();
             }
-            $this->output->writeLn("Removing stale lock file.");
-            $this->unlinkLockFile();
+            return true;
+        } catch (LockException $ex) {
+            $this->writeLn("Removing stale lock file.");
+            $this->lock->delete(true);
+            return false;
         }
-
-        file_put_contents($this->getLockFileName(), getmypid() . PHP_EOL);
-        register_shutdown_function([$this, 'unlinkLockFile']);
-        return false;
-
-    }
-
-    protected function getLockFileName()
-    {
-        return $this->tmpPath . str_replace('/', ':', get_class($this)) . '.lock';
-    }
-
-    public function unlinkLockFile()
-    {
-        @unlink($this->getLockFileName());
     }
 }
