@@ -33,7 +33,7 @@ class Info extends ATask
         $this->writeLn('For info about task use following command:');
         $this->writeLn('<lcyan>clipr clipr/Help task</lcyan>');
         $this->writeLn('Help inside the task might show other things. That depends on task author.');
-        $this->writeLn('Also color output depends on task author. And terminal.');
+        $this->writeLn('Also color output depends on task author. And your terminal.');
         $this->writeLn();
         $this->writeLn('And this is list of default variables available for each task:');
         $this->setTableHeaders(['local variables', 'cli key', 'current value']);

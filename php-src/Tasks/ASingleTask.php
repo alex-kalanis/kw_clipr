@@ -68,11 +68,11 @@ abstract class ASingleTask extends ATask
         try {
             if ($this->isSingleInstance() && $this->isFileLocked()) {
                 // check if exists another instance
-                throw new CliprException('One script instance is already running!');
+                throw new SingleTaskException('One script instance is already running!');
                 // create own lock file
             }
         } catch (LockException $ex) {
-            throw new CliprException('Locked by another user. Cannot unlock here.', 0, $ex);
+            throw new SingleTaskException('Locked by another user. Cannot unlock here.', 0, $ex);
         }
     }
 

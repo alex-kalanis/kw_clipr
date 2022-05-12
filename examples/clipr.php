@@ -34,6 +34,8 @@ try {
     $clipr->addPath('YourApp\\Clipr', implode(DIRECTORY_SEPARATOR, [__DIR__, '_app', 'Clipr'])); // just example
 
     $clipr->run(array_slice($argv, 1));
+} catch (\kalanis\kw_clipr\Tasks\SingleTaskException $ex) {
+    echo $ex->getMessage() . PHP_EOL;
 } catch (\Exception $ex) {
     echo get_class($ex) . ': ' . $ex->getMessage() . ' in ' . $ex->getFile() . ':' . $ex->getLine() . PHP_EOL;
     echo "Stack trace:" . PHP_EOL;
