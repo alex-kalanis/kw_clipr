@@ -22,8 +22,9 @@ require_once(implode(DIRECTORY_SEPARATOR, [__DIR__, '..', 'vendor', 'kalanis', '
 
 spl_autoload_register('\kalanis\kw_autoload\Autoload::autoloading');
 
-# set base for searching the files - now it's always against path of this script
-\kalanis\kw_input\Loaders\CliEntry::setBasicPath(__DIR__);
+# set base for searching the files
+$cwd = false !== getcwd() ? getcwd() : __DIR__ ;
+\kalanis\kw_input\Loaders\CliEntry::setBasicPath($cwd);
 
 try {
     $clipr = new \kalanis\kw_clipr\Clipr();

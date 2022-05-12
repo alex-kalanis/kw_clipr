@@ -72,10 +72,6 @@ composer files if they aren't in predefined paths where kw_autoload can look for
 For default run it isn't necessary to use the whole machine of Composer and it has been
 developed without it.
 
-Another thing is necessity to set basic path for getting files - then every file is relative
-to that path. But then it's possible to "translate" that paths into files and work with them
-as normal files in kw_* system. This means processing them as if they came from _FILES.
-
 And at last - there is NO dependency injection support by default. Because that usually
 means just Composer and that's the thing I want to avoid. Usual DI libraries are very
 dependent on Composer. And the whole PSR has been made with Composer in mind. Also original

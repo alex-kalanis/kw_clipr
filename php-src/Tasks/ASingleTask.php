@@ -3,6 +3,7 @@
 namespace kalanis\kw_clipr\Tasks;
 
 
+use kalanis\kw_clipr\CliprException;
 use kalanis\kw_locks\Interfaces\ILock;
 use kalanis\kw_locks\Interfaces\IPassedKey;
 use kalanis\kw_locks\LockException;
@@ -18,6 +19,10 @@ abstract class ASingleTask extends ATask
 {
     protected $lock = null;
 
+    /**
+     * @param ILock|null $lock
+     * @throws LockException
+     */
     public function __construct(?ILock $lock = null)
     {
         $this->lock = empty($lock) ? $this->getPresetLock() : $lock;
@@ -30,6 +35,10 @@ abstract class ASingleTask extends ATask
         // when it comes via IStorage (StorageLock), it's possible to connect it into Redis or Memcache and then that path might not be necessary
     }
 
+    /**
+     * @return ILock
+     * @throws LockException
+     */
     protected function getPresetLock(): ILock
     {
         return new PidLock($this->getTempPath());
@@ -40,6 +49,9 @@ abstract class ASingleTask extends ATask
         return '/tmp';
     }
 
+    /**
+     * @throws CliprException
+     */
     protected function startup(): void
     {
         parent::startup();
@@ -48,16 +60,19 @@ abstract class ASingleTask extends ATask
         $this->checkSingleInstance();
     }
 
+    /**
+     * @throws CliprException
+     */
     protected function checkSingleInstance()
     {
         try {
             if ($this->isSingleInstance() && $this->isFileLocked()) {
                 // check if exists another instance
-                die('One script instance is already running!');
+                throw new CliprException('One script instance is already running!');
                 // create own lock file
             }
         } catch (LockException $ex) {
-            die('Locked by another user. Cannot unlock here.');
+            throw new CliprException('Locked by another user. Cannot unlock here.', 0, $ex);
         }
     }
 
@@ -75,6 +90,7 @@ abstract class ASingleTask extends ATask
         try {
             if (!$this->lock->has()) {
                 $this->lock->create();
+                return false;
             }
             return true;
         } catch (LockException $ex) {

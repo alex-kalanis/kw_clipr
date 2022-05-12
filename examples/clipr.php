@@ -11,8 +11,9 @@ if (PHP_SAPI !== 'cli') {
 # bootstrapping - target your own init
 include_once '_app/config/init.php';
 
-# set base for searching the files - now it's always against path of this script (and usually project root)
-\kalanis\kw_input\Loaders\CliEntry::setBasicPath(__DIR__);
+# set base for searching the files
+$cwd = false !== getcwd() ? getcwd() : __DIR__ ;
+\kalanis\kw_input\Loaders\CliEntry::setBasicPath($cwd);
 
 # customized Clipr class where the DI is available
 class CliprDi extends \kalanis\kw_clipr\Clipr
