@@ -25,11 +25,11 @@ abstract class ASingleTask extends ATask
      */
     public function __construct(?ILock $lock = null)
     {
-        $this->lock = empty($lock) ? $this->getPresetLock() : $lock;
-        if ($lock instanceof IPassedKey) {
-            $lock->setKey(str_replace('/', ':', get_class($this)) . ILock::LOCK_FILE);
-        } elseif (method_exists($lock, 'setClass')) {
-            $lock->setClass($this);
+        $this->lock = $lock ?: $this->getPresetLock();
+        if ($this->lock instanceof IPassedKey) {
+            $this->lock->setKey(str_replace('/', ':', get_class($this)) . ILock::LOCK_FILE);
+        } elseif (method_exists($this->lock, 'setClass')) {
+            $this->lock->setClass($this);
         }
         // temp dir path must go via lock's constructor
         // when it comes via IStorage (StorageLock), it's possible to connect it into Redis or Memcache and then that path might not be necessary
