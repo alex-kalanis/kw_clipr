@@ -28,7 +28,7 @@ class Help extends ATask
         $this->writeLn('<yellow><bluebg>+======================+</bluebg></yellow>');
 
         try {
-            $taskName = Useful::getNthParam($this->inputs, 1) ?? static::class;
+            $taskName = Useful::getNthParam($this->inputs, 2) ?? static::class;
             $task = $this->loader->getTask($taskName);
             if (!$task) {
                 throw new CliprException(sprintf('Unknown task *%s* - check name, interface or your config paths.', $taskName));

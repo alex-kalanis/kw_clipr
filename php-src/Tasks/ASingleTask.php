@@ -25,7 +25,7 @@ abstract class ASingleTask extends ATask
      */
     public function __construct(?ILock $lock = null)
     {
-        $this->lock = $lock ?: $this->getPresetLock();
+        $this->lock = $lock ?? $this->getPresetLock();
         if ($this->lock instanceof IPassedKey) {
             $this->lock->setKey(str_replace('/', ':', get_class($this)) . ILock::LOCK_FILE);
         } elseif (method_exists($this->lock, 'setClass')) {

@@ -73,6 +73,8 @@ DI of DB or other services accessing classes.
 Clipr tasks can be set into tree, so you can separate them by some of your logic. Not need
 to fill one directory with one huge list of tasks.
 
+For beginning I advise to just copy one of tasks and play with it.
+
 ## Caveats
 
 In default setup it contains subparts of kw_autoload and kw_inputs projects - both

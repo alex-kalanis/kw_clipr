@@ -3,6 +3,7 @@
 namespace clipr;
 
 
+use kalanis\kw_clipr\Clipr\Useful;
 use kalanis\kw_clipr\Output\TPrettyTable;
 use kalanis\kw_clipr\Tasks\ATask;
 use kalanis\kw_clipr\Tasks\Params;
@@ -19,6 +20,7 @@ class Info extends ATask
 
     public function process(): void
     {
+        $cliprPath = Useful::getNthParam($this->inputs, 0) ?? 'clipr';
         $this->writeLn('<yellow><bluebg>+======================+</bluebg></yellow>');
         $this->writeLn('<yellow><bluebg>|       kw_clipr       |</bluebg></yellow>');
         $this->writeLn('<yellow><bluebg>+======================+</bluebg></yellow>');
@@ -29,9 +31,9 @@ class Info extends ATask
         $this->writeLn('It calls task from predefined sources and allows them to run.');
         $this->writeLn('Command line query is simple - "clipr task --rest-of-params"');
         $this->writeLn('For list available tasks use following command:');
-        $this->writeLn('<lcyan>clipr clipr/Lister</lcyan>');
+        $this->writeLn("<lcyan>$cliprPath clipr/Lister</lcyan>");
         $this->writeLn('For info about task use following command:');
-        $this->writeLn('<lcyan>clipr clipr/Help task</lcyan>');
+        $this->writeLn("<lcyan>$cliprPath clipr/Help task</lcyan>");
         $this->writeLn('Help inside the task might show other things. That depends on task author.');
         $this->writeLn('Also color output depends on task author. And your terminal.');
         $this->writeLn();

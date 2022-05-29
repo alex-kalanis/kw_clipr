@@ -35,7 +35,7 @@ class Useful
      * @param int $position
      * @return string|null
      */
-    public static function getNthParam(array $inputs, $position = 0): ?string
+    public static function getNthParam(array $inputs, $position = 1): ?string
     {
         $nthKey = Cli::UNSORTED_PARAM . $position;
         foreach ($inputs as $input) {

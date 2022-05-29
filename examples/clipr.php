@@ -17,7 +17,7 @@ $cwd = false !== getcwd() ? getcwd() : __DIR__ ;
 
 try {
     $inputs = new \kalanis\kw_input\Inputs();
-    $inputs->setSource(array_slice($argv, 1))->loadEntries();
+    $inputs->setSource($argv)->loadEntries();
     $clipr = new \kalanis\kw_clipr\Clipr(
         \kalanis\kw_clipr\Loaders\CacheLoader::init(
             \kalanis\kw_clipr\Loaders\MultiLoader::init()
