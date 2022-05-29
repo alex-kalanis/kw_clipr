@@ -1,6 +1,6 @@
 <?php
 
-namespace OutputTests;
+namespace OutputsTests;
 
 
 use CommonTestClass;
@@ -9,7 +9,7 @@ use kalanis\kw_clipr\Output;
 
 class WriteTest extends CommonTestClass
 {
-    public function testQuiet()
+    public function testQuiet(): void
     {
         $instance = new XWrite(new Output\Windows());
         $instance->setQuiet(true);
@@ -25,7 +25,7 @@ class WriteTest extends CommonTestClass
      * @param string $expected
      * @dataProvider callsProvider
      */
-    public function testCalls(string $method, string $content, string $expected)
+    public function testCalls(string $method, string $content, string $expected): void
     {
         $instance = new XWrite(new Output\Windows());
         ob_start();
@@ -34,7 +34,7 @@ class WriteTest extends CommonTestClass
         $this->assertEquals($expected, $output);
     }
 
-    public function callsProvider()
+    public function callsProvider(): array
     {
         return [
             ['sendCustom', 'QUOTE', " .... [ QUOTE ]"],
@@ -52,7 +52,7 @@ class WriteTest extends CommonTestClass
      * @param string $expected
      * @dataProvider callsNoMessageProvider
      */
-    public function testCallsNoMessage(string $method, string $expected)
+    public function testCallsNoMessage(string $method, string $expected): void
     {
         $instance = new XWrite(new Output\Windows());
         ob_start();
@@ -61,7 +61,7 @@ class WriteTest extends CommonTestClass
         $this->assertEquals($expected, $output);
     }
 
-    public function callsNoMessageProvider()
+    public function callsNoMessageProvider(): array
     {
         return [
             ['sendOk', " .... [ \e[32mOK\e[0m ]"],
@@ -71,7 +71,7 @@ class WriteTest extends CommonTestClass
         ];
     }
 
-    public function testWorking()
+    public function testWorking(): void
     {
         $instance = new XWrite(new Output\Windows());
         foreach ($this->workingProvider() as list($method, $expected)) {
@@ -82,7 +82,7 @@ class WriteTest extends CommonTestClass
         }
     }
 
-    public function workingProvider()
+    public function workingProvider(): array
     {
         return [
             ['sendWorking', "\e[1D/"],

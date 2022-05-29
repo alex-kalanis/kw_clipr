@@ -1,6 +1,6 @@
 <?php
 
-namespace TaskTests;
+namespace TasksTests;
 
 
 use CommonTestClass;
@@ -9,7 +9,7 @@ use kalanis\kw_clipr\Tasks\Params;
 
 class ParamsTest extends CommonTestClass
 {
-    public function testOption()
+    public function testOption(): void
     {
         $instance = new Params\Option();
         $instance->setData('mnb', 'vcx', 'pewrit','tdtr', null, 'rsef');
@@ -23,7 +23,7 @@ class ParamsTest extends CommonTestClass
         $this->assertEquals('rsef', $instance->getDescription());
     }
 
-    public function testParam()
+    public function testParam(): void
     {
         $inputs = $this->getParams();
         $instance = new Params($inputs);

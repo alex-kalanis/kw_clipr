@@ -27,11 +27,19 @@ $cwd = false !== getcwd() ? getcwd() : __DIR__ ;
 \kalanis\kw_input\Loaders\CliEntry::setBasicPath($cwd);
 
 try {
-    $clipr = new \kalanis\kw_clipr\Clipr();
+    $inputs = new \kalanis\kw_input\Inputs();
+    $inputs->setSource(array_slice($argv, 1))->loadEntries();
+    $clipr = new \kalanis\kw_clipr\Clipr(
+        \kalanis\kw_clipr\Loaders\CacheLoader::init(
+            new \kalanis\kw_clipr\Loaders\KwLoader()
+        ),
+        new kalanis\kw_clipr\Clipr\Sources(),
+        new kalanis\kw_input\Variables($inputs)
+    );
     # define basic paths with tasks
     $clipr->addPath('clipr', __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'run');
     # and run!
-    $clipr->run(array_slice($argv, 1));
+    $clipr->run();
 } catch (\kalanis\kw_clipr\Tasks\SingleTaskException $ex) {
     echo $ex->getMessage() . PHP_EOL;
 } catch (\Exception $ex) {

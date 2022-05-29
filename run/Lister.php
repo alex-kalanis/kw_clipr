@@ -4,11 +4,11 @@ namespace clipr;
 
 
 use kalanis\kw_clipr\Clipr\Paths;
+use kalanis\kw_clipr\Clipr\Useful;
 use kalanis\kw_clipr\CliprException;
 use kalanis\kw_clipr\Interfaces\ISources;
 use kalanis\kw_clipr\Output\TPrettyTable;
 use kalanis\kw_clipr\Tasks\ATask;
-use kalanis\kw_clipr\Tasks\TaskFactory;
 
 
 /**
@@ -75,9 +75,12 @@ class Lister extends ATask
         foreach ($files as $fileName) {
             $className = Paths::getInstance()->realFileToClass($path, $fileName);
             if ($className) {
-                $task = $this->taskFactory->getTask($className);
-                $task->initTask($this->translator, $this->inputs, $this->taskFactory);
-                $this->setTableDataLine([$className, TaskFactory::getTaskCall($task), $task->desc()]);
+                $task = $this->loader->getTask($className);
+                if (!$task) {
+                    continue;
+                }
+                $task->initTask($this->translator, $this->inputs, $this->loader);
+                $this->setTableDataLine([$className, Useful::getTaskCall($task), $task->desc()]);
             }
         }
         foreach ($allFiles as $fileName) {

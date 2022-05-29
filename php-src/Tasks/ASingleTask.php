@@ -63,7 +63,7 @@ abstract class ASingleTask extends ATask
     /**
      * @throws CliprException
      */
-    protected function checkSingleInstance()
+    protected function checkSingleInstance(): void
     {
         try {
             if ($this->isSingleInstance() && $this->isFileLocked()) {

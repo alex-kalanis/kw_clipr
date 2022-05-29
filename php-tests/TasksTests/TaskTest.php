@@ -1,12 +1,12 @@
 <?php
 
-namespace TaskTests;
+namespace TasksTests;
 
 
 use CommonTestClass;
 use kalanis\kw_clipr\Output;
 use kalanis\kw_clipr\Tasks\DummyTask;
-use kalanis\kw_clipr\Tasks\TaskFactory;
+use kalanis\kw_clipr\Loaders\KwLoader;
 
 
 class TaskTest extends CommonTestClass
@@ -15,7 +15,7 @@ class TaskTest extends CommonTestClass
     {
         $inputs = $this->getParams();
         $instance = new XDummy();
-        $instance->initTask(new Output\Web(), $inputs, new TaskFactory());
+        $instance->initTask(new Output\Web(), $inputs, new KwLoader());
         $this->assertEquals('Just dummy task for processing info from params', $instance->desc());
         $instance->process();
         $this->assertInstanceOf('\kalanis\kw_clipr\Output\AOutput', $instance->transl());

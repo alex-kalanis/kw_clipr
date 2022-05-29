@@ -1,6 +1,6 @@
 <?php
 
-namespace OutputTests;
+namespace OutputsTests;
 
 
 use CommonTestClass;
@@ -9,7 +9,7 @@ use kalanis\kw_clipr\Output;
 
 class PrettyTableTest extends CommonTestClass
 {
-    public function testSimple()
+    public function testSimple(): void
     {
         $instance = new XPrettyTable();
         $this->assertEmpty($instance->getTable()->getHeader());
@@ -25,7 +25,7 @@ class PrettyTableTest extends CommonTestClass
         $instance->clearLine();
     }
 
-    public function testColored()
+    public function testColored(): void
     {
         $instance = new XPrettyTable();
         $instance->setTableColors(['abc', 'def']);
@@ -41,7 +41,7 @@ class PrettyTableTest extends CommonTestClass
         $instance->clearLine();
     }
 
-    public function testDetails()
+    public function testDetails(): void
     {
         $instance = new XPrettyTable();
         $instance->setTableColors(['abc', 'def']);

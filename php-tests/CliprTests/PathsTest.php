@@ -1,6 +1,6 @@
 <?php
 
-namespace RecordsTests;
+namespace CliprTests;
 
 
 use CommonTestClass;
@@ -10,16 +10,20 @@ use kalanis\kw_clipr\CliprException;
 
 class PathsTest extends CommonTestClass
 {
-    public function testSimple()
+    public function testSimple(): void
     {
-        $instance1 = Paths::getInstance();
+        $instance1 = XPaths::getInstance();
         $this->assertInstanceOf('\kalanis\kw_clipr\Clipr\Paths', $instance1);
-        $instance2 = Paths::getInstance();
+        $instance2 = XPaths::getInstance();
         $this->assertInstanceOf('\kalanis\kw_clipr\Clipr\Paths', $instance2);
         $this->assertTrue($instance1 === $instance2);
+        XPaths::clearInstance();
+        $instance3 = XPaths::getInstance();
+        $this->assertInstanceOf('\kalanis\kw_clipr\Clipr\Paths', $instance3);
+        $this->assertTrue($instance1 !== $instance3);
     }
 
-    public function testPathNotKnow()
+    public function testPathNotKnow(): void
     {
         $instance = Paths::getInstance();
         $this->expectException(CliprException::class);
@@ -27,7 +31,7 @@ class PathsTest extends CommonTestClass
         $instance->clearPaths();
     }
 
-    public function testPaths()
+    public function testPaths(): void
     {
         $instance = Paths::getInstance();
         $ptRun = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'run';
@@ -45,7 +49,7 @@ class PathsTest extends CommonTestClass
      * @param string $translatedPath
      * @dataProvider classToRealProvider
      */
-    public function testClassToReal(string $classPath, string $namespace, string $translatedPath)
+    public function testClassToReal(string $classPath, string $namespace, string $translatedPath): void
     {
         $this->addPaths(true);
         $instance = Paths::getInstance();
@@ -53,7 +57,7 @@ class PathsTest extends CommonTestClass
         $instance->clearPaths();
     }
 
-    public function classToRealProvider()
+    public function classToRealProvider(): array
     {
         return [
             ['clipr/any/task', 'clipr', DIRECTORY_SEPARATOR . 'any' . DIRECTORY_SEPARATOR . 'task'],
@@ -68,7 +72,7 @@ class PathsTest extends CommonTestClass
      * @param string|null $translatedClass
      * @dataProvider realToClassProvider
      */
-    public function testRealToClass(string $dir, string $file, ?string $translatedClass)
+    public function testRealToClass(string $dir, string $file, ?string $translatedClass): void
     {
         $this->addPaths(true);
         $instance = Paths::getInstance();
@@ -76,7 +80,7 @@ class PathsTest extends CommonTestClass
         $instance->clearPaths();
     }
 
-    public function realToClassProvider()
+    public function realToClassProvider(): array
     {
         $this->addPaths(true);
         $paths = Paths::getInstance()->getPaths();
@@ -85,5 +89,14 @@ class PathsTest extends CommonTestClass
             [next($paths) . DIRECTORY_SEPARATOR . 'another', 'task', 'testing\another\task'],
             ['not_in_paths', 'task', null],
         ];
+    }
+}
+
+
+class XPaths extends Paths
+{
+    public static function clearInstance(): void
+    {
+        static::$instance = null;
     }
 }

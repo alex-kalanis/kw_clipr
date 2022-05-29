@@ -10,7 +10,8 @@ interface, *nix or Windows CLI. As extra you will get a table engine which creat
 in markdown syntax.
 
 Command line query is simple: ```clipr task --rest-of-params -t here```.
-It uses kw_input for determination which params came.
+It uses kw_input for determination which params came. So with a bit of tinkering you can
+also pass regular files to tasks for some processing.
 
 
 ## PHP Installation
@@ -46,7 +47,7 @@ your needs.
 ```
 {
     "require": {
-        "alex-kalanis/kw_clipr": ">=1.0"
+        "alex-kalanis/kw_clipr": ">=3.0"
     }
 }
 ```
@@ -63,6 +64,15 @@ And each task is subclass of kw_clipr\Tasks\ATask, which allows to write outputs
 
 For running task simply call ```your/path/to/clipr task/name --task-params```
 
+For creating your tasks you must create some directory where they will be, create some tasks
+with correct namespacing and add that root namespace into Clipr init file to paths. If
+you use DI autoloading for your classes then you also need to specify that autoloader in
+Clipr init file - in example there is already a prepared commented-out place. I saw this with
+DI of DB or other services accessing classes.
+
+Clipr tasks can be set into tree, so you can separate them by some of your logic. Not need
+to fill one directory with one huge list of tasks.
+
 ## Caveats
 
 In default setup it contains subparts of kw_autoload and kw_inputs projects - both
@@ -72,7 +82,8 @@ composer files if they aren't in predefined paths where kw_autoload can look for
 For default run it isn't necessary to use the whole machine of Composer and it has been
 developed without it.
 
-And at last - there is NO dependency injection support by default. Because that usually
-means just Composer and that's the thing I want to avoid. Usual DI libraries are very
-dependent on Composer. And the whole PSR has been made with Composer in mind. Also original
-project CliC had no DI support.
+And at last - there is NO dependency injection support by default. You must set it by yourself.
+Because that usually means at least installing Composer and that's the thing I want to avoid.
+Usual DI libraries are very dependent on Composer. And the whole PSR has been made with
+Composer in mind. Also original project CliC had no DI support. Version 2 has better support
+for DI, but it is not running by default. And default tasks do not have it. 

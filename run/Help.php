@@ -3,11 +3,11 @@
 namespace clipr;
 
 
+use kalanis\kw_clipr\Clipr\Useful;
 use kalanis\kw_clipr\CliprException;
 use kalanis\kw_clipr\Output\TPrettyTable;
 use kalanis\kw_clipr\Tasks\ATask;
 use kalanis\kw_clipr\Tasks\Params;
-use kalanis\kw_clipr\Tasks\TaskFactory;
 
 
 class Help extends ATask
@@ -28,11 +28,15 @@ class Help extends ATask
         $this->writeLn('<yellow><bluebg>+======================+</bluebg></yellow>');
 
         try {
-            $task = $this->taskFactory->getTask($this->taskFactory->nthParam($this->inputs, 1), 'clipr\Help');
-            $task->initTask($this->translator, $this->inputs, $this->taskFactory);
+            $taskName = Useful::getNthParam($this->inputs, 1) ?? static::class;
+            $task = $this->loader->getTask($taskName);
+            if (!$task) {
+                throw new CliprException(sprintf('Unknown task *%s* - check name, interface or your config paths.', $taskName));
+            }
+            $task->initTask($this->translator, $this->inputs, $this->loader);
             $this->writeLn();
             $this->writeLn('<lcyan>Command:</lcyan>');
-            $this->writeLn('<yellow>' . TaskFactory::getTaskCall($task) . '</yellow>');
+            $this->writeLn('<yellow>' . Useful::getTaskCall($task) . '</yellow>');
             $this->writeLn('<lcyan>Description:</lcyan>');
             $this->writeLn($task->desc());
             $this->writeLn('<lcyan>Available params:</lcyan>');

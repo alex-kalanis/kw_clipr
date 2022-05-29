@@ -1,6 +1,6 @@
 <?php
 
-namespace RecordsTests;
+namespace CliprTests;
 
 
 use CommonTestClass;
@@ -16,7 +16,7 @@ class SourcesTest extends CommonTestClass
      * @param string $family
      * @dataProvider entryTypeProvider
      */
-    public function testEntryType(bool $isWeb, string $entryType, string $family)
+    public function testEntryType(bool $isWeb, string $entryType, string $family): void
     {
         $instance = new ExtSources();
         $instance->setFamily($family);
@@ -24,7 +24,7 @@ class SourcesTest extends CommonTestClass
         $this->assertTrue(in_array($entryType, $instance->getEntryTypes()));
     }
 
-    public function entryTypeProvider()
+    public function entryTypeProvider(): array
     {
         return [
             [false, IEntry::SOURCE_CLI, 'Linux'],
@@ -44,7 +44,7 @@ class SourcesTest extends CommonTestClass
      * @param string $family
      * @dataProvider outputProvider
      */
-    public function testOutput(bool $isWeb, bool $noColor, string $instanceName, string $family)
+    public function testOutput(bool $isWeb, bool $noColor, string $instanceName, string $family): void
     {
         $instance = new ExtSources();
         $instance->setFamily($family);
@@ -52,7 +52,7 @@ class SourcesTest extends CommonTestClass
         $this->assertInstanceOf($instanceName, $instance->getOutput());
     }
 
-    public function outputProvider()
+    public function outputProvider(): array
     {
         return [
             [false, true, '\kalanis\kw_clipr\Output\Clear', 'Linux'],
