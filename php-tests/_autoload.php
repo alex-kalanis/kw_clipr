@@ -22,6 +22,15 @@ function autoload($className)
         require_once(__DIR__ . DIRECTORY_SEPARATOR . 'external' . DIRECTORY_SEPARATOR . $className . '.php');
     }
 
+    if (is_file(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'run' . DIRECTORY_SEPARATOR . $className . '.php')) {
+        require_once(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'run' . DIRECTORY_SEPARATOR . $className . '.php');
+    }
+
+    $noClipr = in_array(strpos($className, 'clipr'), [0, 1]) ? str_replace('clipr', '', $className) : $className;
+    if (is_file(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'run' . DIRECTORY_SEPARATOR . $noClipr . '.php')) {
+        require_once(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'run' . DIRECTORY_SEPARATOR . $noClipr . '.php');
+    }
+
     if (is_file(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . $className . '.php')) {
         require_once(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . $className . '.php');
     }

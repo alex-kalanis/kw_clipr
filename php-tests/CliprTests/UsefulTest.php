@@ -4,6 +4,7 @@ namespace CliprTests;
 
 
 use CommonTestClass;
+use kalanis\kw_clipr\Clipr\DummyEntry;
 use kalanis\kw_clipr\Clipr\Useful;
 use kalanis\kw_input\Entries\Entry;
 
@@ -13,12 +14,12 @@ class UsefulTest extends CommonTestClass
     public function testNth(): void
     {
         $data = [
-            XEntry::init('no-color', true),
-            XEntry::init('param_1', 'gjd'),
-            XEntry::init('no-headers', false),
-            XEntry::init('param_3', 'ceeg'),
-            XEntry::init('param_0', 'ybh'),
-            XEntry::init('output-file', '/tmp/clipr_test_out.txt'),
+            DummyEntry::init('no-color', true),
+            DummyEntry::init('param_1', 'gjd'),
+            DummyEntry::init('no-headers', false),
+            DummyEntry::init('param_3', 'ceeg'),
+            DummyEntry::init('param_0', 'ybh'),
+            DummyEntry::init('output-file', '/tmp/clipr_test_out.txt'),
         ];
         $this->assertEquals('ceeg', Useful::getNthParam($data, 3));
         $this->assertEquals(null, Useful::getNthParam($data, 6));
@@ -42,6 +43,7 @@ class UsefulTest extends CommonTestClass
             ['\Variables', 'Variables'],
         ];
     }
+
     /**
      * @param object $inputOne
      * @param string $wantedClass
@@ -55,19 +57,8 @@ class UsefulTest extends CommonTestClass
     public function taskCallProvider(): array
     {
         return [
-            [XEntry::init('', ''), 'CliprTests/XEntry'],
+            [DummyEntry::init('', ''), 'kalanis/kw_clipr/Clipr/DummyEntry'],
             [new Entry(), 'kalanis/kw_input/Entries/Entry'],
         ];
-    }
-}
-
-
-class XEntry extends Entry
-{
-    public static function init(string $key, $value): self
-    {
-        $lib = new static();
-        $lib->setEntry(static::SOURCE_EXTERNAL, $key, $value);
-        return $lib;
     }
 }

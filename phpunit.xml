@@ -26,6 +26,7 @@
     <coverage>
         <include>
             <directory suffix=".php">php-src/</directory>
+            <directory suffix=".php">run/</directory>
         </include>
         <report>
             <clover outputFile="php-tests/data/clover.xml"/>
@@ -37,6 +38,7 @@
     <filter>
         <whitelist>
             <directory suffix=".php">php-src/</directory>
+            <directory suffix=".php">run/</directory>
         </whitelist>
     </filter>
     <logging>
@@ -58,6 +60,11 @@
             <directory>php-tests/LoadersTests</directory>
             <directory>php-tests/OutputsTests</directory>
             <directory>php-tests/TasksTests</directory>
+            <directory>php-tests/RunTests</directory>
+        </testsuite>
+
+        <testsuite name="tasks">
+            <directory>php-tests/RunTests</directory>
         </testsuite>
     </testsuites>
 </phpunit>
