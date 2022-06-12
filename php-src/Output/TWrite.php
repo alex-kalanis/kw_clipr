@@ -39,7 +39,7 @@ trait TWrite
 
     public function sendCustom(string $message): void
     {
-        $this->write(' .... [ $message ]');
+        $this->write(" .... [ $message ]");
     }
 
     public function sendFailExplain(string $message): void
