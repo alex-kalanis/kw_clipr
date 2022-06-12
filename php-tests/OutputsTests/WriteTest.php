@@ -37,12 +37,12 @@ class WriteTest extends CommonTestClass
     public function callsProvider(): array
     {
         return [
-            ['sendCustom', 'QUOTE', " .... [ QUOTE ]"],
+            ['sendCustom', 'QUOTE', ' .... [ QUOTE ]'],
             ['sendFailExplain', 'Died', " .... [ \e[31mFAIL\e[0m ] Died"],
             ['sendErrorMessage', 'Died', "\r\n \e[41m        \e[0m\r\n \e[41m  Died  \e[0m\r\n \e[41m        \e[0m\r\n\r\n"],
             ['sendSuccessMessage', 'Born', "\r\n \e[42m        \e[0m\r\n \e[42m  Born  \e[0m\r\n \e[42m        \e[0m\r\n\r\n"],
             ['writeHeadlineLn', 'Initial', "\e[32mInitial\e[0m\r\n\e[32m-------\e[0m\r\n"],
-            ['writePadded', 'padded', "padded"],
+            ['writePadded', 'padded', 'padded'],
             ['writePaddedLn', 'padded', "padded\r\n"],
         ];
     }
@@ -107,7 +107,7 @@ class WriteTest extends CommonTestClass
 //        $this->expectException(CliprException::class);
 //        $instance->writeHeadlineLn('asdfghjkl');
 //        $output = ob_get_clean();
-//        $this->assertEquals("", $output);
+//        $this->assertEquals('', $output);
 //    }
 }
 

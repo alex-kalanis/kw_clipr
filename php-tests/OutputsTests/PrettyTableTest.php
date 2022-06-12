@@ -17,11 +17,11 @@ class PrettyTableTest extends CommonTestClass
         $instance->setTableHeaders(['poi', 'uzt']);
         $instance->setTableDataLine(['mnbv','lkjhg']);
         $instance->dumpTable();
-        $this->assertEquals("| ---- | ----- |"
-            . PHP_EOL . "| poi  | uzt   |"
-            . PHP_EOL . "| ---- | ----- |"
-            . PHP_EOL . "| mnbv | lkjhg |"
-            . PHP_EOL . "| ---- | ----- |" . PHP_EOL, $instance->getLine());
+        $this->assertEquals('| ---- | ----- |'
+            . PHP_EOL . '| poi  | uzt   |'
+            . PHP_EOL . '| ---- | ----- |'
+            . PHP_EOL . '| mnbv | lkjhg |'
+            . PHP_EOL . '| ---- | ----- |' . PHP_EOL, $instance->getLine());
         $instance->clearLine();
     }
 
@@ -33,11 +33,11 @@ class PrettyTableTest extends CommonTestClass
         $instance->setTableColorsHeader(['okm', 'ijn']);
         $instance->setTableDataLine(['mnbv','lkjhg']);
         $instance->dumpTable();
-        $this->assertEquals("| <okm>----</okm> | <ijn>-----</ijn> |"
-            . PHP_EOL . "| <okm>poi </okm> | <ijn>uzt  </ijn> |"
-            . PHP_EOL . "| <okm>----</okm> | <ijn>-----</ijn> |"
-            . PHP_EOL . "| <abc>mnbv</abc> | <def>lkjhg</def> |"
-            . PHP_EOL . "| <okm>----</okm> | <ijn>-----</ijn> |" . PHP_EOL, $instance->getLine());
+        $this->assertEquals('| <okm>----</okm> | <ijn>-----</ijn> |'
+            . PHP_EOL . '| <okm>poi </okm> | <ijn>uzt  </ijn> |'
+            . PHP_EOL . '| <okm>----</okm> | <ijn>-----</ijn> |'
+            . PHP_EOL . '| <abc>mnbv</abc> | <def>lkjhg</def> |'
+            . PHP_EOL . '| <okm>----</okm> | <ijn>-----</ijn> |' . PHP_EOL, $instance->getLine());
         $instance->clearLine();
     }
 
@@ -55,11 +55,11 @@ class PrettyTableTest extends CommonTestClass
         $instance->getTable()->setData(2, 'xdzhf');
         $instance->getTable()->next();
         $instance->dumpTable();
-        $this->assertEquals("| <okm>----</okm> | <ijn>-----</ijn> | <tre>-----</tre> |"
-            . PHP_EOL . "| <okm>poi </okm> | <ijn>uzt  </ijn> | <tre>vgz  </tre> |"
-            . PHP_EOL . "| <okm>----</okm> | <ijn>-----</ijn> | <tre>-----</tre> |"
-            . PHP_EOL . "| <abc>mnbv</abc> | <def>lkjhg</def> | <tre>xdzhf</tre> |"
-            . PHP_EOL . "| <okm>----</okm> | <ijn>-----</ijn> | <tre>-----</tre> |" . PHP_EOL, $instance->getLine());
+        $this->assertEquals('| <okm>----</okm> | <ijn>-----</ijn> | <tre>-----</tre> |'
+            . PHP_EOL . '| <okm>poi </okm> | <ijn>uzt  </ijn> | <tre>vgz  </tre> |'
+            . PHP_EOL . '| <okm>----</okm> | <ijn>-----</ijn> | <tre>-----</tre> |'
+            . PHP_EOL . '| <abc>mnbv</abc> | <def>lkjhg</def> | <tre>xdzhf</tre> |'
+            . PHP_EOL . '| <okm>----</okm> | <ijn>-----</ijn> | <tre>-----</tre> |' . PHP_EOL, $instance->getLine());
         $instance->clearLine();
     }
 }
