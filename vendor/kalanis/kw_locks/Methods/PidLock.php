@@ -54,12 +54,9 @@ class PidLock implements IPassedKey
 
     public function has(): bool
     {
-//print_r(['locks 1', $this->getLockFileName(), ]);
         if (file_exists($this->getLockFileName())) {
             $lockingPid = trim(file_get_contents($this->getLockFileName()));
             $otherOnes = explode(PHP_EOL, trim(`ps -e | awk '{print $1}'`));
-//print_r(['locks 2', $lockingPid, $otherOnes, ]);
-//print_r(['locks 3', explode(PHP_EOL, trim(`ps -e | awk '{print $1} {print $4}'`)), ]);
             if (in_array($lockingPid, $otherOnes)) {
                 return true;
             }

@@ -3,7 +3,7 @@
 namespace kalanis\kw_clipr;
 
 
-use kalanis\kw_input\Variables;
+use kalanis\kw_input\Interfaces\IVariables;
 
 
 /**
@@ -15,12 +15,12 @@ class Clipr
 {
     /** @var Interfaces\ILoader|null */
     protected $loader = null;
-    /** @var Variables|null */
+    /** @var IVariables|null */
     protected $variables = null;
     /** @var Clipr\Sources|null */
     protected $sources = null;
 
-    public function __construct(Interfaces\ILoader $loader, Clipr\Sources $sources, Variables $variables)
+    public function __construct(Interfaces\ILoader $loader, Clipr\Sources $sources, IVariables $variables)
     {
         $this->loader = $loader;
         $this->sources = $sources;
