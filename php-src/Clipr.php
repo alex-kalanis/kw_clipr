@@ -13,11 +13,11 @@ use kalanis\kw_input\Interfaces\IVariables;
  */
 class Clipr
 {
-    /** @var Interfaces\ILoader|null */
+    /** @var Interfaces\ILoader */
     protected $loader = null;
-    /** @var IVariables|null */
+    /** @var IVariables */
     protected $variables = null;
-    /** @var Clipr\Sources|null */
+    /** @var Clipr\Sources */
     protected $sources = null;
 
     public function __construct(Interfaces\ILoader $loader, Clipr\Sources $sources, IVariables $variables)

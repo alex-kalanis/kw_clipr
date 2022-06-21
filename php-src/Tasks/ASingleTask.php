@@ -13,10 +13,11 @@ use kalanis\kw_locks\Methods\PidLock;
 /**
  * Class ASingleTask
  * @package kalanis\kw_clipr\Tasks
- * @property bool singleInstance
+ * @property bool $singleInstance
  */
 abstract class ASingleTask extends ATask
 {
+    /** @var ILock */
     protected $lock = null;
 
     /**

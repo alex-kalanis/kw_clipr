@@ -1,5 +1,13 @@
 # kw_clipr
 
+[![Build Status](https://travis-ci.org/alex-kalanis/kw_clipr.svg?branch=master)](https://travis-ci.org/alex-kalanis/kw_clipr)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/alex-kalanis/kw_clipr/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/alex-kalanis/kw_clipr/?branch=master)
+[![Latest Stable Version](https://poser.pugx.org/alex-kalanis/kw_clipr/v/stable.svg?v=1)](https://packagist.org/packages/alex-kalanis/kw_clipr)
+[![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.3-8892BF.svg)](https://php.net/)
+[![Downloads](https://img.shields.io/packagist/dt/alex-kalanis/kw_clipr.svg?v1)](https://packagist.org/packages/alex-kalanis/kw_clipr)
+[![License](https://poser.pugx.org/alex-kalanis/kw_clipr/license.svg?v=1)](https://packagist.org/packages/alex-kalanis/kw_clipr)
+[![Code Coverage](https://scrutinizer-ci.com/g/alex-kalanis/kw_clipr/badges/coverage.png?b=master&v=1)](https://scrutinizer-ci.com/g/alex-kalanis/kw_clipr/?branch=master)
+
 ## CLI Processor 
 
 Basic framework for running your scripts from CLI in a bit prettier package. It calls task
