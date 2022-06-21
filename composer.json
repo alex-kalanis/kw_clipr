@@ -18,7 +18,7 @@
         "phpstan/phpstan": "^1.0",
         "phpstan/phpstan-phpunit": "^1.0",
         "friendsofphp/php-cs-fixer": "^3.0",
-        "psr/container": "~2.0",
+        "psr/container": "=2.0.2",
         "phpunit/phpunit": ">=7.2"
     },
     "suggest": {

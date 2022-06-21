@@ -81,7 +81,7 @@ class Params
                     return $param->getDefaultValue();
                 }
             } else {
-                return (is_bool($param->getDefaultValue())) ? (false == $param->getDefaultValue()) : $input->getValue();
+                return (is_bool($param->getDefaultValue())) ? (false === $param->getDefaultValue()) : $input->getValue();
             }
         } elseif (isset($this->inputs[$param->getShort()])) {
             return empty($param->getDefaultValue());

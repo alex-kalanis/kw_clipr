@@ -21,6 +21,15 @@ class ParamsTest extends CommonTestClass
         $this->assertEquals('tdtr', $instance->getDefaultValue());
         $this->assertEquals(null, $instance->getShort());
         $this->assertEquals('rsef', $instance->getDescription());
+
+        $instance2 = new Params\Option();
+        $instance2->setData('fdh', 'gjx', 'wvgsdh',false, 'm', 'vsdfvd');
+        $this->assertEquals('fdh', $instance2->getVariable());
+        $this->assertEquals('gjx', $instance2->getCliKey());
+        $this->assertEquals('wvgsdh', $instance2->getMatch());
+        $this->assertEquals(false, $instance2->getDefaultValue());
+        $this->assertEquals('m', $instance2->getShort());
+        $this->assertEquals('vsdfvd', $instance2->getDescription());
     }
 
     public function testParam(): void

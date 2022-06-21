@@ -35,7 +35,7 @@ class SystemTest extends CommonTestClass
         $this->assertNotEmpty($lib);
         $lib->run();
 
-        @unlink('/tmp/clipr_test_out.txt');
+        /** @scrutinizer ignore-unhandled */ @unlink('/tmp/clipr_test_out.txt');
     }
 
     /**

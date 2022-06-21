@@ -56,8 +56,8 @@ class KwLoader implements ILoader
     /**
      * @param string $namespacePath
      * @param string $classPath
-     * @return string
      * @throws CliprException
+     * @return string
      */
     protected function makeRealFilePath(string $namespacePath, string $classPath): string
     {

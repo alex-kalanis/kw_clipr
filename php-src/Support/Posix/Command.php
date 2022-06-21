@@ -95,7 +95,7 @@ class Command
         exec($this->command, $outputLines, $return);
         $this->outputLines = $outputLines;
         $this->returnStatus = $return;
-        $this->success = ($return === 0);
+        $this->success = (0 === $return);
         return $this->success;
     }
 

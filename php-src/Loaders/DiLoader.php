@@ -30,10 +30,10 @@ class DiLoader implements ILoader
 
     /**
      * @param string $classFromParam
-     * @return ATask|null
      * @throws CliprException
      * @throws Container\ContainerExceptionInterface
      * @throws Container\NotFoundExceptionInterface
+     * @return ATask|null
      */
     public function getTask(string $classFromParam): ?ATask
     {

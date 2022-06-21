@@ -129,7 +129,7 @@ class XSingle extends ASingleTask
         // nothing need
     }
 
-    public function writeLn(string $output = ''): void
+    public function writeLn(/** @scrutinizer ignore-unused */ string $output = ''): void
     {
         // nothing!
     }
@@ -169,7 +169,7 @@ class XPLock extends XLock implements IPassedKey
 
 class XSLock extends XLock
 {
-    public function setClass(object $class): void
+    public function setClass(/** @scrutinizer ignore-unused */ object $class): void
     {
     }
 }
