@@ -13,13 +13,13 @@ class PathsTest extends CommonTestClass
     public function testSimple(): void
     {
         $instance1 = XPaths::getInstance();
-        $this->assertInstanceOf('\kalanis\kw_clipr\Clipr\Paths', $instance1);
+        $this->assertInstanceOf(Paths::class, $instance1);
         $instance2 = XPaths::getInstance();
-        $this->assertInstanceOf('\kalanis\kw_clipr\Clipr\Paths', $instance2);
+        $this->assertInstanceOf(Paths::class, $instance2);
         $this->assertTrue($instance1 === $instance2);
         XPaths::clearInstance();
         $instance3 = XPaths::getInstance();
-        $this->assertInstanceOf('\kalanis\kw_clipr\Clipr\Paths', $instance3);
+        $this->assertInstanceOf(Paths::class, $instance3);
         $this->assertTrue($instance1 !== $instance3);
     }
 

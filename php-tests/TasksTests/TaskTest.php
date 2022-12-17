@@ -18,7 +18,7 @@ class TaskTest extends CommonTestClass
         $instance = new XDummy();
         $instance->initTask(new Output\Web(), new SimpleArrays($inputs), new KwLoader());
         $this->assertEquals('Just dummy task for processing info from params', $instance->desc());
-        $instance->process();
+        $this->assertEquals(XDummy::STATUS_SUCCESS, $instance->process());
         $this->assertInstanceOf('\kalanis\kw_clipr\Output\AOutput', $instance->transl());
         $this->assertNotEmpty($instance->par());
         $this->assertFalse(isset($instance->abc));

@@ -1,0 +1,918 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1671244421">
+  <project timestamp="1671244421">
+    <package name="kalanis\kw_clipr">
+      <file name="/usr/share/nginx/deep_tree/kw_clipr/php-src/Clipr.php">
+        <class name="kalanis\kw_clipr\Clipr" namespace="kalanis\kw_clipr" fullPackage="kalanis" package="kalanis">
+          <metrics complexity="9" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="25" coveredstatements="25" elements="28" coveredelements="28"/>
+        </class>
+        <line num="24" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="2"/>
+        <line num="26" type="stmt" count="2"/>
+        <line num="27" type="stmt" count="2"/>
+        <line num="28" type="stmt" count="2"/>
+        <line num="29" type="stmt" count="2"/>
+        <line num="37" type="method" name="addPath" visibility="public" complexity="1" crap="1" count="2"/>
+        <line num="39" type="stmt" count="2"/>
+        <line num="40" type="stmt" count="2"/>
+        <line num="47" type="method" name="run" visibility="public" complexity="7" crap="7" count="2"/>
+        <line num="50" type="stmt" count="2"/>
+        <line num="51" type="stmt" count="2"/>
+        <line num="52" type="stmt" count="2"/>
+        <line num="55" type="stmt" count="2"/>
+        <line num="56" type="stmt" count="2"/>
+        <line num="57" type="stmt" count="2"/>
+        <line num="58" type="stmt" count="2"/>
+        <line num="59" type="stmt" count="1"/>
+        <line num="61" type="stmt" count="1"/>
+        <line num="63" type="stmt" count="1"/>
+        <line num="64" type="stmt" count="1"/>
+        <line num="67" type="stmt" count="1"/>
+        <line num="68" type="stmt" count="1"/>
+        <line num="71" type="stmt" count="1"/>
+        <line num="73" type="stmt" count="1"/>
+        <line num="74" type="stmt" count="1"/>
+        <line num="77" type="stmt" count="1"/>
+        <line num="78" type="stmt" count="1"/>
+        <line num="81" type="stmt" count="1"/>
+        <metrics loc="83" ncloc="61" classes="1" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="25" coveredstatements="25" elements="28" coveredelements="28"/>
+      </file>
+      <file name="/usr/share/nginx/deep_tree/kw_clipr/php-src/CliprException.php">
+        <class name="kalanis\kw_clipr\CliprException" namespace="kalanis\kw_clipr">
+          <metrics complexity="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+        </class>
+        <metrics loc="8" ncloc="8" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+      </file>
+    </package>
+    <package name="kalanis\kw_clipr\Clipr">
+      <file name="/usr/share/nginx/deep_tree/kw_clipr/php-src/Clipr/DummyEntry.php">
+        <class name="kalanis\kw_clipr\Clipr\DummyEntry" namespace="kalanis\kw_clipr\Clipr" fullPackage="kalanis" package="kalanis">
+          <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="3" elements="4" coveredelements="4"/>
+        </class>
+        <line num="22" type="method" name="init" visibility="public" complexity="1" crap="1" count="10"/>
+        <line num="24" type="stmt" count="10"/>
+        <line num="25" type="stmt" count="10"/>
+        <line num="26" type="stmt" count="10"/>
+        <metrics loc="28" ncloc="17" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="3" elements="4" coveredelements="4"/>
+      </file>
+      <file name="/usr/share/nginx/deep_tree/kw_clipr/php-src/Clipr/Paths.php">
+        <class name="kalanis\kw_clipr\Clipr\Paths" namespace="kalanis\kw_clipr\Clipr" fullPackage="kalanis" package="kalanis">
+          <metrics complexity="18" methods="7" coveredmethods="7" conditionals="0" coveredconditionals="0" statements="33" coveredstatements="33" elements="40" coveredelements="40"/>
+        </class>
+        <line num="24" type="method" name="getInstance" visibility="public" complexity="2" crap="2" count="13"/>
+        <line num="27" type="stmt" count="13"/>
+        <line num="28" type="stmt" count="1"/>
+        <line num="30" type="stmt" count="13"/>
+        <line num="33" type="method" name="__construct" visibility="protected" complexity="1" crap="1" count="1"/>
+        <line num="35" type="stmt" count="1"/>
+        <line num="50" type="method" name="addPath" visibility="public" complexity="2" crap="2" count="11"/>
+        <line num="52" type="stmt" count="11"/>
+        <line num="53" type="stmt" count="11"/>
+        <line num="54" type="stmt" count="1"/>
+        <line num="56" type="stmt" count="10"/>
+        <line num="57" type="stmt" count="10"/>
+        <line num="63" type="method" name="getPaths" visibility="public" complexity="1" crap="1" count="4"/>
+        <line num="65" type="stmt" count="4"/>
+        <line num="68" type="method" name="clearPaths" visibility="public" complexity="1" crap="1" count="7"/>
+        <line num="70" type="stmt" count="7"/>
+        <line num="71" type="stmt" count="7"/>
+        <line num="73" type="method" name="classToRealFile" visibility="public" complexity="3" crap="3" count="5"/>
+        <line num="76" type="stmt" count="5"/>
+        <line num="77" type="stmt" count="5"/>
+        <line num="78" type="stmt" count="5"/>
+        <line num="79" type="stmt" count="1"/>
+        <line num="80" type="stmt" count="5"/>
+        <line num="82" type="stmt" count="5"/>
+        <line num="84" type="stmt" count="5"/>
+        <line num="87" type="method" name="realFileToClass" visibility="public" complexity="7" crap="7" count="5"/>
+        <line num="89" type="stmt" count="5"/>
+        <line num="90" type="stmt" count="5"/>
+        <line num="92" type="stmt" count="5"/>
+        <line num="93" type="stmt" count="5"/>
+        <line num="94" type="stmt" count="5"/>
+        <line num="95" type="stmt" count="5"/>
+        <line num="97" type="stmt" count="4"/>
+        <line num="98" type="stmt" count="4"/>
+        <line num="100" type="stmt" count="4"/>
+        <line num="101" type="stmt" count="4"/>
+        <line num="103" type="stmt" count="4"/>
+        <line num="104" type="stmt" count="4"/>
+        <line num="106" type="stmt" count="4"/>
+        <line num="109" type="stmt" count="1"/>
+        <metrics loc="111" ncloc="72" classes="1" methods="7" coveredmethods="7" conditionals="0" coveredconditionals="0" statements="33" coveredstatements="33" elements="40" coveredelements="40"/>
+      </file>
+      <file name="/usr/share/nginx/deep_tree/kw_clipr/php-src/Clipr/Sources.php">
+        <class name="kalanis\kw_clipr\Clipr\Sources" namespace="kalanis\kw_clipr\Clipr" fullPackage="kalanis" package="kalanis">
+          <metrics complexity="27" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="31" coveredstatements="31" elements="34" coveredelements="34"/>
+        </class>
+        <line num="21" type="method" name="determineInput" visibility="public" complexity="7" crap="7" count="14"/>
+        <line num="23" type="stmt" count="14"/>
+        <line num="24" type="stmt" count="3"/>
+        <line num="25" type="stmt" count="11"/>
+        <line num="26" type="stmt" count="4"/>
+        <line num="28" type="stmt" count="7"/>
+        <line num="29" type="stmt" count="7"/>
+        <line num="30" type="stmt" count="1"/>
+        <line num="31" type="stmt" count="1"/>
+        <line num="32" type="stmt" count="6"/>
+        <line num="33" type="stmt" count="5"/>
+        <line num="34" type="stmt" count="2"/>
+        <line num="35" type="stmt" count="4"/>
+        <line num="36" type="stmt" count="4"/>
+        <line num="38" type="stmt" count="2"/>
+        <line num="41" type="stmt" count="14"/>
+        <line num="83" type="method" name="getEntryTypes" visibility="public" complexity="5" crap="5" count="9"/>
+        <line num="85" type="stmt" count="9"/>
+        <line num="86" type="stmt" count="9"/>
+        <line num="87" type="stmt" count="3"/>
+        <line num="88" type="stmt" count="6"/>
+        <line num="89" type="stmt" count="3"/>
+        <line num="90" type="stmt" count="3"/>
+        <line num="92" type="stmt" count="6"/>
+        <line num="96" type="method" name="getOutput" visibility="public" complexity="5" crap="5" count="6"/>
+        <line num="98" type="stmt" count="6"/>
+        <line num="99" type="stmt" count="6"/>
+        <line num="100" type="stmt" count="1"/>
+        <line num="101" type="stmt" count="5"/>
+        <line num="102" type="stmt" count="1"/>
+        <line num="103" type="stmt" count="4"/>
+        <line num="104" type="stmt" count="1"/>
+        <line num="105" type="stmt" count="3"/>
+        <line num="107" type="stmt" count="3"/>
+        <metrics loc="110" ncloc="96" classes="1" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="31" coveredstatements="31" elements="34" coveredelements="34"/>
+      </file>
+      <file name="/usr/share/nginx/deep_tree/kw_clipr/php-src/Clipr/Useful.php">
+        <class name="kalanis\kw_clipr\Clipr\Useful" namespace="kalanis\kw_clipr\Clipr" fullPackage="kalanis" package="kalanis">
+          <metrics complexity="8" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="10" elements="14" coveredelements="14"/>
+        </class>
+        <line num="26" type="method" name="mb_str_pad" visibility="public" complexity="1" crap="1" count="11"/>
+        <line num="28" type="stmt" count="11"/>
+        <line num="29" type="stmt" count="11"/>
+        <line num="38" type="method" name="getNthParam" visibility="public" complexity="4" crap="4" count="6"/>
+        <line num="40" type="stmt" count="6"/>
+        <line num="41" type="stmt" count="6"/>
+        <line num="43" type="stmt" count="6"/>
+        <line num="44" type="stmt" count="2"/>
+        <line num="47" type="stmt" count="5"/>
+        <line num="50" type="method" name="sanitizeClass" visibility="public" complexity="2" crap="2" count="6"/>
+        <line num="52" type="stmt" count="6"/>
+        <line num="53" type="stmt" count="6"/>
+        <line num="56" type="method" name="getTaskCall" visibility="public" complexity="1" crap="1" count="4"/>
+        <line num="58" type="stmt" count="4"/>
+        <metrics loc="60" ncloc="39" classes="1" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="10" elements="14" coveredelements="14"/>
+      </file>
+    </package>
+    <file name="/usr/share/nginx/deep_tree/kw_clipr/php-src/Interfaces/ILoader.php">
+      <metrics loc="25" ncloc="15" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+    </file>
+    <file name="/usr/share/nginx/deep_tree/kw_clipr/php-src/Interfaces/ISources.php">
+      <metrics loc="20" ncloc="15" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+    </file>
+    <file name="/usr/share/nginx/deep_tree/kw_clipr/php-src/Interfaces/IStatuses.php">
+      <metrics loc="80" ncloc="-50" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+    </file>
+    <package name="kalanis\kw_clipr\Loaders">
+      <file name="/usr/share/nginx/deep_tree/kw_clipr/php-src/Loaders/CacheLoader.php">
+        <class name="kalanis\kw_clipr\Loaders\CacheLoader" namespace="kalanis\kw_clipr\Loaders" fullPackage="kalanis" package="kalanis">
+          <metrics complexity="6" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="10" elements="13" coveredelements="13"/>
+        </class>
+        <line num="23" type="method" name="init" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="25" type="stmt" count="1"/>
+        <line num="28" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="30" type="stmt" count="1"/>
+        <line num="31" type="stmt" count="1"/>
+        <line num="33" type="method" name="getTask" visibility="public" complexity="4" crap="4" count="1"/>
+        <line num="35" type="stmt" count="1"/>
+        <line num="36" type="stmt" count="1"/>
+        <line num="37" type="stmt" count="1"/>
+        <line num="38" type="stmt" count="1"/>
+        <line num="39" type="stmt" count="1"/>
+        <line num="41" type="stmt" count="1"/>
+        <line num="43" type="stmt" count="1"/>
+        <metrics loc="45" ncloc="38" classes="1" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="10" elements="13" coveredelements="13"/>
+      </file>
+      <file name="/usr/share/nginx/deep_tree/kw_clipr/php-src/Loaders/DiLoader.php">
+        <class name="kalanis\kw_clipr\Loaders\DiLoader" namespace="kalanis\kw_clipr\Loaders" fullPackage="kalanis" package="kalanis">
+          <metrics complexity="9" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+        </class>
+        <metrics loc="63" ncloc="47" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+      </file>
+      <file name="/usr/share/nginx/deep_tree/kw_clipr/php-src/Loaders/KwLoader.php">
+        <class name="kalanis\kw_clipr\Loaders\KwLoader" namespace="kalanis\kw_clipr\Loaders" fullPackage="kalanis" package="kalanis">
+          <metrics complexity="10" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+        </class>
+        <metrics loc="77" ncloc="55" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+      </file>
+      <file name="/usr/share/nginx/deep_tree/kw_clipr/php-src/Loaders/MultiLoader.php">
+        <class name="kalanis\kw_clipr\Loaders\MultiLoader" namespace="kalanis\kw_clipr\Loaders" fullPackage="kalanis" package="kalanis">
+          <metrics complexity="7" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="9" coveredstatements="9" elements="13" coveredelements="13"/>
+        </class>
+        <line num="22" type="method" name="init" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="24" type="stmt" count="1"/>
+        <line num="27" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="29" type="stmt" count="1"/>
+        <line num="31" type="method" name="addLoader" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="33" type="stmt" count="1"/>
+        <line num="34" type="stmt" count="1"/>
+        <line num="35" type="stmt" count="1"/>
+        <line num="38" type="method" name="getTask" visibility="public" complexity="4" crap="4" count="1"/>
+        <line num="40" type="stmt" count="1"/>
+        <line num="41" type="stmt" count="1"/>
+        <line num="42" type="stmt" count="1"/>
+        <line num="45" type="stmt" count="1"/>
+        <metrics loc="47" ncloc="40" classes="1" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="9" coveredstatements="9" elements="13" coveredelements="13"/>
+      </file>
+    </package>
+    <package name="kalanis\kw_clipr\Output">
+      <file name="/usr/share/nginx/deep_tree/kw_clipr/php-src/Output/AOutput.php">
+        <class name="kalanis\kw_clipr\Output\AOutput" namespace="kalanis\kw_clipr\Output" fullPackage="kalanis" package="kalanis">
+          <metrics complexity="8" methods="6" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="47" coveredstatements="47" elements="53" coveredelements="53"/>
+        </class>
+        <line num="22" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="34"/>
+        <line num="24" type="stmt" count="34"/>
+        <line num="25" type="stmt" count="34"/>
+        <line num="27" type="method" name="setTags" visibility="protected" complexity="1" crap="1" count="34"/>
+        <line num="30" type="stmt" count="34"/>
+        <line num="31" type="stmt" count="34"/>
+        <line num="32" type="stmt" count="34"/>
+        <line num="33" type="stmt" count="34"/>
+        <line num="37" type="stmt" count="34"/>
+        <line num="38" type="stmt" count="34"/>
+        <line num="39" type="stmt" count="34"/>
+        <line num="40" type="stmt" count="34"/>
+        <line num="41" type="stmt" count="34"/>
+        <line num="42" type="stmt" count="34"/>
+        <line num="43" type="stmt" count="34"/>
+        <line num="44" type="stmt" count="34"/>
+        <line num="47" type="stmt" count="34"/>
+        <line num="48" type="stmt" count="34"/>
+        <line num="49" type="stmt" count="34"/>
+        <line num="50" type="stmt" count="34"/>
+        <line num="51" type="stmt" count="34"/>
+        <line num="52" type="stmt" count="34"/>
+        <line num="53" type="stmt" count="34"/>
+        <line num="54" type="stmt" count="34"/>
+        <line num="58" type="stmt" count="34"/>
+        <line num="59" type="stmt" count="34"/>
+        <line num="60" type="stmt" count="34"/>
+        <line num="61" type="stmt" count="34"/>
+        <line num="62" type="stmt" count="34"/>
+        <line num="63" type="stmt" count="34"/>
+        <line num="64" type="stmt" count="34"/>
+        <line num="65" type="stmt" count="34"/>
+        <line num="68" type="stmt" count="34"/>
+        <line num="69" type="stmt" count="34"/>
+        <line num="70" type="stmt" count="34"/>
+        <line num="71" type="stmt" count="34"/>
+        <line num="72" type="stmt" count="34"/>
+        <line num="73" type="stmt" count="34"/>
+        <line num="74" type="stmt" count="34"/>
+        <line num="75" type="stmt" count="34"/>
+        <line num="76" type="stmt" count="34"/>
+        <line num="78" type="method" name="addTranslation" visibility="protected" complexity="1" crap="1" count="34"/>
+        <line num="80" type="stmt" count="34"/>
+        <line num="81" type="stmt" count="34"/>
+        <line num="83" type="method" name="translate" visibility="public" complexity="3" crap="3" count="13"/>
+        <line num="85" type="stmt" count="13"/>
+        <line num="86" type="stmt" count="13"/>
+        <line num="87" type="stmt" count="13"/>
+        <line num="90" type="stmt" count="13"/>
+        <line num="93" type="method" name="getStepsBack" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="95" type="stmt" count="1"/>
+        <line num="98" type="method" name="getEol" visibility="public" complexity="1" crap="1" count="14"/>
+        <line num="100" type="stmt" count="14"/>
+        <metrics loc="102" ncloc="79" classes="1" methods="6" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="47" coveredstatements="47" elements="53" coveredelements="53"/>
+      </file>
+      <file name="/usr/share/nginx/deep_tree/kw_clipr/php-src/Output/Clear.php">
+        <class name="kalanis\kw_clipr\Output\Clear" namespace="kalanis\kw_clipr\Output" fullPackage="kalanis" package="kalanis">
+          <metrics complexity="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+        </class>
+        <metrics loc="13" ncloc="8" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+      </file>
+      <file name="/usr/share/nginx/deep_tree/kw_clipr/php-src/Output/Posix.php">
+        <class name="kalanis\kw_clipr\Output\Posix" namespace="kalanis\kw_clipr\Output" fullPackage="kalanis" package="kalanis">
+          <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="37" coveredstatements="37" elements="38" coveredelements="38"/>
+        </class>
+        <line num="16" type="method" name="setTags" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="18" type="stmt" count="1"/>
+        <line num="20" type="stmt" count="1"/>
+        <line num="21" type="stmt" count="1"/>
+        <line num="22" type="stmt" count="1"/>
+        <line num="26" type="stmt" count="1"/>
+        <line num="27" type="stmt" count="1"/>
+        <line num="28" type="stmt" count="1"/>
+        <line num="29" type="stmt" count="1"/>
+        <line num="30" type="stmt" count="1"/>
+        <line num="31" type="stmt" count="1"/>
+        <line num="32" type="stmt" count="1"/>
+        <line num="33" type="stmt" count="1"/>
+        <line num="36" type="stmt" count="1"/>
+        <line num="37" type="stmt" count="1"/>
+        <line num="38" type="stmt" count="1"/>
+        <line num="39" type="stmt" count="1"/>
+        <line num="40" type="stmt" count="1"/>
+        <line num="41" type="stmt" count="1"/>
+        <line num="42" type="stmt" count="1"/>
+        <line num="43" type="stmt" count="1"/>
+        <line num="47" type="stmt" count="1"/>
+        <line num="48" type="stmt" count="1"/>
+        <line num="49" type="stmt" count="1"/>
+        <line num="50" type="stmt" count="1"/>
+        <line num="51" type="stmt" count="1"/>
+        <line num="52" type="stmt" count="1"/>
+        <line num="53" type="stmt" count="1"/>
+        <line num="54" type="stmt" count="1"/>
+        <line num="57" type="stmt" count="1"/>
+        <line num="58" type="stmt" count="1"/>
+        <line num="59" type="stmt" count="1"/>
+        <line num="60" type="stmt" count="1"/>
+        <line num="61" type="stmt" count="1"/>
+        <line num="62" type="stmt" count="1"/>
+        <line num="63" type="stmt" count="1"/>
+        <line num="64" type="stmt" count="1"/>
+        <line num="65" type="stmt" count="1"/>
+        <metrics loc="66" ncloc="47" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="37" coveredstatements="37" elements="38" coveredelements="38"/>
+      </file>
+      <file name="/usr/share/nginx/deep_tree/kw_clipr/php-src/Output/PrettyTable.php">
+        <class name="kalanis\kw_clipr\Output\PrettyTable" namespace="kalanis\kw_clipr\Output" fullPackage="kalanis" package="kalanis">
+          <metrics complexity="29" methods="17" coveredmethods="17" conditionals="0" coveredconditionals="0" statements="53" coveredstatements="53" elements="70" coveredelements="70"/>
+        </class>
+        <line num="49" type="method" name="setColors" visibility="public" complexity="1" crap="1" count="6"/>
+        <line num="51" type="stmt" count="6"/>
+        <line num="52" type="stmt" count="6"/>
+        <line num="54" type="method" name="setColor" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="56" type="stmt" count="1"/>
+        <line num="57" type="stmt" count="1"/>
+        <line num="62" type="method" name="setColorsHeader" visibility="public" complexity="1" crap="1" count="2"/>
+        <line num="64" type="stmt" count="2"/>
+        <line num="65" type="stmt" count="2"/>
+        <line num="67" type="method" name="setColorHeader" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="69" type="stmt" count="1"/>
+        <line num="70" type="stmt" count="1"/>
+        <line num="75" type="method" name="setHeaders" visibility="public" complexity="1" crap="1" count="10"/>
+        <line num="77" type="stmt" count="10"/>
+        <line num="78" type="stmt" count="10"/>
+        <line num="80" type="method" name="setHeader" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="82" type="stmt" count="1"/>
+        <line num="83" type="stmt" count="1"/>
+        <line num="88" type="method" name="setDataLine" visibility="public" complexity="1" crap="1" count="7"/>
+        <line num="90" type="stmt" count="7"/>
+        <line num="91" type="stmt" count="7"/>
+        <line num="92" type="stmt" count="7"/>
+        <line num="98" type="method" name="setData" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="100" type="stmt" count="1"/>
+        <line num="101" type="stmt" count="1"/>
+        <line num="103" type="method" name="setLengths" visibility="public" complexity="7" crap="7" count="8"/>
+        <line num="105" type="stmt" count="8"/>
+        <line num="107" type="stmt" count="8"/>
+        <line num="108" type="stmt" count="8"/>
+        <line num="109" type="stmt" count="8"/>
+        <line num="110" type="stmt" count="8"/>
+        <line num="111" type="stmt" count="8"/>
+        <line num="112" type="stmt" count="8"/>
+        <line num="117" type="stmt" count="8"/>
+        <line num="120" type="method" name="current" visibility="public" complexity="1" crap="1" count="7"/>
+        <line num="122" type="stmt" count="7"/>
+        <line num="123" type="stmt" count="7"/>
+        <line num="126" type="method" name="prev" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="128" type="stmt" count="1"/>
+        <line num="129" type="stmt" count="1"/>
+        <line num="131" type="method" name="next" visibility="public" complexity="1" crap="1" count="7"/>
+        <line num="133" type="stmt" count="7"/>
+        <line num="134" type="stmt" count="7"/>
+        <line num="148" type="method" name="valid" visibility="public" complexity="1" crap="1" count="8"/>
+        <line num="150" type="stmt" count="8"/>
+        <line num="153" type="method" name="rewind" visibility="public" complexity="1" crap="1" count="8"/>
+        <line num="155" type="stmt" count="8"/>
+        <line num="156" type="stmt" count="8"/>
+        <line num="158" type="method" name="getHeader" visibility="public" complexity="2" crap="2" count="8"/>
+        <line num="160" type="stmt" count="8"/>
+        <line num="161" type="stmt" count="8"/>
+        <line num="162" type="stmt" count="8"/>
+        <line num="164" type="stmt" count="1"/>
+        <line num="167" type="method" name="getSeparator" visibility="public" complexity="3" crap="3" count="8"/>
+        <line num="169" type="stmt" count="8"/>
+        <line num="170" type="stmt" count="8"/>
+        <line num="171" type="stmt" count="8"/>
+        <line num="172" type="stmt" count="8"/>
+        <line num="173" type="stmt" count="8"/>
+        <line num="175" type="stmt" count="8"/>
+        <line num="177" type="stmt" count="1"/>
+        <line num="185" type="method" name="dumpLine" visibility="protected" complexity="3" crap="3" count="8"/>
+        <line num="187" type="stmt" count="8"/>
+        <line num="188" type="stmt" count="8"/>
+        <line num="189" type="stmt" count="8"/>
+        <line num="190" type="stmt" count="8"/>
+        <line num="191" type="stmt" count="6"/>
+        <line num="193" type="stmt" count="4"/>
+        <line num="194" type="stmt" count="4"/>
+        <line num="197" type="stmt" count="8"/>
+        <metrics loc="199" ncloc="136" classes="1" methods="17" coveredmethods="17" conditionals="0" coveredconditionals="0" statements="53" coveredstatements="53" elements="70" coveredelements="70"/>
+      </file>
+      <file name="/usr/share/nginx/deep_tree/kw_clipr/php-src/Output/TPrettyTable.php">
+        <class name="TPrettyTable" namespace="kalanis\kw_clipr\Output" fullPackage="kalanis" package="kalanis">
+          <metrics complexity="13" methods="7" coveredmethods="7" conditionals="0" coveredconditionals="0" statements="28" coveredstatements="28" elements="35" coveredelements="35"/>
+        </class>
+        <line num="18" type="method" name="setTableColors" visibility="public" complexity="1" crap="1" count="6"/>
+        <line num="20" type="stmt" count="6"/>
+        <line num="21" type="stmt" count="6"/>
+        <line num="22" type="stmt" count="6"/>
+        <line num="24" type="method" name="setTableColorsHeader" visibility="public" complexity="1" crap="1" count="2"/>
+        <line num="26" type="stmt" count="2"/>
+        <line num="27" type="stmt" count="2"/>
+        <line num="28" type="stmt" count="2"/>
+        <line num="30" type="method" name="setTableHeaders" visibility="public" complexity="1" crap="1" count="10"/>
+        <line num="32" type="stmt" count="10"/>
+        <line num="33" type="stmt" count="10"/>
+        <line num="34" type="stmt" count="10"/>
+        <line num="36" type="method" name="setTableDataLine" visibility="public" complexity="1" crap="1" count="7"/>
+        <line num="38" type="stmt" count="7"/>
+        <line num="39" type="stmt" count="7"/>
+        <line num="40" type="stmt" count="7"/>
+        <line num="42" type="method" name="init" visibility="private" complexity="2" crap="2" count="10"/>
+        <line num="44" type="stmt" count="10"/>
+        <line num="45" type="stmt" count="10"/>
+        <line num="47" type="stmt" count="10"/>
+        <line num="49" type="method" name="resetTable" visibility="public" complexity="1" crap="1" count="8"/>
+        <line num="51" type="stmt" count="8"/>
+        <line num="52" type="stmt" count="8"/>
+        <line num="54" type="method" name="dumpTable" visibility="public" complexity="5" crap="5" count="8"/>
+        <line num="56" type="stmt" count="8"/>
+        <line num="57" type="stmt" count="8"/>
+        <line num="59" type="stmt" count="8"/>
+        <line num="60" type="stmt" count="8"/>
+        <line num="61" type="stmt" count="8"/>
+        <line num="63" type="stmt" count="8"/>
+        <line num="64" type="stmt" count="7"/>
+        <line num="66" type="stmt" count="8"/>
+        <line num="67" type="stmt" count="8"/>
+        <line num="69" type="stmt" count="8"/>
+        <line num="70" type="stmt" count="8"/>
+        <metrics loc="73" ncloc="65" classes="1" methods="7" coveredmethods="7" conditionals="0" coveredconditionals="0" statements="28" coveredstatements="28" elements="35" coveredelements="35"/>
+      </file>
+      <file name="/usr/share/nginx/deep_tree/kw_clipr/php-src/Output/TWrite.php">
+        <class name="TWrite" namespace="kalanis\kw_clipr\Output" fullPackage="kalanis" package="kalanis">
+          <metrics complexity="25" methods="16" coveredmethods="16" conditionals="0" coveredconditionals="0" statements="58" coveredstatements="58" elements="74" coveredelements="74"/>
+        </class>
+        <line num="23" type="method" name="sendOk" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="25" type="stmt" count="1"/>
+        <line num="26" type="stmt" count="1"/>
+        <line num="28" type="method" name="sendSkipped" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="30" type="stmt" count="1"/>
+        <line num="31" type="stmt" count="1"/>
+        <line num="33" type="method" name="sendWarning" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="35" type="stmt" count="1"/>
+        <line num="36" type="stmt" count="1"/>
+        <line num="38" type="method" name="sendFail" visibility="public" complexity="1" crap="1" count="2"/>
+        <line num="40" type="stmt" count="2"/>
+        <line num="41" type="stmt" count="2"/>
+        <line num="43" type="method" name="sendCustom" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="45" type="stmt" count="1"/>
+        <line num="46" type="stmt" count="1"/>
+        <line num="48" type="method" name="sendFailExplain" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="50" type="stmt" count="1"/>
+        <line num="51" type="stmt" count="1"/>
+        <line num="52" type="stmt" count="1"/>
+        <line num="54" type="method" name="sendErrorMessage" visibility="public" complexity="1" crap="1" count="3"/>
+        <line num="56" type="stmt" count="3"/>
+        <line num="57" type="stmt" count="3"/>
+        <line num="58" type="stmt" count="3"/>
+        <line num="59" type="stmt" count="3"/>
+        <line num="60" type="stmt" count="3"/>
+        <line num="61" type="stmt" count="3"/>
+        <line num="63" type="method" name="sendSuccessMessage" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="65" type="stmt" count="1"/>
+        <line num="66" type="stmt" count="1"/>
+        <line num="67" type="stmt" count="1"/>
+        <line num="68" type="stmt" count="1"/>
+        <line num="69" type="stmt" count="1"/>
+        <line num="70" type="stmt" count="1"/>
+        <line num="85" type="method" name="writeHeadlineLn" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="87" type="stmt" count="1"/>
+        <line num="88" type="stmt" count="1"/>
+        <line num="89" type="stmt" count="1"/>
+        <line num="91" type="method" name="sendWorking" visibility="public" complexity="2" crap="2" count="1"/>
+        <line num="93" type="stmt" count="1"/>
+        <line num="94" type="stmt" count="1"/>
+        <line num="95" type="stmt" count="1"/>
+        <line num="96" type="stmt" count="1"/>
+        <line num="97" type="stmt" count="1"/>
+        <line num="99" type="stmt" count="1"/>
+        <line num="100" type="stmt" count="1"/>
+        <line num="101" type="stmt" count="1"/>
+        <line num="103" type="method" name="resetWorking" visibility="public" complexity="2" crap="2" count="1"/>
+        <line num="105" type="stmt" count="1"/>
+        <line num="106" type="stmt" count="1"/>
+        <line num="107" type="stmt" count="1"/>
+        <line num="109" type="stmt" count="1"/>
+        <line num="111" type="method" name="write" visibility="public" complexity="3" crap="3" count="23"/>
+        <line num="113" type="stmt" count="23"/>
+        <line num="114" type="stmt" count="10"/>
+        <line num="117" type="stmt" count="13"/>
+        <line num="119" type="stmt" count="13"/>
+        <line num="120" type="stmt" count="13"/>
+        <line num="121" type="stmt" count="13"/>
+        <line num="123" type="method" name="writeLn" visibility="public" complexity="1" crap="1" count="14"/>
+        <line num="125" type="stmt" count="14"/>
+        <line num="126" type="stmt" count="14"/>
+        <line num="128" type="method" name="writePadded" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="130" type="stmt" count="1"/>
+        <line num="131" type="stmt" count="1"/>
+        <line num="133" type="method" name="writePaddedLn" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="135" type="stmt" count="1"/>
+        <line num="136" type="stmt" count="1"/>
+        <line num="159" type="method" name="removeLastOutput" visibility="public" complexity="2" crap="2" count="1"/>
+        <line num="161" type="stmt" count="1"/>
+        <line num="162" type="stmt" count="1"/>
+        <line num="163" type="stmt" count="1"/>
+        <line num="164" type="stmt" count="1"/>
+        <line num="165" type="stmt" count="1"/>
+        <line num="168" type="stmt" count="1"/>
+        <metrics loc="175" ncloc="150" classes="1" methods="16" coveredmethods="16" conditionals="0" coveredconditionals="0" statements="58" coveredstatements="58" elements="74" coveredelements="74"/>
+      </file>
+      <file name="/usr/share/nginx/deep_tree/kw_clipr/php-src/Output/Web.php">
+        <class name="kalanis\kw_clipr\Output\Web" namespace="kalanis\kw_clipr\Output">
+          <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="36" coveredstatements="36" elements="37" coveredelements="37"/>
+        </class>
+        <line num="11" type="method" name="setTags" visibility="protected" complexity="1" crap="1" count="2"/>
+        <line num="13" type="stmt" count="2"/>
+        <line num="15" type="stmt" count="2"/>
+        <line num="16" type="stmt" count="2"/>
+        <line num="20" type="stmt" count="2"/>
+        <line num="21" type="stmt" count="2"/>
+        <line num="22" type="stmt" count="2"/>
+        <line num="23" type="stmt" count="2"/>
+        <line num="24" type="stmt" count="2"/>
+        <line num="25" type="stmt" count="2"/>
+        <line num="26" type="stmt" count="2"/>
+        <line num="27" type="stmt" count="2"/>
+        <line num="30" type="stmt" count="2"/>
+        <line num="31" type="stmt" count="2"/>
+        <line num="32" type="stmt" count="2"/>
+        <line num="33" type="stmt" count="2"/>
+        <line num="34" type="stmt" count="2"/>
+        <line num="35" type="stmt" count="2"/>
+        <line num="36" type="stmt" count="2"/>
+        <line num="37" type="stmt" count="2"/>
+        <line num="41" type="stmt" count="2"/>
+        <line num="42" type="stmt" count="2"/>
+        <line num="43" type="stmt" count="2"/>
+        <line num="44" type="stmt" count="2"/>
+        <line num="45" type="stmt" count="2"/>
+        <line num="46" type="stmt" count="2"/>
+        <line num="47" type="stmt" count="2"/>
+        <line num="48" type="stmt" count="2"/>
+        <line num="51" type="stmt" count="2"/>
+        <line num="52" type="stmt" count="2"/>
+        <line num="53" type="stmt" count="2"/>
+        <line num="54" type="stmt" count="2"/>
+        <line num="55" type="stmt" count="2"/>
+        <line num="56" type="stmt" count="2"/>
+        <line num="57" type="stmt" count="2"/>
+        <line num="58" type="stmt" count="2"/>
+        <line num="59" type="stmt" count="2"/>
+        <metrics loc="60" ncloc="46" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="36" coveredstatements="36" elements="37" coveredelements="37"/>
+      </file>
+      <file name="/usr/share/nginx/deep_tree/kw_clipr/php-src/Output/Windows.php">
+        <class name="kalanis\kw_clipr\Output\Windows" namespace="kalanis\kw_clipr\Output" fullPackage="kalanis" package="kalanis">
+          <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="37" coveredstatements="37" elements="38" coveredelements="38"/>
+        </class>
+        <line num="21" type="method" name="setTags" visibility="protected" complexity="1" crap="1" count="14"/>
+        <line num="23" type="stmt" count="14"/>
+        <line num="25" type="stmt" count="14"/>
+        <line num="26" type="stmt" count="14"/>
+        <line num="27" type="stmt" count="14"/>
+        <line num="31" type="stmt" count="14"/>
+        <line num="32" type="stmt" count="14"/>
+        <line num="33" type="stmt" count="14"/>
+        <line num="34" type="stmt" count="14"/>
+        <line num="35" type="stmt" count="14"/>
+        <line num="36" type="stmt" count="14"/>
+        <line num="37" type="stmt" count="14"/>
+        <line num="38" type="stmt" count="14"/>
+        <line num="41" type="stmt" count="14"/>
+        <line num="42" type="stmt" count="14"/>
+        <line num="43" type="stmt" count="14"/>
+        <line num="44" type="stmt" count="14"/>
+        <line num="45" type="stmt" count="14"/>
+        <line num="46" type="stmt" count="14"/>
+        <line num="47" type="stmt" count="14"/>
+        <line num="48" type="stmt" count="14"/>
+        <line num="52" type="stmt" count="14"/>
+        <line num="53" type="stmt" count="14"/>
+        <line num="54" type="stmt" count="14"/>
+        <line num="55" type="stmt" count="14"/>
+        <line num="56" type="stmt" count="14"/>
+        <line num="57" type="stmt" count="14"/>
+        <line num="58" type="stmt" count="14"/>
+        <line num="59" type="stmt" count="14"/>
+        <line num="62" type="stmt" count="14"/>
+        <line num="63" type="stmt" count="14"/>
+        <line num="64" type="stmt" count="14"/>
+        <line num="65" type="stmt" count="14"/>
+        <line num="66" type="stmt" count="14"/>
+        <line num="67" type="stmt" count="14"/>
+        <line num="68" type="stmt" count="14"/>
+        <line num="69" type="stmt" count="14"/>
+        <line num="70" type="stmt" count="14"/>
+        <metrics loc="71" ncloc="48" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="37" coveredstatements="37" elements="38" coveredelements="38"/>
+      </file>
+    </package>
+    <package name="kalanis\kw_clipr\Support\Posix">
+      <file name="/usr/share/nginx/deep_tree/kw_clipr/php-src/Support/Posix/Command.php">
+        <class name="kalanis\kw_clipr\Support\Posix\Command" namespace="kalanis\kw_clipr\Support\Posix" fullPackage="kalanis" package="kalanis">
+          <metrics complexity="21" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+        </class>
+        <metrics loc="150" ncloc="113" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+      </file>
+    </package>
+    <package name="kalanis\kw_clipr\Tasks">
+      <file name="/usr/share/nginx/deep_tree/kw_clipr/php-src/Tasks/ASingleTask.php">
+        <class name="kalanis\kw_clipr\Tasks\ASingleTask" namespace="kalanis\kw_clipr\Tasks" fullPackage="kalanis" package="kalanis">
+          <metrics complexity="15" methods="7" coveredmethods="7" conditionals="0" coveredconditionals="0" statements="26" coveredstatements="26" elements="33" coveredelements="33"/>
+        </class>
+        <line num="27" type="method" name="__construct" visibility="public" complexity="4" crap="4" count="7"/>
+        <line num="29" type="stmt" count="7"/>
+        <line num="30" type="stmt" count="7"/>
+        <line num="31" type="stmt" count="2"/>
+        <line num="32" type="stmt" count="5"/>
+        <line num="33" type="stmt" count="1"/>
+        <line num="37" type="stmt" count="7"/>
+        <line num="43" type="method" name="getPresetLock" visibility="protected" complexity="1" crap="1" count="1"/>
+        <line num="45" type="stmt" count="1"/>
+        <line num="48" type="method" name="getTempPath" visibility="protected" complexity="1" crap="1" count="1"/>
+        <line num="50" type="stmt" count="1"/>
+        <line num="56" type="method" name="startup" visibility="protected" complexity="1" crap="1" count="4"/>
+        <line num="58" type="stmt" count="4"/>
+        <line num="59" type="stmt" count="4"/>
+        <line num="61" type="stmt" count="4"/>
+        <line num="62" type="stmt" count="3"/>
+        <line num="67" type="method" name="checkSingleInstance" visibility="protected" complexity="4" crap="4" count="4"/>
+        <line num="70" type="stmt" count="4"/>
+        <line num="72" type="stmt" count="3"/>
+        <line num="75" type="stmt" count="2"/>
+        <line num="76" type="stmt" count="1"/>
+        <line num="78" type="stmt" count="3"/>
+        <line num="80" type="method" name="isSingleInstance" visibility="protected" complexity="1" crap="1" count="4"/>
+        <line num="82" type="stmt" count="4"/>
+        <line num="89" type="method" name="isRunLocked" visibility="protected" complexity="3" crap="3" count="4"/>
+        <line num="92" type="stmt" count="4"/>
+        <line num="93" type="stmt" count="4"/>
+        <line num="94" type="stmt" count="2"/>
+        <line num="96" type="stmt" count="1"/>
+        <line num="97" type="stmt" count="2"/>
+        <line num="98" type="stmt" count="2"/>
+        <line num="99" type="stmt" count="2"/>
+        <line num="100" type="stmt" count="1"/>
+        <metrics loc="103" ncloc="70" classes="1" methods="7" coveredmethods="7" conditionals="0" coveredconditionals="0" statements="26" coveredstatements="26" elements="33" coveredelements="33"/>
+      </file>
+      <file name="/usr/share/nginx/deep_tree/kw_clipr/php-src/Tasks/ATask.php">
+        <class name="kalanis\kw_clipr\Tasks\ATask" namespace="kalanis\kw_clipr\Tasks" fullPackage="kalanis" package="kalanis">
+          <metrics complexity="9" methods="6" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="20" coveredstatements="20" elements="26" coveredelements="26"/>
+        </class>
+        <line num="41" type="method" name="initTask" visibility="public" complexity="2" crap="2" count="16"/>
+        <line num="43" type="stmt" count="16"/>
+        <line num="44" type="stmt" count="16"/>
+        <line num="45" type="stmt" count="16"/>
+        <line num="46" type="stmt" count="16"/>
+        <line num="47" type="stmt" count="16"/>
+        <line num="48" type="stmt" count="16"/>
+        <line num="49" type="stmt" count="15"/>
+        <line num="51" type="method" name="startup" visibility="protected" complexity="1" crap="1" count="16"/>
+        <line num="54" type="stmt" count="16"/>
+        <line num="55" type="stmt" count="16"/>
+        <line num="56" type="stmt" count="16"/>
+        <line num="57" type="stmt" count="16"/>
+        <line num="58" type="stmt" count="16"/>
+        <line num="59" type="stmt" count="16"/>
+        <line num="60" type="stmt" count="16"/>
+        <line num="61" type="stmt" count="16"/>
+        <line num="62" type="stmt" count="16"/>
+        <line num="68" type="method" name="__get" visibility="public" complexity="1" crap="1" count="16"/>
+        <line num="70" type="stmt" count="16"/>
+        <line num="77" type="method" name="__isset" visibility="public" complexity="1" crap="1" count="11"/>
+        <line num="79" type="stmt" count="11"/>
+        <line num="82" type="method" name="getTranslator" visibility="protected" complexity="1" crap="1" count="11"/>
+        <line num="84" type="stmt" count="11"/>
+        <line num="87" type="method" name="getParams" visibility="protected" complexity="1" crap="1" count="2"/>
+        <line num="89" type="stmt" count="2"/>
+        <metrics loc="104" ncloc="64" classes="1" methods="6" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="20" coveredstatements="20" elements="26" coveredelements="26"/>
+      </file>
+      <file name="/usr/share/nginx/deep_tree/kw_clipr/php-src/Tasks/DummyTask.php">
+        <class name="kalanis\kw_clipr\Tasks\DummyTask" namespace="kalanis\kw_clipr\Tasks" fullPackage="kalanis" package="kalanis">
+          <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="2" elements="4" coveredelements="4"/>
+        </class>
+        <line num="12" type="method" name="desc" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="14" type="stmt" count="1"/>
+        <line num="17" type="method" name="process" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="19" type="stmt" count="1"/>
+        <metrics loc="21" ncloc="17" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="2" elements="4" coveredelements="4"/>
+      </file>
+      <file name="/usr/share/nginx/deep_tree/kw_clipr/php-src/Tasks/Params.php">
+        <class name="kalanis\kw_clipr\Tasks\Params" namespace="kalanis\kw_clipr\Tasks" fullPackage="kalanis" package="kalanis">
+          <metrics complexity="18" methods="7" coveredmethods="7" conditionals="0" coveredconditionals="0" statements="28" coveredstatements="28" elements="35" coveredelements="35"/>
+        </class>
+        <line num="25" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="17"/>
+        <line num="27" type="stmt" count="17"/>
+        <line num="28" type="stmt" count="17"/>
+        <line num="37" type="method" name="getKey" visibility="public" complexity="1" crap="1" count="17"/>
+        <line num="39" type="stmt" count="17"/>
+        <line num="51" type="method" name="addParam" visibility="public" complexity="3" crap="3" count="17"/>
+        <line num="53" type="stmt" count="17"/>
+        <line num="54" type="stmt" count="17"/>
+        <line num="55" type="stmt" count="17"/>
+        <line num="56" type="stmt" count="17"/>
+        <line num="57" type="stmt" count="17"/>
+        <line num="64" type="method" name="whichVariant" visibility="protected" complexity="8" crap="8" count="17"/>
+        <line num="66" type="stmt" count="17"/>
+        <line num="67" type="stmt" count="7"/>
+        <line num="69" type="stmt" count="7"/>
+        <line num="70" type="stmt" count="1"/>
+        <line num="71" type="stmt" count="1"/>
+        <line num="72" type="stmt" count="1"/>
+        <line num="73" type="stmt" count="1"/>
+        <line num="74" type="stmt" count="1"/>
+        <line num="75" type="stmt" count="1"/>
+        <line num="76" type="stmt" count="1"/>
+        <line num="78" type="stmt" count="1"/>
+        <line num="81" type="stmt" count="1"/>
+        <line num="84" type="stmt" count="7"/>
+        <line num="86" type="stmt" count="17"/>
+        <line num="87" type="stmt" count="14"/>
+        <line num="89" type="stmt" count="17"/>
+        <line num="97" type="method" name="__get" visibility="public" complexity="2" crap="2" count="17"/>
+        <line num="99" type="stmt" count="17"/>
+        <line num="106" type="method" name="__isset" visibility="public" complexity="1" crap="1" count="17"/>
+        <line num="108" type="stmt" count="17"/>
+        <line num="114" type="method" name="getAvailableOptions" visibility="public" complexity="1" crap="1" count="4"/>
+        <line num="116" type="stmt" count="4"/>
+        <line num="117" type="stmt" count="4"/>
+        <metrics loc="118" ncloc="75" classes="1" methods="7" coveredmethods="7" conditionals="0" coveredconditionals="0" statements="28" coveredstatements="28" elements="35" coveredelements="35"/>
+      </file>
+      <file name="/usr/share/nginx/deep_tree/kw_clipr/php-src/Tasks/SingleTaskException.php">
+        <class name="kalanis\kw_clipr\Tasks\SingleTaskException" namespace="kalanis\kw_clipr\Tasks">
+          <metrics complexity="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+        </class>
+        <metrics loc="11" ncloc="11" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+      </file>
+    </package>
+    <package name="kalanis\kw_clipr\Tasks\Params">
+      <file name="/usr/share/nginx/deep_tree/kw_clipr/php-src/Tasks/Params/Option.php">
+        <class name="kalanis\kw_clipr\Tasks\Params\Option" namespace="kalanis\kw_clipr\Tasks\Params" fullPackage="kalanis" package="kalanis">
+          <metrics complexity="13" methods="9" coveredmethods="9" conditionals="0" coveredconditionals="0" statements="16" coveredstatements="16" elements="25" coveredelements="25"/>
+        </class>
+        <line num="36" type="method" name="setData" visibility="public" complexity="3" crap="3" count="18"/>
+        <line num="38" type="stmt" count="18"/>
+        <line num="39" type="stmt" count="18"/>
+        <line num="40" type="stmt" count="18"/>
+        <line num="41" type="stmt" count="18"/>
+        <line num="42" type="stmt" count="18"/>
+        <line num="43" type="stmt" count="18"/>
+        <line num="44" type="stmt" count="18"/>
+        <line num="51" type="method" name="setValue" visibility="public" complexity="1" crap="1" count="18"/>
+        <line num="53" type="stmt" count="18"/>
+        <line num="54" type="stmt" count="18"/>
+        <line num="60" type="method" name="getValue" visibility="public" complexity="1" crap="1" count="18"/>
+        <line num="62" type="stmt" count="18"/>
+        <line num="68" type="method" name="getDefaultValue" visibility="public" complexity="1" crap="1" count="18"/>
+        <line num="70" type="stmt" count="18"/>
+        <line num="73" type="method" name="getVariable" visibility="public" complexity="1" crap="1" count="4"/>
+        <line num="75" type="stmt" count="4"/>
+        <line num="78" type="method" name="getCliKey" visibility="public" complexity="1" crap="1" count="18"/>
+        <line num="80" type="stmt" count="18"/>
+        <line num="83" type="method" name="getMatch" visibility="public" complexity="2" crap="2" count="8"/>
+        <line num="85" type="stmt" count="8"/>
+        <line num="88" type="method" name="getShort" visibility="public" complexity="2" crap="2" count="18"/>
+        <line num="90" type="stmt" count="18"/>
+        <line num="93" type="method" name="getDescription" visibility="public" complexity="1" crap="1" count="2"/>
+        <line num="95" type="stmt" count="2"/>
+        <metrics loc="97" ncloc="67" classes="1" methods="9" coveredmethods="9" conditionals="0" coveredconditionals="0" statements="16" coveredstatements="16" elements="25" coveredelements="25"/>
+      </file>
+    </package>
+    <package name="clipr">
+      <file name="/usr/share/nginx/deep_tree/kw_clipr/run/Help.php">
+        <class name="clipr\Help" namespace="clipr">
+          <metrics complexity="6" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="28" coveredstatements="28" elements="30" coveredelements="30"/>
+        </class>
+        <line num="17" type="method" name="desc" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="19" type="stmt" count="1"/>
+        <line num="22" type="method" name="process" visibility="public" complexity="5" crap="5" count="3"/>
+        <line num="24" type="stmt" count="3"/>
+        <line num="25" type="stmt" count="3"/>
+        <line num="26" type="stmt" count="3"/>
+        <line num="27" type="stmt" count="3"/>
+        <line num="28" type="stmt" count="3"/>
+        <line num="30" type="stmt" count="3"/>
+        <line num="31" type="stmt" count="1"/>
+        <line num="32" type="stmt" count="1"/>
+        <line num="36" type="stmt" count="2"/>
+        <line num="37" type="stmt" count="2"/>
+        <line num="38" type="stmt" count="2"/>
+        <line num="39" type="stmt" count="1"/>
+        <line num="41" type="stmt" count="1"/>
+        <line num="42" type="stmt" count="1"/>
+        <line num="43" type="stmt" count="1"/>
+        <line num="44" type="stmt" count="1"/>
+        <line num="45" type="stmt" count="1"/>
+        <line num="46" type="stmt" count="1"/>
+        <line num="47" type="stmt" count="1"/>
+        <line num="49" type="stmt" count="1"/>
+        <line num="50" type="stmt" count="1"/>
+        <line num="52" type="stmt" count="1"/>
+        <line num="54" type="stmt" count="1"/>
+        <line num="56" type="stmt" count="1"/>
+        <line num="57" type="stmt" count="1"/>
+        <line num="58" type="stmt" count="1"/>
+        <line num="60" type="stmt" count="1"/>
+        <metrics loc="62" ncloc="61" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="28" coveredstatements="28" elements="30" coveredelements="30"/>
+      </file>
+      <file name="/usr/share/nginx/deep_tree/kw_clipr/run/Info.php">
+        <class name="clipr\Info" namespace="clipr">
+          <metrics complexity="3" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="24" coveredstatements="24" elements="26" coveredelements="26"/>
+        </class>
+        <line num="16" type="method" name="desc" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="18" type="stmt" count="1"/>
+        <line num="21" type="method" name="process" visibility="public" complexity="2" crap="2" count="2"/>
+        <line num="23" type="stmt" count="2"/>
+        <line num="24" type="stmt" count="2"/>
+        <line num="25" type="stmt" count="2"/>
+        <line num="26" type="stmt" count="2"/>
+        <line num="27" type="stmt" count="2"/>
+        <line num="28" type="stmt" count="2"/>
+        <line num="29" type="stmt" count="2"/>
+        <line num="30" type="stmt" count="2"/>
+        <line num="31" type="stmt" count="2"/>
+        <line num="32" type="stmt" count="2"/>
+        <line num="33" type="stmt" count="2"/>
+        <line num="34" type="stmt" count="2"/>
+        <line num="35" type="stmt" count="2"/>
+        <line num="36" type="stmt" count="2"/>
+        <line num="37" type="stmt" count="2"/>
+        <line num="38" type="stmt" count="2"/>
+        <line num="39" type="stmt" count="2"/>
+        <line num="40" type="stmt" count="2"/>
+        <line num="41" type="stmt" count="2"/>
+        <line num="42" type="stmt" count="2"/>
+        <line num="44" type="stmt" count="2"/>
+        <line num="46" type="stmt" count="2"/>
+        <line num="47" type="stmt" count="2"/>
+        <metrics loc="49" ncloc="48" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="24" coveredstatements="24" elements="26" coveredelements="26"/>
+      </file>
+      <file name="/usr/share/nginx/deep_tree/kw_clipr/run/Lister.php">
+        <class name="clipr\Lister" namespace="clipr" fullPackage="clipr" package="clipr">
+          <metrics complexity="17" methods="5" coveredmethods="5" conditionals="0" coveredconditionals="0" statements="44" coveredstatements="44" elements="49" coveredelements="49"/>
+        </class>
+        <line num="23" type="method" name="startup" visibility="protected" complexity="1" crap="1" count="5"/>
+        <line num="25" type="stmt" count="5"/>
+        <line num="26" type="stmt" count="5"/>
+        <line num="27" type="stmt" count="5"/>
+        <line num="29" type="method" name="desc" visibility="public" complexity="1" crap="1" count="4"/>
+        <line num="31" type="stmt" count="4"/>
+        <line num="34" type="method" name="process" visibility="public" complexity="5" crap="5" count="5"/>
+        <line num="36" type="stmt" count="5"/>
+        <line num="37" type="stmt" count="5"/>
+        <line num="38" type="stmt" count="5"/>
+        <line num="39" type="stmt" count="5"/>
+        <line num="40" type="stmt" count="5"/>
+        <line num="42" type="stmt" count="5"/>
+        <line num="43" type="stmt" count="1"/>
+        <line num="44" type="stmt" count="1"/>
+        <line num="47" type="stmt" count="4"/>
+        <line num="48" type="stmt" count="4"/>
+        <line num="51" type="stmt" count="4"/>
+        <line num="52" type="stmt" count="3"/>
+        <line num="54" type="stmt" count="2"/>
+        <line num="55" type="stmt" count="1"/>
+        <line num="58" type="stmt" count="2"/>
+        <line num="59" type="stmt" count="2"/>
+        <line num="60" type="stmt" count="2"/>
+        <line num="62" type="stmt" count="2"/>
+        <line num="63" type="stmt" count="2"/>
+        <line num="71" type="method" name="createOutput" visibility="protected" complexity="9" crap="9" count="4"/>
+        <line num="73" type="stmt" count="4"/>
+        <line num="74" type="stmt" count="1"/>
+        <line num="76" type="stmt" count="3"/>
+        <line num="77" type="stmt" count="3"/>
+        <line num="78" type="stmt" count="3"/>
+        <line num="79" type="stmt" count="1"/>
+        <line num="81" type="stmt" count="2"/>
+        <line num="82" type="stmt" count="2"/>
+        <line num="83" type="stmt" count="2"/>
+        <line num="85" type="stmt" count="2"/>
+        <line num="86" type="stmt" count="2"/>
+        <line num="87" type="stmt" count="2"/>
+        <line num="89" type="stmt" count="1"/>
+        <line num="90" type="stmt" count="1"/>
+        <line num="93" type="stmt" count="2"/>
+        <line num="94" type="stmt" count="2"/>
+        <line num="95" type="stmt" count="2"/>
+        <line num="96" type="stmt" count="1"/>
+        <line num="99" type="stmt" count="2"/>
+        <line num="101" type="method" name="onlyPhp" visibility="public" complexity="1" crap="1" count="3"/>
+        <line num="103" type="stmt" count="3"/>
+        <line num="104" type="stmt" count="3"/>
+        <metrics loc="106" ncloc="93" classes="1" methods="5" coveredmethods="5" conditionals="0" coveredconditionals="0" statements="44" coveredstatements="44" elements="49" coveredelements="49"/>
+      </file>
+    </package>
+    <metrics files="31" loc="2337" ncloc="1651" classes="22" methods="114" coveredmethods="114" conditionals="0" coveredconditionals="0" statements="605" coveredstatements="605" elements="719" coveredelements="719"/>
+  </project>
+</coverage>

@@ -6,11 +6,11 @@ namespace CliprTests;
 use CommonTestClass;
 use kalanis\kw_clipr\Clipr;
 use kalanis\kw_clipr\CliprException;
-use kalanis\kw_clipr\Interfaces\ILoader;
+use kalanis\kw_clipr\Interfaces;
 use kalanis\kw_clipr\Loaders\KwLoader;
 use kalanis\kw_clipr\Tasks\ATask;
 use kalanis\kw_input\Inputs;
-use kalanis\kw_input\Variables;
+use kalanis\kw_input\Filtered\Variables;
 
 
 class SystemTest extends CommonTestClass
@@ -33,7 +33,7 @@ class SystemTest extends CommonTestClass
         );
         $lib->addPath('clipr', implode(DIRECTORY_SEPARATOR, [__DIR__, '..', '..', 'run']));
         $this->assertNotEmpty($lib);
-        $lib->run();
+        $this->assertEquals(Interfaces\IStatuses::STATUS_SUCCESS, $lib->run());
 
         /** @scrutinizer ignore-unhandled */ @unlink('/tmp/clipr_test_out.txt');
     }
@@ -54,12 +54,12 @@ class SystemTest extends CommonTestClass
         );
         $lib->addPath('clipr', implode(DIRECTORY_SEPARATOR, [__DIR__, '..', '..', 'run']));
         $this->expectException(CliprException::class);
-        $lib->run();
+        $this->assertEquals(Interfaces\IStatuses::STATUS_SUCCESS, $lib->run());
     }
 }
 
 
-class XFLoader implements ILoader
+class XFLoader implements Interfaces\ILoader
 {
     public function getTask(string $classFromParam): ?ATask
     {

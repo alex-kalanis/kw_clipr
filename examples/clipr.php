@@ -30,20 +30,22 @@ try {
             )
         ),
         new kalanis\kw_clipr\Clipr\Sources(),
-        new kalanis\kw_input\Variables($inputs)
+        new kalanis\kw_input\Filtered\Variables($inputs)
     );
     # change to access basic tasks
     $clipr->addPath('clipr', implode(DIRECTORY_SEPARATOR, [__DIR__, 'vendor', 'kalanis', 'kw_clipr', 'run']));
     # add your namespaces and paths which target your tasks, not just
     $clipr->addPath('YourApp\\Clipr', implode(DIRECTORY_SEPARATOR, [__DIR__, '_app', 'Clipr'])); // just example
 
-    $clipr->run();
+    exit($clipr->run());
 } catch (\kalanis\kw_clipr\Tasks\SingleTaskException $ex) {
     echo $ex->getMessage() . PHP_EOL;
-} catch (\Exception $ex) {
+    exit($ex->getCode() ?: 1);
+} catch (\Throwable $ex) {
     echo get_class($ex) . ': ' . $ex->getMessage() . ' in ' . $ex->getFile() . ':' . $ex->getLine() . PHP_EOL;
     echo "Stack trace:" . PHP_EOL;
     echo $ex->getTraceAsString() . PHP_EOL;
+    exit($ex->getCode() ?: 1);
 }
 
 # as last step make this file executable

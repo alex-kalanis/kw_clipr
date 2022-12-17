@@ -50,6 +50,7 @@ class SingleTest extends CommonTestClass
         $lib = new XSingle($lock);
         $lib->initTask(new Output\Clear(), new EntryArrays($this->getParams()), new KwLoader());
         $this->assertNotEmpty($lib);
+        $this->assertEquals(XSingle::STATUS_SIGNAL_USER_1, $lib->process());
     }
 
     /**
@@ -125,9 +126,9 @@ class XSingle extends ASingleTask
         return 'Testing single task';
     }
 
-    public function process(): void
+    public function process(): int
     {
-        // nothing need
+        return static::STATUS_SIGNAL_USER_1;
     }
 
     public function writeLn(/** @scrutinizer ignore-unused */ string $output = ''): void

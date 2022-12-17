@@ -241,9 +241,8 @@ final class Autoload
         $foundFiles = [];
         $info = new WantedClassInfo($className, static::$escapingUnderscore);
 
-//print_r(['pt info', $info]);
         foreach (static::$paths as $path) {
-            $currentPath = realpath(sprintf(
+            $lookedPath = sprintf(
                 $path,
                 DIRECTORY_SEPARATOR, // %1$s
                 static::$basePath, // %2$s
@@ -251,8 +250,8 @@ final class Autoload
                 $info->getProject(), // %4$s
                 $info->getModule(), // %5$s
                 $info->getPath() . WantedClassInfo::PHP_EXTENSION // %6$s
-            ));
-//print_r(['pt lookup', $path, $currentPath]);
+            );
+            $currentPath = realpath($lookedPath);
             if ($currentPath && is_file($currentPath)) {
                 $foundFiles[] = $currentPath;
 

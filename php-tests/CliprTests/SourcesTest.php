@@ -4,6 +4,7 @@ namespace CliprTests;
 
 
 use CommonTestClass;
+use kalanis\kw_clipr\Output;
 use kalanis\kw_clipr\Clipr\Sources;
 use kalanis\kw_input\Interfaces\IEntry;
 
@@ -55,11 +56,11 @@ class SourcesTest extends CommonTestClass
     public function outputProvider(): array
     {
         return [
-            [false, true, '\kalanis\kw_clipr\Output\Clear', 'Linux'],
-            [true, false, '\kalanis\kw_clipr\Output\Web', 'Linux'],
-            [false, false, '\kalanis\kw_clipr\Output\Windows', 'Windows'],
-            [false, false, '\kalanis\kw_clipr\Output\Posix', 'BSD'],
-            [false, false, '\kalanis\kw_clipr\Output\Clear', 'MacOS'],
+            [false, true, Output\Clear::class, 'Linux'],
+            [true, false, Output\Web::class, 'Linux'],
+            [false, false, Output\Windows::class, 'Windows'],
+            [false, false, Output\Posix::class, 'BSD'],
+            [false, false, Output\Clear::class, 'MacOS'],
         ];
     }
 }

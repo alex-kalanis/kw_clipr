@@ -34,16 +34,18 @@ try {
             new \kalanis\kw_clipr\Loaders\KwLoader()
         ),
         new kalanis\kw_clipr\Clipr\Sources(),
-        new kalanis\kw_input\Variables($inputs)
+        new kalanis\kw_input\Filtered\Variables($inputs)
     );
     # define basic paths with tasks
     $clipr->addPath('clipr', __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'run');
     # and run!
-    $clipr->run();
+    exit($clipr->run());
 } catch (\kalanis\kw_clipr\Tasks\SingleTaskException $ex) {
     echo $ex->getMessage() . PHP_EOL;
-} catch (\Exception $ex) {
+    exit($ex->getCode() ?: 1);
+} catch (\Throwable $ex) {
     echo get_class($ex) . ': ' . $ex->getMessage() . ' in ' . $ex->getFile() . ':' . $ex->getLine() . PHP_EOL;
     echo "Stack trace:" . PHP_EOL;
     echo $ex->getTraceAsString() . PHP_EOL;
+    exit($ex->getCode() ?: 1);
 }

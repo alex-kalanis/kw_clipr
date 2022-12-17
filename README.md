@@ -21,6 +21,9 @@ Command line query is simple: ```clipr task --rest-of-params -t here```.
 It uses kw_input for determination which params came. So with a bit of tinkering you can
 also pass regular files to tasks for some processing.
 
+The tasks returns Unix codes and Clipr pass them back to caller. See the IStatuses interface
+for their description.
+
 
 ## PHP Installation
 
@@ -55,7 +58,7 @@ your needs.
 ```
 {
     "require": {
-        "alex-kalanis/kw_clipr": ">=3.2"
+        "alex-kalanis/kw_clipr": ">=4.0"
     }
 }
 ```
@@ -83,6 +86,12 @@ to fill one directory with one huge list of tasks.
 
 For beginning I advise to just copy one of tasks and play with it.
 
+## Changes
+
+- v2 uses different way to initialize DI
+- v3 uses changed locking mechanism for single-running tasks
+- v4 returns status codes
+
 ## Caveats
 
 In default setup it contains subparts of kw_autoload and kw_inputs projects - both
@@ -96,4 +105,4 @@ And at last - there is NO dependency injection support by default. You must set 
 Because that usually means at least installing Composer and that's the thing I want to avoid.
 Usual DI libraries are very dependent on Composer. And the whole PSR has been made with
 Composer in mind. Also original project CliC had no DI support. Version 2 has better support
-for DI, but it is not running by default. And default tasks do not have it. 
+for DI, but it is not running by default. And default tasks do not have it.

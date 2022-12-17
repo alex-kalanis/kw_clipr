@@ -20,7 +20,8 @@ class LoaderTest extends CommonTestClass
     {
         $lib = CacheLoader::init(new XLoader());
         $instance1 = $lib->getTask('test');
-        $this->assertInstanceOf('\kalanis\kw_clipr\Tasks\ATask', $instance1);
+        $this->assertInstanceOf(ATask::class, $instance1);
+        $this->assertEquals(ATask::STATUS_SIGNAL_DUMP, $instance1->process());
         $instance2 = $lib->getTask('test');
         $this->assertTrue($instance1 === $instance2);
         $instance3 = $lib->getTask('nope');
@@ -35,7 +36,7 @@ class LoaderTest extends CommonTestClass
         $lib = MultiLoader::init();
         $lib->addLoader(new XLoader());
         $instance1 = $lib->getTask('test');
-        $this->assertInstanceOf('\kalanis\kw_clipr\Tasks\ATask', $instance1);
+        $this->assertInstanceOf(ATask::class, $instance1);
         $instance3 = $lib->getTask('nope');
         $this->assertNull($instance3);
     }
@@ -44,9 +45,9 @@ class LoaderTest extends CommonTestClass
 
 class XTask extends ATask
 {
-    public function process(): void
+    public function process(): int
     {
-        // nothing
+        return static::STATUS_SIGNAL_DUMP;
     }
 
     public function desc(): string

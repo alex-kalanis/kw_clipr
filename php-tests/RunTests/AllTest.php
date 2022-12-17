@@ -26,10 +26,10 @@ class AllTest extends CommonTestClass
         $lib->initTask(new Clear(), new EntryArrays([
             DummyEntry::init('q', ''),
         ]), new XLoader());
+        $this->assertNotNull($lib);
         $this->assertEquals('Info about Clipr and its inputs', $lib->desc());
         // process
-        $lib->process();
-        $this->assertNotNull($lib);
+        $this->assertEquals(XTask::STATUS_SUCCESS, $lib->process());
     }
 
     public function testHelp(): void
@@ -40,10 +40,10 @@ class AllTest extends CommonTestClass
             DummyEntry::init('q', ''),
             DummyEntry::init('param_2', 'test'),
         ]), new XLoader());
-        $this->assertEquals('Help with Clipr tasks', $lib->desc());
         $this->assertNotNull($lib);
+        $this->assertEquals('Help with Clipr tasks', $lib->desc());
         // process
-        $lib->process();
+        $this->assertEquals(XTask::STATUS_SUCCESS, $lib->process());
     }
 
     public function testHelpNoLoader(): void
@@ -55,7 +55,7 @@ class AllTest extends CommonTestClass
         ]), null);
         $this->assertNotNull($lib);
         // process
-        $lib->process();
+        $this->assertEquals(XTask::STATUS_LIB_ERROR, $lib->process());
     }
 
     public function testHelpNoTask(): void
@@ -67,7 +67,7 @@ class AllTest extends CommonTestClass
         ]), new XLoader());
         $this->assertNotNull($lib);
         // process
-        $lib->process();
+        $this->assertEquals(XTask::STATUS_NO_TARGET_RESOURCE, $lib->process());
     }
 
     public function testLister(): void
@@ -77,10 +77,10 @@ class AllTest extends CommonTestClass
         $lib->initTask(new Clear(), new EntryArrays([
             DummyEntry::init('q', ''),
         ]), new XLoader());
-        $this->assertEquals('Render list of tasks available in paths defined for lookup', $lib->desc());
         $this->assertNotNull($lib);
+        $this->assertEquals('Render list of tasks available in paths defined for lookup', $lib->desc());
         // process
-        $lib->process();
+        $this->assertEquals(XTask::STATUS_SUCCESS, $lib->process());
     }
 
     public function testListerNoLoader(): void
@@ -92,7 +92,7 @@ class AllTest extends CommonTestClass
         ]), null);
         $this->assertNotNull($lib);
         // process
-        $lib->process();
+        $this->assertEquals(XTask::STATUS_LIB_ERROR, $lib->process());
     }
 
     /**
@@ -107,10 +107,10 @@ class AllTest extends CommonTestClass
             DummyEntry::init('q', ''),
             DummyEntry::init('path', __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'data'),
         ]), new KwLoader());
-        $this->assertEquals('Render list of tasks available in paths defined for lookup', $lib->desc());
         $this->assertNotNull($lib);
+        $this->assertEquals('Render list of tasks available in paths defined for lookup', $lib->desc());
         // process
-        $lib->process();
+        $this->assertEquals(XTask::STATUS_SUCCESS, $lib->process());
     }
 
     public function testListerBadPath(): void
@@ -124,7 +124,7 @@ class AllTest extends CommonTestClass
         $this->assertEquals('Render list of tasks available in paths defined for lookup', $lib->desc());
         $this->assertNotNull($lib);
         // process
-        $lib->process();
+        $this->assertEquals(XTask::STATUS_BAD_CONFIG, $lib->process());
     }
 
     public function testListerNoFiles(): void
@@ -138,16 +138,16 @@ class AllTest extends CommonTestClass
         $this->assertEquals('Render list of tasks available in paths defined for lookup', $lib->desc());
         $this->assertNotNull($lib);
         // process
-        $lib->process();
+        $this->assertEquals(XTask::STATUS_NO_TARGET_RESOURCE, $lib->process());
     }
 }
 
 
 class XTask extends ATask
 {
-    public function process(): void
+    public function process(): int
     {
-        // nothing
+        return static::STATUS_SIGNAL_DUMP;
     }
 
     public function desc(): string
