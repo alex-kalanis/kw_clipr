@@ -100,7 +100,7 @@ class AllTest extends CommonTestClass
      */
     public function testListerPath(): void
     {
-        Paths::getInstance()->addPath(['data'], [__DIR__, '..', 'data']);
+        Paths::getInstance()->addPath('data', [__DIR__, '..', 'data']);
         // init
         $lib = new Lister();
         $lib->initTask(new Clear(), new EntryArrays([

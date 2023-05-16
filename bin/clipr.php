@@ -37,7 +37,7 @@ try {
         new kalanis\kw_input\Filtered\Variables($inputs)
     );
     # define basic paths with tasks
-    $clipr->addPath(['clipr'], [__DIR__, '..', 'run']);
+    $clipr->addPath('clipr', [__DIR__, '..', 'run']);
     # and run!
     exit($clipr->run());
 } catch (\kalanis\kw_clipr\Tasks\SingleTaskException $ex) {

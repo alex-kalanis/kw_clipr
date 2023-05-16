@@ -33,9 +33,9 @@ try {
         new kalanis\kw_input\Filtered\Variables($inputs)
     );
     # change to access basic tasks
-    $clipr->addPath(['clipr'], [__DIR__, 'vendor', 'kalanis', 'kw_clipr', 'run']);
+    $clipr->addPath('\clipr', [__DIR__, 'vendor', 'kalanis', 'kw_clipr', 'run']);
     # add your namespaces and paths which target your tasks, not just
-    $clipr->addPath(['YourApp', 'Clipr'], [__DIR__, '_app', 'Clipr']); // just example
+    $clipr->addPath('\YourApp\Clipr', [__DIR__, '_app', 'Clipr']); // just example
 
     exit($clipr->run());
 } catch (\kalanis\kw_clipr\Tasks\SingleTaskException $ex) {

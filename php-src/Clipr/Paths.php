@@ -5,6 +5,8 @@ namespace kalanis\kw_clipr\Clipr;
 
 use kalanis\kw_clipr\CliprException;
 use kalanis\kw_clipr\Interfaces;
+use kalanis\kw_paths\PathsException;
+use kalanis\kw_paths\Stuff;
 
 
 /**
@@ -42,20 +44,25 @@ class Paths
     }
 
     /**
-     * @param string[] $namespace
+     * @param string $namespace
      * @param string[] $path
      * @throws CliprException
      * @return $this
      */
-    public function addPath(array $namespace, array $path): self
+    public function addPath(string $namespace, array $path): self
     {
         $pt = implode(DIRECTORY_SEPARATOR, $path);
-        $realPath = realpath($pt);
-        if (false === $realPath) {
+        if (false === realpath($pt)) {
             throw new CliprException(sprintf('Unknown path *%s*!', $pt), Interfaces\IStatuses::STATUS_BAD_CONFIG);
         }
-        $namespace = implode('\\', $namespace);
-        $this->paths[$namespace] = $path;
+        try {
+            $namespace = Stuff::arrayToLink(array_filter(Stuff::linkToArray($namespace)));
+            $this->paths[$namespace] = $path;
+            // @codeCoverageIgnoreStart
+        } catch (PathsException $ex) {
+            throw new CliprException(sprintf('Problem with path *%s*!', $pt), Interfaces\IStatuses::STATUS_BAD_CONFIG);
+        }
+        // @codeCoverageIgnoreEnd
         return $this;
     }
 

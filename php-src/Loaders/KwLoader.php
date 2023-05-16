@@ -8,6 +8,7 @@ use kalanis\kw_clipr\Clipr\Useful;
 use kalanis\kw_clipr\CliprException;
 use kalanis\kw_clipr\Interfaces;
 use kalanis\kw_clipr\Tasks\ATask;
+use ReflectionException;
 
 
 /**
@@ -22,7 +23,7 @@ class KwLoader implements Interfaces\ILoader
     /**
      * @param string $classFromParam
      * @throws CliprException
-     * @throws \ReflectionException
+     * @throws ReflectionException
      * @return ATask|null
      * For making instances from more than one path
      * Now it's possible to read from different paths as namespace sources
@@ -38,14 +39,17 @@ class KwLoader implements Interfaces\ILoader
                 $realPath = $this->makeRealFilePath($path, $translatedPath);
                 require_once $realPath;
                 if (!class_exists($classPath)) {
+                    // that file contains none wanted class
                     return null;
                 }
                 $reflection = new \ReflectionClass($classPath);
                 if (!$reflection->isInstantiable()) {
+                    // cannot initialize the class - abstract one, interface, trait, ...
                     return null;
                 }
-                $class = new $classPath();
+                $class = $reflection->newInstance();
                 if (!$class instanceof ATask) {
+                    // the class inside is not an instance of ATask necessary to run
                     throw new CliprException(sprintf('Class *%s* is not instance of ATask - check interface or query.', $classPath), Interfaces\IStatuses::STATUS_LIB_ERROR);
                 }
                 return $class;

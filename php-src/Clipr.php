@@ -28,12 +28,12 @@ class Clipr
     }
 
     /**
-     * @param string[] $namespace
+     * @param string $namespace
      * @param string[] $path
      * @throws CliprException
      * @return $this
      */
-    public function addPath(array $namespace, array $path): self
+    public function addPath(string $namespace, array $path): self
     {
         Clipr\Paths::getInstance()->addPath($namespace, $path);
         return $this;

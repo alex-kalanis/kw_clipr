@@ -31,7 +31,7 @@ class SystemTest extends CommonTestClass
             new Clipr\Sources(),
             new Variables($inputs)
         );
-        $lib->addPath(['clipr'], [__DIR__, '..', '..', 'run']);
+        $lib->addPath('clipr', [__DIR__, '..', '..', 'run']);
         $this->assertNotEmpty($lib);
         $this->assertEquals(Interfaces\IStatuses::STATUS_SUCCESS, $lib->run());
 
@@ -52,7 +52,7 @@ class SystemTest extends CommonTestClass
             new Clipr\Sources(),
             new Variables($inputs)
         );
-        $lib->addPath(['clipr'], [__DIR__, '..', '..', 'run']);
+        $lib->addPath('clipr', [__DIR__, '..', '..', 'run']);
         $this->expectException(CliprException::class);
         $this->assertEquals(Interfaces\IStatuses::STATUS_SUCCESS, $lib->run());
     }

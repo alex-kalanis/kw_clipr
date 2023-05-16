@@ -9,6 +9,7 @@ use kalanis\kw_clipr\CliprException;
 use kalanis\kw_clipr\Interfaces;
 use kalanis\kw_clipr\Tasks\ATask;
 use Psr\Container;
+use ReflectionException;
 
 
 /**
@@ -33,7 +34,7 @@ class DiLoader implements Interfaces\ILoader
      * @throws CliprException
      * @throws Container\ContainerExceptionInterface
      * @throws Container\NotFoundExceptionInterface
-     * @throws \ReflectionException
+     * @throws ReflectionException
      * @return ATask|null
      */
     public function getTask(string $classFromParam): ?ATask
@@ -45,9 +46,11 @@ class DiLoader implements Interfaces\ILoader
                 $task = $this->container->get($classPath);
                 $reflection = new \ReflectionClass($classPath);
                 if (!$reflection->isInstantiable()) {
+                    // cannot initialize the class - abstract one, interface, trait, ...
                     return null;
                 }
                 if (!$task instanceof ATask) {
+                    // the class inside is not an instance of ATask necessary to run
                     throw new CliprException(sprintf('Class *%s* is not instance of ATask - check interface or query', $classPath), Interfaces\IStatuses::STATUS_LIB_ERROR);
                 }
                 return $task;

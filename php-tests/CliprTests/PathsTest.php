@@ -30,7 +30,7 @@ class PathsTest extends CommonTestClass
     {
         $instance = Paths::getInstance();
         $this->expectException(CliprException::class);
-        $instance->addPath(['testing_fail'], [__DIR__, '..', 'data_fail']);
+        $instance->addPath('testing_fail', [__DIR__, '..', 'data_fail']);
         $instance->clearPaths();
     }
 
@@ -42,8 +42,8 @@ class PathsTest extends CommonTestClass
         $instance = Paths::getInstance();
         $ptRun = [__DIR__, '..', '..', 'run'];
         $ptData = [__DIR__, '..', 'data'];
-        $instance->addPath(['clipr'], $ptRun);
-        $instance->addPath(['testing'], $ptData);
+        $instance->addPath('clipr', $ptRun);
+        $instance->addPath('testing', $ptData);
         $this->assertEquals($ptRun, $instance->getPaths()['clipr']);
         $this->assertEquals($ptData, $instance->getPaths()['testing']);
         $instance->clearPaths();
@@ -53,6 +53,7 @@ class PathsTest extends CommonTestClass
      * @param string $classPath
      * @param string $namespace
      * @param string $translatedPath
+     * @throws CliprException
      * @dataProvider classToRealProvider
      */
     public function testClassToReal(string $classPath, string $namespace, string $translatedPath): void
@@ -76,6 +77,7 @@ class PathsTest extends CommonTestClass
      * @param string $dir
      * @param string $file
      * @param string|null $translatedClass
+     * @throws CliprException
      * @dataProvider realToClassProvider
      */
     public function testRealToClass(string $dir, string $file, ?string $translatedClass): void
@@ -86,6 +88,10 @@ class PathsTest extends CommonTestClass
         $instance->clearPaths();
     }
 
+    /**
+     * @throws CliprException
+     * @return array<array<string|null>>
+     */
     public function realToClassProvider(): array
     {
         $this->addPaths(true);
