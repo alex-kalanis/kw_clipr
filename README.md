@@ -91,6 +91,7 @@ For beginning I advise to just copy one of tasks and play with it.
 - v2 uses different way to initialize DI
 - v3 uses changed locking mechanism for single-running tasks
 - v4 returns status codes
+- v5 uses arrays as path settings
 
 ## Caveats
 

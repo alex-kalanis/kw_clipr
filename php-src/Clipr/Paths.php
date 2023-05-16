@@ -18,7 +18,7 @@ class Paths
 {
     /** @var self */
     protected static $instance = null;
-    /** @var array<string, string> */
+    /** @var array<string, array<string>> */
     protected $paths = [];
 
     public static function getInstance(): self
@@ -42,23 +42,25 @@ class Paths
     }
 
     /**
-     * @param string $namespace
-     * @param string $path
+     * @param string[] $namespace
+     * @param string[] $path
      * @throws CliprException
      * @return $this
      */
-    public function addPath(string $namespace, string $path): self
+    public function addPath(array $namespace, array $path): self
     {
-        $realPath = realpath($path);
+        $pt = implode(DIRECTORY_SEPARATOR, $path);
+        $realPath = realpath($pt);
         if (false === $realPath) {
-            throw new CliprException(sprintf('Unknown path *%s*!', $path), Interfaces\IStatuses::STATUS_BAD_CONFIG);
+            throw new CliprException(sprintf('Unknown path *%s*!', $pt), Interfaces\IStatuses::STATUS_BAD_CONFIG);
         }
+        $namespace = implode('\\', $namespace);
         $this->paths[$namespace] = $path;
         return $this;
     }
 
     /**
-     * @return array<string, string>
+     * @return array<string, array<string>>
      */
     public function getPaths(): array
     {
@@ -89,8 +91,9 @@ class Paths
         $dirLen = mb_strlen($dir);
         foreach ($this->paths as $namespace => $path) {
             // got some path
-            $compLen = min($dirLen, mb_strlen($path));
-            $lgPath = mb_substr(Useful::mb_str_pad($path, $compLen, '-'), 0, $compLen);
+            $pt = implode(DIRECTORY_SEPARATOR, $path);
+            $compLen = min($dirLen, mb_strlen($pt));
+            $lgPath = mb_substr(Useful::mb_str_pad($pt, $compLen, '-'), 0, $compLen);
             $lgDir = mb_substr(Useful::mb_str_pad($dir, $compLen, '-'), 0, $compLen);
             if ($lgDir == $lgPath) {
                 // rewrite namespace

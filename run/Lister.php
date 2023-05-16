@@ -52,7 +52,7 @@ class Lister extends ATask
                 $this->createOutput($this->path);
             } else {
                 foreach (Paths::getInstance()->getPaths() as $namespace => $path) {
-                    $this->createOutput($path);
+                    $this->createOutput(implode(DIRECTORY_SEPARATOR, $path));
                 }
             }
         } catch (CliprException $ex) {

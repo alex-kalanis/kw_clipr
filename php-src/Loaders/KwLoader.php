@@ -60,14 +60,14 @@ class KwLoader implements Interfaces\ILoader
     }
 
     /**
-     * @param string $namespacePath
+     * @param string[] $namespacePath
      * @param string $classPath
      * @throws CliprException
      * @return string
      */
-    protected function makeRealFilePath(string $namespacePath, string $classPath): string
+    protected function makeRealFilePath(array $namespacePath, string $classPath): string
     {
-        $setPath = $namespacePath . $classPath . Interfaces\ISources::EXT_PHP;
+        $setPath = implode(DIRECTORY_SEPARATOR, $namespacePath) . $classPath . Interfaces\ISources::EXT_PHP;
         $realPath = realpath($setPath);
         if (empty($realPath)) {
             throw new CliprException(sprintf('There is problem with path *%s* - it does not exists!', $setPath), Interfaces\IStatuses::STATUS_BAD_CONFIG);

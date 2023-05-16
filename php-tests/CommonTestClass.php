@@ -17,12 +17,10 @@ class CommonTestClass extends TestCase
         $instance = Paths::getInstance();
         $instance->clearPaths();
 
-        $ptRun = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'run';
-        $instance->addPath('clipr', $ptRun);
+        $instance->addPath(['clipr'], [__DIR__, '..', 'run']);
 
         if ($addEmpty) {
-            $ptData = __DIR__ . DIRECTORY_SEPARATOR . 'data';
-            $instance->addPath('testing', $ptData);
+            $instance->addPath(['testing'], [__DIR__, 'data']);
         }
     }
 

@@ -30,7 +30,7 @@ class PathsTest extends CommonTestClass
     {
         $instance = Paths::getInstance();
         $this->expectException(CliprException::class);
-        $instance->addPath('testing_fail', __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'data_fail');
+        $instance->addPath(['testing_fail'], [__DIR__, '..', 'data_fail']);
         $instance->clearPaths();
     }
 
@@ -40,10 +40,10 @@ class PathsTest extends CommonTestClass
     public function testPaths(): void
     {
         $instance = Paths::getInstance();
-        $ptRun = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'run';
-        $ptData = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'data';
-        $instance->addPath('clipr', $ptRun);
-        $instance->addPath('testing', $ptData);
+        $ptRun = [__DIR__, '..', '..', 'run'];
+        $ptData = [__DIR__, '..', 'data'];
+        $instance->addPath(['clipr'], $ptRun);
+        $instance->addPath(['testing'], $ptData);
         $this->assertEquals($ptRun, $instance->getPaths()['clipr']);
         $this->assertEquals($ptData, $instance->getPaths()['testing']);
         $instance->clearPaths();
@@ -91,8 +91,8 @@ class PathsTest extends CommonTestClass
         $this->addPaths(true);
         $paths = Paths::getInstance()->getPaths();
         return [
-            [reset($paths) . DIRECTORY_SEPARATOR . 'any' . DIRECTORY_SEPARATOR . 'other', 'help.php', 'clipr\any\other\help'],
-            [next($paths) . DIRECTORY_SEPARATOR . 'another', 'task', 'testing\another\task'],
+            [implode(DIRECTORY_SEPARATOR, reset($paths)) . DIRECTORY_SEPARATOR . 'any' . DIRECTORY_SEPARATOR . 'other', 'help.php', 'clipr\any\other\help'],
+            [implode(DIRECTORY_SEPARATOR, next($paths)) . DIRECTORY_SEPARATOR . 'another', 'task', 'testing\another\task'],
             ['not_in_paths', 'task', null],
         ];
     }
