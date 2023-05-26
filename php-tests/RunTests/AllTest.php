@@ -8,7 +8,6 @@ use clipr\Info;
 use clipr\Lister;
 use CommonTestClass;
 use kalanis\kw_clipr\Clipr\DummyEntry;
-use kalanis\kw_clipr\Clipr\Paths;
 use kalanis\kw_clipr\CliprException;
 use kalanis\kw_clipr\Interfaces\ILoader;
 use kalanis\kw_clipr\Loaders\KwLoader;
@@ -100,13 +99,16 @@ class AllTest extends CommonTestClass
      */
     public function testListerPath(): void
     {
-        Paths::getInstance()->addPath('data', [__DIR__, '..', 'data']);
         // init
         $lib = new Lister();
         $lib->initTask(new Clear(), new EntryArrays([
             DummyEntry::init('q', ''),
             DummyEntry::init('path', __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'data'),
-        ]), new KwLoader());
+        ]), new KwLoader([
+            'data' => [__DIR__, '..', 'data'],
+            'clipr' => [__DIR__, '..', '..', 'run'],
+            'testing' => [__DIR__, '..', 'data'],
+        ]));
         $this->assertNotNull($lib);
         $this->assertEquals('Render list of tasks available in paths defined for lookup', $lib->desc());
         // process

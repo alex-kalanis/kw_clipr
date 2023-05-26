@@ -18,8 +18,26 @@ use ReflectionException;
  * In reality it runs like autoloader of own
  * @codeCoverageIgnore because of that internal autoloader
  */
-class KwLoader implements Interfaces\ILoader
+class KwLoader implements Interfaces\ITargetDirs
 {
+    /** @var array<string, array<string>> */
+    protected $paths = [];
+
+    /**
+     * @param array<string, array<string>> $paths
+     * @throws CliprException
+     */
+    public function __construct(array $paths = [])
+    {
+        foreach ($paths as $namespace => $path) {
+            $pt = implode(DIRECTORY_SEPARATOR, $path);
+            if (false === $real = realpath($pt)) {
+                throw new CliprException(sprintf('Unknown path *%s*!', $pt), Interfaces\IStatuses::STATUS_BAD_CONFIG);
+            }
+            $this->paths[$namespace] = explode(DIRECTORY_SEPARATOR, $real);
+        }
+    }
+
     /**
      * @param string $classFromParam
      * @throws CliprException
@@ -32,10 +50,9 @@ class KwLoader implements Interfaces\ILoader
     public function getTask(string $classFromParam): ?ATask
     {
         $classPath = Useful::sanitizeClass($classFromParam);
-        $paths = Paths::getInstance()->getPaths();
-        foreach ($paths as $namespace => $path) {
+        foreach ($this->paths as $namespace => $path) {
             if ($this->containsPath($classPath, $namespace)) {
-                $translatedPath = Paths::getInstance()->classToRealFile($classPath, $namespace);
+                $translatedPath = (new Paths())->classToRealFile($classPath, $namespace);
                 $realPath = $this->makeRealFilePath($path, $translatedPath);
                 require_once $realPath;
                 if (!class_exists($classPath)) {
@@ -77,5 +94,10 @@ class KwLoader implements Interfaces\ILoader
             throw new CliprException(sprintf('There is problem with path *%s* - it does not exists!', $setPath), Interfaces\IStatuses::STATUS_BAD_CONFIG);
         }
         return $realPath;
+    }
+
+    public function getPaths(): array
+    {
+        return $this->paths;
     }
 }

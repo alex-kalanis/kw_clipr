@@ -31,13 +31,13 @@ try {
     $inputs->setSource($argv)->loadEntries();
     $clipr = new \kalanis\kw_clipr\Clipr(
         \kalanis\kw_clipr\Loaders\CacheLoader::init(
-            new \kalanis\kw_clipr\Loaders\KwLoader()
+            new \kalanis\kw_clipr\Loaders\KwLoader([
+                'clipr' => [__DIR__, '..', 'run'],
+            ])
         ),
         new kalanis\kw_clipr\Clipr\Sources(),
         new kalanis\kw_input\Filtered\Variables($inputs)
     );
-    # define basic paths with tasks
-    $clipr->addPath('clipr', [__DIR__, '..', 'run']);
     # and run!
     exit($clipr->run());
 } catch (\kalanis\kw_clipr\Tasks\SingleTaskException $ex) {

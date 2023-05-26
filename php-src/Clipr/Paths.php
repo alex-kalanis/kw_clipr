@@ -3,10 +3,7 @@
 namespace kalanis\kw_clipr\Clipr;
 
 
-use kalanis\kw_clipr\CliprException;
 use kalanis\kw_clipr\Interfaces;
-use kalanis\kw_paths\PathsException;
-use kalanis\kw_paths\Stuff;
 
 
 /**
@@ -18,67 +15,6 @@ use kalanis\kw_paths\Stuff;
  */
 class Paths
 {
-    /** @var self */
-    protected static $instance = null;
-    /** @var array<string, array<string>> */
-    protected $paths = [];
-
-    public static function getInstance(): self
-    {
-        // @phpstan-ignore-next-line
-        if (empty(static::$instance)) {
-            static::$instance = new self();
-        }
-        return static::$instance;
-    }
-
-    protected function __construct()
-    {
-    }
-
-    /**
-     * @codeCoverageIgnore why someone would run that?!
-     */
-    private function __clone()
-    {
-    }
-
-    /**
-     * @param string $namespace
-     * @param string[] $path
-     * @throws CliprException
-     * @return $this
-     */
-    public function addPath(string $namespace, array $path): self
-    {
-        $pt = implode(DIRECTORY_SEPARATOR, $path);
-        if (false === realpath($pt)) {
-            throw new CliprException(sprintf('Unknown path *%s*!', $pt), Interfaces\IStatuses::STATUS_BAD_CONFIG);
-        }
-        try {
-            $namespace = Stuff::arrayToLink(array_filter(Stuff::linkToArray($namespace)));
-            $this->paths[$namespace] = $path;
-            // @codeCoverageIgnoreStart
-        } catch (PathsException $ex) {
-            throw new CliprException(sprintf('Problem with path *%s*!', $pt), Interfaces\IStatuses::STATUS_BAD_CONFIG);
-        }
-        // @codeCoverageIgnoreEnd
-        return $this;
-    }
-
-    /**
-     * @return array<string, array<string>>
-     */
-    public function getPaths(): array
-    {
-        return $this->paths;
-    }
-
-    public function clearPaths(): void
-    {
-        $this->paths = [];
-    }
-
     public function classToRealFile(string $classPath, string $namespace): string
     {
         // remove ext
@@ -93,10 +29,16 @@ class Paths
         return mb_substr($classNoExt, mb_strlen($namespace));
     }
 
-    public function realFileToClass(string $dir, string $file): ?string
+    /**
+     * @param array<string, array<string>> $availablePaths
+     * @param string $dir
+     * @param string $file
+     * @return string|null
+     */
+    public function realFileToClass(array $availablePaths, string $dir, string $file): ?string
     {
         $dirLen = mb_strlen($dir);
-        foreach ($this->paths as $namespace => $path) {
+        foreach ($availablePaths as $namespace => $path) {
             // got some path
             $pt = implode(DIRECTORY_SEPARATOR, $path);
             $compLen = min($dirLen, mb_strlen($pt));

@@ -6,7 +6,10 @@ namespace clipr;
 use kalanis\kw_clipr\Clipr\Paths;
 use kalanis\kw_clipr\Clipr\Useful;
 use kalanis\kw_clipr\CliprException;
+use kalanis\kw_clipr\Interfaces\ILoader;
 use kalanis\kw_clipr\Interfaces\ISources;
+use kalanis\kw_clipr\Interfaces\ISubLoaders;
+use kalanis\kw_clipr\Interfaces\ITargetDirs;
 use kalanis\kw_clipr\Output\TPrettyTable;
 use kalanis\kw_clipr\Tasks\ATask;
 
@@ -49,10 +52,18 @@ class Lister extends ATask
 
         try {
             if ($this->path) {
-                $this->createOutput($this->path);
+                $this->createOutput([], [$this->path]);
             } else {
-                foreach (Paths::getInstance()->getPaths() as $namespace => $path) {
-                    $this->createOutput(implode(DIRECTORY_SEPARATOR, $path));
+                $paths = [];
+                if ($this->loader instanceof ISubLoaders) {
+                    foreach ($this->loader->getLoaders() as $loader) {
+                        $paths = array_merge($paths, $this->getPathsFromLoader($loader));
+                    }
+                }
+                $paths = array_merge($paths, $this->getPathsFromLoader($this->loader));
+
+                foreach ($paths as $namespace => $path) {
+                    $this->createOutput($paths, $path);
                 }
             }
         } catch (CliprException $ex) {
@@ -64,22 +75,39 @@ class Lister extends ATask
     }
 
     /**
-     * @param string $path
+     * @param ILoader $loader
+     * @throws CliprException
+     * @return array<string, array<string>>
+     */
+    protected function getPathsFromLoader(ILoader $loader): array
+    {
+        return ($loader instanceof ITargetDirs) ? $loader->getPaths() : [];
+    }
+
+    /**
+     * @param array<string, array<string>> $pathsForNamespaces
+     * @param string $namespace
+     * @param string[] $currentPath
      * @param bool $skipEmpty
      * @throws CliprException
      */
-    protected function createOutput(string $path, bool $skipEmpty = false): void
+    protected function createOutput(array $pathsForNamespaces, array $currentPath, bool $skipEmpty = false): void
     {
-        if (!is_dir($path)) {
-            throw new CliprException(sprintf('<redbg> !!! </redbg> Path leads to something unreadable. Path: <yellow>%s</yellow>', $path), static::STATUS_BAD_CONFIG);
+        $full = implode(DIRECTORY_SEPARATOR, $currentPath);
+        $known = realpath($full);
+        if (false === $known) {
+            throw new CliprException(sprintf('<redbg> !!! </redbg> Path leads to something unreadable. Path: <yellow>%s</yellow>', $full), static::STATUS_BAD_CONFIG);
         }
-        $allFiles = array_diff((array) scandir($path), [false, '', '.', '..']);
+        if (!is_dir($known)) {
+            throw new CliprException(sprintf('<redbg> !!! </redbg> Path leads to something other than directory. Path: <yellow>%s</yellow>', $known), static::STATUS_BAD_CONFIG);
+        }
+        $allFiles = array_diff((array) scandir($known), [false, '', '.', '..']);
         $files = array_filter($allFiles, [$this, 'onlyPhp']);
         if (empty($files) && !$skipEmpty) {
-            throw new CliprException(sprintf('<redbg> !!! </redbg> No usable files returned. Path: <yellow>%s</yellow>', $path), static::STATUS_NO_TARGET_RESOURCE);
+            throw new CliprException(sprintf('<redbg> !!! </redbg> No usable files returned. Path: <yellow>%s</yellow>', $known), static::STATUS_NO_TARGET_RESOURCE);
         }
         foreach ($files as $fileName) {
-            $className = Paths::getInstance()->realFileToClass($path, $fileName);
+            $className = (new Paths())->realFileToClass($pathsForNamespaces, $known, $fileName);
             if ($className) {
                 /** @scrutinizer ignore-call */
                 $task = $this->loader->getTask($className);
@@ -91,9 +119,9 @@ class Lister extends ATask
             }
         }
         foreach ($allFiles as $fileName) {
-            $fullPath = $path . DIRECTORY_SEPARATOR . $fileName;
+            $fullPath = $known . DIRECTORY_SEPARATOR . $fileName;
             if (is_dir($fullPath)) {
-                $this->createOutput($fullPath, true);
+                $this->createOutput($pathsForNamespaces, array_merge($currentPath, [$fileName]), true);
             }
         }
     }

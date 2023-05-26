@@ -22,20 +22,19 @@ try {
         \kalanis\kw_clipr\Loaders\CacheLoader::init(
             \kalanis\kw_clipr\Loaders\MultiLoader::init()
             ->addLoader(
-                new \kalanis\kw_clipr\Loaders\KwLoader()
+                new \kalanis\kw_clipr\Loaders\KwLoader([
+                    '\clipr' => [__DIR__, 'vendor', 'kalanis', 'kw_clipr', 'run'],
+                ])
 //            )->addLoader( // if you want DI add this one
 //                new \kalanis\kw_clipr\Loaders\DiLoader(
-//                    (new \YourApplication\ContainerFactory())->create()
+//                    (new \YourApplication\ContainerFactory())->create(),
+//                    ['\YourApp\Clipr' => [__DIR__, '_app', 'Clipr']]  # just example where to find your tasks
 //                )
             )
         ),
         new kalanis\kw_clipr\Clipr\Sources(),
         new kalanis\kw_input\Filtered\Variables($inputs)
     );
-    # change to access basic tasks
-    $clipr->addPath('\clipr', [__DIR__, 'vendor', 'kalanis', 'kw_clipr', 'run']);
-    # add your namespaces and paths which target your tasks, not just
-    $clipr->addPath('\YourApp\Clipr', [__DIR__, '_app', 'Clipr']); // just example
 
     exit($clipr->run());
 } catch (\kalanis\kw_clipr\Tasks\SingleTaskException $ex) {

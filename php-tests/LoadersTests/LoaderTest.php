@@ -26,6 +26,7 @@ class LoaderTest extends CommonTestClass
         $this->assertTrue($instance1 === $instance2);
         $instance3 = $lib->getTask('nope');
         $this->assertNull($instance3);
+        $this->assertNotEmpty($lib->getLoaders());
     }
 
     /**
@@ -39,6 +40,7 @@ class LoaderTest extends CommonTestClass
         $this->assertInstanceOf(ATask::class, $instance1);
         $instance3 = $lib->getTask('nope');
         $this->assertNull($instance3);
+        $this->assertNotEmpty($lib->getLoaders());
     }
 }
 

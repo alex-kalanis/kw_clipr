@@ -42,53 +42,72 @@ class SingleTest extends CommonTestClass
 
     /**
      * @throws LockException
+     * @throws CliprException
      */
     public function testNormal(): void
     {
         $lock = new XLock();
         $lock->delete();
         $lib = new XSingle($lock);
-        $lib->initTask(new Output\Clear(), new EntryArrays($this->getParams()), new KwLoader());
+        $lib->initTask(new Output\Clear(), new EntryArrays($this->getParams()), new KwLoader([
+            'clipr' => [__DIR__, '..', '..', 'run'],
+            'testing' => [__DIR__, '..', 'data']
+        ]));
         $this->assertNotEmpty($lib);
         $this->assertEquals(XSingle::STATUS_SIGNAL_USER_1, $lib->process());
     }
 
     /**
      * @throws LockException
+     * @throws CliprException
      */
     public function testLocked(): void
     {
         $lock = new XLock();
         // first run
         $lib1 = new XSingle($lock);
-        $lib1->initTask(new Output\Clear(), new EntryArrays($this->getParams()), new KwLoader());
+        $lib1->initTask(new Output\Clear(), new EntryArrays($this->getParams()), new KwLoader([
+            'clipr' => [__DIR__, '..', '..', 'run'],
+            'testing' => [__DIR__, '..', 'data']
+        ]));
 
         // second run
         $lib2 = new XSingle($lock);
         $this->expectException(CliprException::class);
-        $lib2->initTask(new Output\Clear(), new EntryArrays($this->getParams()), new KwLoader());
+        $lib2->initTask(new Output\Clear(), new EntryArrays($this->getParams()), new KwLoader([
+            'clipr' => [__DIR__, '..', '..', 'run'],
+            'testing' => [__DIR__, '..', 'data']
+        ]));
     }
 
     /**
      * @throws LockException
+     * @throws CliprException
      */
     public function testFailLockCreation(): void
     {
         $lock = new XCLock();
         $lib = new XSingle($lock);
-        $lib->initTask(new Output\Clear(), new EntryArrays($this->getParams()), new KwLoader());
+        $lib->initTask(new Output\Clear(), new EntryArrays($this->getParams()), new KwLoader([
+            'clipr' => [__DIR__, '..', '..', 'run'],
+            'testing' => [__DIR__, '..', 'data']
+        ]));
         $this->assertNotEmpty($lib);
     }
 
     /**
      * @throws LockException
+     * @throws CliprException
      */
     public function testFailLockRemoval(): void
     {
         $lock = new XDLock();
         $lib = new XSingle($lock);
         $this->expectException(CliprException::class); // fail with locks - cannot create and delete
-        $lib->initTask(new Output\Clear(), new EntryArrays($this->getParams()), new KwLoader());
+        $lib->initTask(new Output\Clear(), new EntryArrays($this->getParams()), new KwLoader([
+            'clipr' => [__DIR__, '..', '..', 'run'],
+            'testing' => [__DIR__, '..', 'data']
+        ]));
     }
 
     protected function getParams(): array

@@ -1,7 +1,5 @@
 <?php
 
-use kalanis\kw_clipr\Clipr\Paths;
-use kalanis\kw_clipr\CliprException;
 use kalanis\kw_input\Entries\Entry;
 use kalanis\kw_input\Interfaces\IEntry;
 use PHPUnit\Framework\TestCase;
@@ -13,22 +11,6 @@ use PHPUnit\Framework\TestCase;
  */
 class CommonTestClass extends TestCase
 {
-    /**
-     * @param bool $addEmpty
-     * @throws CliprException
-     */
-    protected function addPaths(bool $addEmpty = false): void
-    {
-        $instance = Paths::getInstance();
-        $instance->clearPaths();
-
-        $instance->addPath('clipr', [__DIR__, '..', 'run']);
-
-        if ($addEmpty) {
-            $instance->addPath('testing', [__DIR__, 'data']);
-        }
-    }
-
     protected function initEntry(string $source, string $key, $value = null): IEntry
     {
         $entry = new Entry();

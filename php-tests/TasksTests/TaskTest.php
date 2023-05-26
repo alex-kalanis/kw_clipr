@@ -4,6 +4,7 @@ namespace TasksTests;
 
 
 use CommonTestClass;
+use kalanis\kw_clipr\CliprException;
 use kalanis\kw_clipr\Output;
 use kalanis\kw_clipr\Tasks\DummyTask;
 use kalanis\kw_clipr\Loaders\KwLoader;
@@ -12,14 +13,20 @@ use kalanis\kw_input\Filtered\SimpleArrays;
 
 class TaskTest extends CommonTestClass
 {
+    /**
+     * @throws CliprException
+     */
     public function testSimple()
     {
         $inputs = $this->getParams();
         $instance = new XDummy();
-        $instance->initTask(new Output\Web(), new SimpleArrays($inputs), new KwLoader());
+        $instance->initTask(new Output\Web(), new SimpleArrays($inputs), new KwLoader([
+            'clipr' => [__DIR__, '..', '..', 'run'],
+            'testing' => [__DIR__, '..', 'data']
+        ]));
         $this->assertEquals('Just dummy task for processing info from params', $instance->desc());
         $this->assertEquals(XDummy::STATUS_SUCCESS, $instance->process());
-        $this->assertInstanceOf('\kalanis\kw_clipr\Output\AOutput', $instance->transl());
+        $this->assertInstanceOf(Output\AOutput::class, $instance->transl());
         $this->assertNotEmpty($instance->par());
         $this->assertFalse(isset($instance->abc));
         $this->assertTrue(isset($instance->verbose));
