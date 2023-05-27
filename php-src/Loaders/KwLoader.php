@@ -3,7 +3,6 @@
 namespace kalanis\kw_clipr\Loaders;
 
 
-use kalanis\kw_clipr\Clipr\Paths;
 use kalanis\kw_clipr\Clipr\Useful;
 use kalanis\kw_clipr\CliprException;
 use kalanis\kw_clipr\Interfaces;
@@ -52,8 +51,11 @@ class KwLoader implements Interfaces\ITargetDirs
         $classPath = Useful::sanitizeClass($classFromParam);
         foreach ($this->paths as $namespace => $path) {
             if ($this->containsPath($classPath, $namespace)) {
-                $translatedPath = (new Paths())->classToRealFile($classPath, $namespace);
+                $translatedPath = $this->classPathToRealFile($classPath, $namespace);
                 $realPath = $this->makeRealFilePath($path, $translatedPath);
+                if (is_null($realPath)) {
+                    return null;
+                }
                 require_once $realPath;
                 if (!class_exists($classPath)) {
                     // that file contains none wanted class
@@ -80,18 +82,33 @@ class KwLoader implements Interfaces\ITargetDirs
         return (0 === mb_strpos($classPath, $namespace));
     }
 
+    protected function classPathToRealFile(string $classPath, string $namespace): string
+    {
+        // remove ext
+        $withExt = mb_strripos($classPath, Interfaces\ISources::EXT_PHP);
+        $classNoExt = (false !== $withExt)
+                && (mb_strlen($classPath) == $withExt + mb_strlen(Interfaces\ISources::EXT_PHP))
+            ? mb_substr($classPath, 0, $withExt)
+            : $classPath;
+        // change slashes
+        $classNoExt = strtr($classNoExt, ['\\' => DIRECTORY_SEPARATOR, '/' => DIRECTORY_SEPARATOR, ':' => DIRECTORY_SEPARATOR]);
+        // rewrite namespace
+        return mb_substr($classNoExt, mb_strlen($namespace));
+    }
+
     /**
      * @param string[] $namespacePath
      * @param string $classPath
-     * @throws CliprException
-     * @return string
+     * @-throws CliprException
+     * @return string|null
      */
-    protected function makeRealFilePath(array $namespacePath, string $classPath): string
+    protected function makeRealFilePath(array $namespacePath, string $classPath): ?string
     {
         $setPath = implode(DIRECTORY_SEPARATOR, $namespacePath) . $classPath . Interfaces\ISources::EXT_PHP;
         $realPath = realpath($setPath);
         if (empty($realPath)) {
-            throw new CliprException(sprintf('There is problem with path *%s* - it does not exists!', $setPath), Interfaces\IStatuses::STATUS_BAD_CONFIG);
+            return null;
+//            throw new CliprException(sprintf('There is problem with path *%s* - it does not exists!', $setPath), Interfaces\IStatuses::STATUS_BAD_CONFIG);
         }
         return $realPath;
     }

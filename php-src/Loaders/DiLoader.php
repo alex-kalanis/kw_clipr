@@ -27,10 +27,10 @@ class DiLoader implements Interfaces\ITargetDirs
 
     /**
      * @param Container\ContainerInterface $container
-     * @param array<string, array<string>> $paths
+     * @param array<string, array<string>> $paths where will DI be looking for tasks
      * @throws CliprException
      */
-    public function __construct(Container\ContainerInterface $container, array $paths)
+    public function __construct(Container\ContainerInterface $container, array $paths = [])
     {
         $this->container = $container;
         foreach ($paths as $namespace => $path) {
