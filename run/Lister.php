@@ -66,7 +66,7 @@ class Lister extends ATask
                 $this->createOutput($paths, $this->arrPt->setString($real)->getArray());
             } else {
                 foreach ($paths as $namespace => $path) {
-                    if (false !== $real = realpath(DIRECTORY_SEPARATOR . $this->arrPt->setArray($path)->getString())) { // from relative to absolute path
+                    if (false !== $real = realpath(DIRECTORY_SEPARATOR . implode(DIRECTORY_SEPARATOR, $path))) { // from relative to absolute path
                         $this->createOutput($paths, $this->arrPt->setString($real)->getArray());
                     }
                 }
@@ -109,9 +109,6 @@ class Lister extends ATask
     protected function createOutput(array $pathsForNamespaces, array $currentPath, bool $skipEmpty = false): void
     {
         $known = realpath($full = DIRECTORY_SEPARATOR . $this->arrPt->setArray($currentPath)->getString());
-        if (false === $known) {
-            throw new CliprException(sprintf('<redbg> !!! </redbg> Path leads to something unreadable. Path: <yellow>%s</yellow>', $full), static::STATUS_BAD_CONFIG);
-        }
         if (!is_dir($known)) {
             throw new CliprException(sprintf('<redbg> !!! </redbg> Path leads to something other than directory. Path: <yellow>%s</yellow>', $known), static::STATUS_BAD_CONFIG);
         }
@@ -148,7 +145,7 @@ class Lister extends ATask
      * @throws PathsException
      * @return string|null
      */
-    public function realFileToClass(array $availablePaths, array $dir, string $file): ?string
+    protected function realFileToClass(array $availablePaths, array $dir, string $file): ?string
     {
         $dir = DIRECTORY_SEPARATOR . $this->arrPt->setArray($dir)->getString();
         $dirLen = mb_strlen($dir);
