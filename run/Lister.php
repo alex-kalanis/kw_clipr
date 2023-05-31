@@ -123,7 +123,7 @@ class Lister extends ATask
             $className = $this->realFileToClass($pathsForNamespaces, $currentPath, $fileName);
             if ($className) {
                 try {
-                    $task = $this->loader->getTask($className);
+                    $task = $this->loader ? $this->loader->getTask($className) : null;
                 } catch (CliprException $ex) {
                     $task = null;
                 }
