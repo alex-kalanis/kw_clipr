@@ -32,7 +32,6 @@ class HelpTest extends ARunTests
         $lib->initTask(new Clear(), new EntryArrays([
             DummyEntry::init('quiet', '1'), // full variant
         ]), null);
-        $this->assertNotNull($lib);
         // process
         $this->assertEquals(XTask::STATUS_LIB_ERROR, $lib->process());
     }
@@ -44,7 +43,6 @@ class HelpTest extends ARunTests
         $lib->initTask(new Clear(), new EntryArrays([
             DummyEntry::init('q', ''), // short variant
         ]), new XLoader());
-        $this->assertNotNull($lib);
         // process
         $this->assertEquals(XTask::STATUS_NO_TARGET_RESOURCE, $lib->process());
     }

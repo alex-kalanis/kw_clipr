@@ -15,7 +15,6 @@ use ReflectionException;
  * @package kalanis\kw_clipr\Tasks
  * Factory for creating tasks/commands from obtained name
  * In reality it runs like autoloader of own
- * @codeCoverageIgnore because of that internal autoloader
  */
 class KwLoader implements Interfaces\ITargetDirs
 {
@@ -48,7 +47,7 @@ class KwLoader implements Interfaces\ITargetDirs
      */
     public function getTask(string $classFromParam): ?ATask
     {
-        $classPath = Useful::sanitizeClass($classFromParam);
+        $classPath = $this->removeExt(Useful::sanitizeClass($classFromParam));
         foreach ($this->paths as $namespace => $path) {
             if ($this->containsPath($classPath, $namespace)) {
                 $translatedPath = $this->classPathToRealFile($classPath, $namespace);
@@ -82,18 +81,24 @@ class KwLoader implements Interfaces\ITargetDirs
         return (0 === mb_strpos($classPath, $namespace));
     }
 
-    protected function classPathToRealFile(string $classPath, string $namespace): string
+    protected function removeExt(string $classPath): string
     {
         // remove ext
         $withExt = mb_strripos($classPath, Interfaces\ISources::EXT_PHP);
-        $classNoExt = (false !== $withExt)
-                && (mb_strlen($classPath) == $withExt + mb_strlen(Interfaces\ISources::EXT_PHP))
+        return (false !== $withExt)
+        && (mb_strlen($classPath) == $withExt + mb_strlen(Interfaces\ISources::EXT_PHP))
             ? mb_substr($classPath, 0, $withExt)
             : $classPath;
+    }
+
+    protected function classPathToRealFile(string $classPath, string $namespace): string
+    {
         // change slashes
-        $classNoExt = strtr($classNoExt, ['\\' => DIRECTORY_SEPARATOR, '/' => DIRECTORY_SEPARATOR, ':' => DIRECTORY_SEPARATOR]);
+        $classNoExt = strtr($classPath, ['\\' => DIRECTORY_SEPARATOR, '/' => DIRECTORY_SEPARATOR, ':' => DIRECTORY_SEPARATOR]);
+        // remove slash from start
+        $classNoStartSlash = (DIRECTORY_SEPARATOR == $classNoExt[0]) ? mb_substr($classNoExt, mb_strlen(DIRECTORY_SEPARATOR)) : $classNoExt;
         // rewrite namespace
-        return mb_substr($classNoExt, mb_strlen($namespace));
+        return mb_substr($classNoStartSlash, mb_strlen($namespace));
     }
 
     /**

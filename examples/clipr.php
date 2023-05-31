@@ -28,7 +28,10 @@ try {
 //            )->addLoader( // if you want DI add this one
 //                new \kalanis\kw_clipr\Loaders\DiLoader(
 //                    (new \YourApplication\ContainerFactory())->create(),
-//                    ['\YourApp\Clipr' => [__DIR__, '_app', 'Clipr']]  # just example where to find your tasks
+//                    [
+//                        '\YourApp\Clipr' => [__DIR__, '_app', 'Clipr'],
+//                        '\YourApp\Tasks' => [__DIR__, '_app', 'Tasks'],
+//                    ]  # just example where to find your tasks; it could be in more dirs too
 //                )
             )
         ),

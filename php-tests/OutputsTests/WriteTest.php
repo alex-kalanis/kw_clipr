@@ -4,6 +4,7 @@ namespace OutputsTests;
 
 
 use CommonTestClass;
+use kalanis\kw_clipr\CliprException;
 use kalanis\kw_clipr\Output;
 
 
@@ -100,15 +101,15 @@ class WriteTest extends CommonTestClass
         ];
     }
 
-//    public function testCallExcept()
-//    {
-//        $instance = new XWrite(new Output\Windows());
-//        ob_start();
-//        $this->expectException(CliprException::class);
-//        $instance->writeHeadlineLn('asdfghjkl');
-//        $output = ob_get_clean();
-//        $this->assertEquals('', $output);
-//    }
+    /**
+     * @throws CliprException
+     */
+    public function testDirFail(): void
+    {
+        $instance = new XFWrite(new Output\Windows());
+        $this->expectException(CliprException::class);
+        $instance->terminateWithError('Something');
+    }
 }
 
 
@@ -133,4 +134,10 @@ class XWrite
     {
         return $this->translator;
     }
+}
+
+
+class XFWrite extends XWrite
+{
+    protected $quiet = true;
 }

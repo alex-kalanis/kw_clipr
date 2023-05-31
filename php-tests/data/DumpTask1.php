@@ -10,7 +10,7 @@ class DumpTask1 extends ATask
 {
     public function process(): int
     {
-        static::STATUS_SIGNAL_USER_1;
+        return static::STATUS_SIGNAL_USER_1;
     }
 
     public function desc(): string

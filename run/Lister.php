@@ -122,8 +122,11 @@ class Lister extends ATask
         foreach ($files as $fileName) {
             $className = $this->realFileToClass($pathsForNamespaces, $currentPath, $fileName);
             if ($className) {
-                /** @scrutinizer ignore-call */
-                $task = $this->loader->getTask($className);
+                try {
+                    $task = $this->loader->getTask($className);
+                } catch (CliprException $ex) {
+                    $task = null;
+                }
                 if (!$task) {
                     continue;
                 }

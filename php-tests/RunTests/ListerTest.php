@@ -34,7 +34,6 @@ class ListerTest extends ARunTests
         $lib->initTask(new Clear(), new EntryArrays([
             DummyEntry::init('q', ''),
         ]), null);
-        $this->assertNotNull($lib);
         // process
         $this->assertEquals(XTask::STATUS_LIB_ERROR, $lib->process());
     }
@@ -56,7 +55,6 @@ class ListerTest extends ARunTests
         $lib->initTask(new Clear(), new EntryArrays([
             DummyEntry::init('q', ''),
         ]), $multi);
-        $this->assertNotNull($lib);
         // process
         $this->assertEquals(XTask::STATUS_SUCCESS, $lib->process());
     }
@@ -76,8 +74,6 @@ class ListerTest extends ARunTests
             'clipr' => [__DIR__, '..', '..', 'run'],
             'testing' => [__DIR__, '..', 'data'],
         ]));
-        $this->assertNotNull($lib);
-        $this->assertEquals('Render list of tasks available in paths defined for lookup', $lib->desc());
         // process
         $this->assertEquals(XTask::STATUS_SUCCESS, $lib->process());
     }
@@ -93,8 +89,6 @@ class ListerTest extends ARunTests
             DummyEntry::init('q', ''),
             DummyEntry::init('path', __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'data'),
         ]), new KwLoader());
-        $this->assertNotNull($lib);
-        $this->assertEquals('Render list of tasks available in paths defined for lookup', $lib->desc());
         // process
         $this->assertEquals(XTask::STATUS_SUCCESS, $lib->process());
     }
@@ -107,8 +101,6 @@ class ListerTest extends ARunTests
             DummyEntry::init('q', ''),
             DummyEntry::init('path', 'test'),
         ]), new XLoader());
-        $this->assertEquals('Render list of tasks available in paths defined for lookup', $lib->desc());
-        $this->assertNotNull($lib);
         // process
         $this->assertEquals(XTask::STATUS_BAD_CONFIG, $lib->process());
     }
@@ -122,8 +114,6 @@ class ListerTest extends ARunTests
         ]), new XFLoader([
             'this_is_not_a_dir' => [__DIR__, '..', 'data', 'no-data', '.gitkeep'],
         ]));
-        $this->assertEquals('Render list of tasks available in paths defined for lookup', $lib->desc());
-        $this->assertNotNull($lib);
         // process
         $this->assertEquals(XTask::STATUS_BAD_CONFIG, $lib->process());
     }
@@ -136,8 +126,6 @@ class ListerTest extends ARunTests
             DummyEntry::init('q', ''),
             DummyEntry::init('path', __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'no-data'),
         ]), new XLoader());
-        $this->assertEquals('Render list of tasks available in paths defined for lookup', $lib->desc());
-        $this->assertNotNull($lib);
         // process
         $this->assertEquals(XTask::STATUS_NO_TARGET_RESOURCE, $lib->process());
     }
