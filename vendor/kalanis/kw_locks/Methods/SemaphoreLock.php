@@ -7,28 +7,28 @@ use kalanis\kw_locks\Interfaces\IKLTranslations;
 use kalanis\kw_locks\Interfaces\IPassedKey;
 use kalanis\kw_locks\LockException;
 use kalanis\kw_locks\Traits\TLang;
-use kalanis\kw_storage\Interfaces\IStorage;
-use kalanis\kw_storage\StorageException;
+use kalanis\kw_semaphore\Interfaces\ISemaphore;
+use kalanis\kw_semaphore\SemaphoreException;
 
 
 /**
- * Class StorageLock
+ * Class SemaphoreLock
  * @package kalanis\kw_locks\Methods
  */
-class StorageLock implements IPassedKey
+class SemaphoreLock implements IPassedKey
 {
     use TLang;
 
-    /** @var IStorage */
-    protected $storage = null;
-    /** @var string */
-    protected $specialKey = '';
+    /** @var ISemaphore */
+    protected $semaphore = null;
+    /** @var string[] */
+    protected $specialKey = [];
     /** @var string */
     protected $checkContent = '';
 
-    public function __construct(IStorage $storage, ?IKLTranslations $lang = null)
+    public function __construct(ISemaphore $semaphore, ?IKLTranslations $lang = null)
     {
-        $this->storage = $storage;
+        $this->semaphore = $semaphore;
         $this->setKlLang($lang);
     }
 
@@ -44,21 +44,13 @@ class StorageLock implements IPassedKey
 
     public function setKey(string $key, string $checkContent = ''): void
     {
-        $this->specialKey = $key;
-        $this->checkContent = empty($checkContent) ? strval(getmypid()) : $checkContent ;
     }
 
     public function has(): bool
     {
         try {
-            if (!$this->storage->exists($this->specialKey)) {
-                return false;
-            }
-            if ($this->checkContent == strval($this->storage->read($this->specialKey))) {
-                return true;
-            }
-            throw new LockException($this->getKlLang()->iklLockedByOther());
-        } catch (StorageException $ex) {
+            return $this->semaphore->has();
+        } catch (SemaphoreException $ex) {
             throw new LockException($this->getKlLang()->iklProblemWithStorage(), $ex->getCode(), $ex);
         }
     }
@@ -69,9 +61,8 @@ class StorageLock implements IPassedKey
             return false;
         }
         try {
-            $result = $this->storage->write($this->specialKey, $this->checkContent);
-            return $result;
-        } catch (StorageException $ex) {
+            return $this->semaphore->want();
+        } catch (SemaphoreException $ex) {
             throw new LockException($this->getKlLang()->iklProblemWithStorage(), $ex->getCode(), $ex);
         }
     }
@@ -82,8 +73,8 @@ class StorageLock implements IPassedKey
             return true;
         }
         try {
-            return $this->storage->remove($this->specialKey);
-        } catch (StorageException $ex) {
+            return $this->semaphore->remove();
+        } catch (SemaphoreException $ex) {
             throw new LockException($this->getKlLang()->iklProblemWithStorage(), $ex->getCode(), $ex);
         }
     }

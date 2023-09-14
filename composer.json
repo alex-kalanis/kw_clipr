@@ -10,9 +10,9 @@
     "type": "library",
     "require": {
         "ext-mbstring": "*",
-        "alex-kalanis/kw_input": ">=2.4",
-        "alex-kalanis/kw_locks": ">=2.1",
-        "alex-kalanis/kw_paths": ">=3.0",
+        "alex-kalanis/kw_input": ">=2.4 <3",
+        "alex-kalanis/kw_locks": ">=2.1 <3",
+        "alex-kalanis/kw_paths": ">=3.1 <4",
         "php": ">=7.2.0"
     },
     "require-dev": {

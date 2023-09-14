@@ -25,7 +25,16 @@ try {
                 new \kalanis\kw_clipr\Loaders\KwLoader([
                     '\clipr' => [__DIR__, 'vendor', 'kalanis', 'kw_clipr', 'run'],
                 ])
-//            )->addLoader( // if you want DI add this one
+//            )->addLoader( // if you want DI from local system add this one
+//                new \kalanis\kw_clipr\Loaders\KwDiLoader(
+//                    [
+//                        '\YourApp\Clipr' => [__DIR__, '_app', 'Clipr'],
+//                        '\YourApp\Tasks' => [__DIR__, '_app', 'Tasks'],
+//                    ], [
+//                        'additional' => 'passed_init_param_value',
+//                    ]  # just example where to find your tasks; it could be in more dirs too
+//                )
+//            )->addLoader( // if you want DI from your app add this one
 //                new \kalanis\kw_clipr\Loaders\DiLoader(
 //                    (new \YourApplication\ContainerFactory())->create(),
 //                    [

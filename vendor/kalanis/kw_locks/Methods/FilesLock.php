@@ -3,32 +3,39 @@
 namespace kalanis\kw_locks\Methods;
 
 
+use kalanis\kw_files\Access\CompositeAdapter;
+use kalanis\kw_files\FilesException;
+use kalanis\kw_files\Traits\TToString;
 use kalanis\kw_locks\Interfaces\IKLTranslations;
 use kalanis\kw_locks\Interfaces\IPassedKey;
 use kalanis\kw_locks\LockException;
 use kalanis\kw_locks\Traits\TLang;
-use kalanis\kw_storage\Interfaces\IStorage;
-use kalanis\kw_storage\StorageException;
+use kalanis\kw_paths\ArrayPath;
+use kalanis\kw_paths\PathsException;
 
 
 /**
- * Class StorageLock
+ * Class FilesLock
  * @package kalanis\kw_locks\Methods
  */
-class StorageLock implements IPassedKey
+class FilesLock implements IPassedKey
 {
     use TLang;
+    use TToString;
 
-    /** @var IStorage */
-    protected $storage = null;
-    /** @var string */
-    protected $specialKey = '';
+    /** @var ArrayPath */
+    protected $arrPt = null;
+    /** @var CompositeAdapter */
+    protected $files = null;
+    /** @var string[] */
+    protected $specialKey = [];
     /** @var string */
     protected $checkContent = '';
 
-    public function __construct(IStorage $storage, ?IKLTranslations $lang = null)
+    public function __construct(CompositeAdapter $files, ?IKLTranslations $lang = null)
     {
-        $this->storage = $storage;
+        $this->arrPt = new ArrayPath();
+        $this->files = $files;
         $this->setKlLang($lang);
     }
 
@@ -44,21 +51,27 @@ class StorageLock implements IPassedKey
 
     public function setKey(string $key, string $checkContent = ''): void
     {
-        $this->specialKey = $key;
-        $this->checkContent = empty($checkContent) ? strval(getmypid()) : $checkContent ;
+        try {
+            $this->specialKey = $this->arrPt->setString($key)->getArray();
+            $this->checkContent = empty($checkContent) ? strval(getmypid()) : $checkContent ;
+            // @codeCoverageIgnoreStart
+        } catch (PathsException $ex) {
+            throw new LockException($this->getKlLang()->iklCannotUsePath($key), $ex->getCode(), $ex);
+        }
+        // @codeCoverageIgnoreEnd
     }
 
     public function has(): bool
     {
         try {
-            if (!$this->storage->exists($this->specialKey)) {
+            if (!$this->files->exists($this->specialKey)) {
                 return false;
             }
-            if ($this->checkContent == strval($this->storage->read($this->specialKey))) {
+            if ($this->checkContent == $this->toString('lock', $this->files->readFile($this->specialKey))) {
                 return true;
             }
             throw new LockException($this->getKlLang()->iklLockedByOther());
-        } catch (StorageException $ex) {
+        } catch (FilesException | PathsException $ex) {
             throw new LockException($this->getKlLang()->iklProblemWithStorage(), $ex->getCode(), $ex);
         }
     }
@@ -69,9 +82,9 @@ class StorageLock implements IPassedKey
             return false;
         }
         try {
-            $result = $this->storage->write($this->specialKey, $this->checkContent);
+            $result = $this->files->saveFile($this->specialKey, $this->checkContent);
             return $result;
-        } catch (StorageException $ex) {
+        } catch (FilesException | PathsException $ex) {
             throw new LockException($this->getKlLang()->iklProblemWithStorage(), $ex->getCode(), $ex);
         }
     }
@@ -82,8 +95,8 @@ class StorageLock implements IPassedKey
             return true;
         }
         try {
-            return $this->storage->remove($this->specialKey);
-        } catch (StorageException $ex) {
+            return $this->files->deleteFile($this->specialKey);
+        } catch (FilesException | PathsException $ex) {
             throw new LockException($this->getKlLang()->iklProblemWithStorage(), $ex->getCode(), $ex);
         }
     }
