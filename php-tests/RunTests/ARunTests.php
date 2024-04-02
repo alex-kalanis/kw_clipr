@@ -40,7 +40,7 @@ class XLoader implements ILoader
 class XFLoader extends XLoader implements ITargetDirs
 {
     /** @var array<string, array<string>> */
-    protected $paths = [];
+    protected array $paths = [];
 
     /**
      * @param array<string, array<string>> $paths

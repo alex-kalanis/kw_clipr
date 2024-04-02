@@ -117,8 +117,8 @@ class XWrite
 {
     use Output\TWrite;
 
-    protected $translator = null;
-    protected $quiet = false;
+    protected Output\AOutput $translator;
+    protected bool $quiet = false;
 
     public function __construct(Output\AOutput $translator)
     {
@@ -139,5 +139,5 @@ class XWrite
 
 class XFWrite extends XWrite
 {
-    protected $quiet = true;
+    protected bool $quiet = true;
 }

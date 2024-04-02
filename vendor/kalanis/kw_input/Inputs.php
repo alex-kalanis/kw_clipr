@@ -3,33 +3,36 @@
 namespace kalanis\kw_input;
 
 
-use Traversable;
+use kalanis\kw_input\Interfaces\ISource;
 
 
 /**
  * Class Inputs
  * @package kalanis\kw_input
  * Base class for passing info from inputs into objects
+ * Compress all inputs into single array with entries about everything
  */
-class Inputs implements Interfaces\IInputs
+class Inputs
 {
     /** @var Interfaces\IEntry[] */
-    protected $entries = [];
-    /** @var Interfaces\ISource */
-    protected $source = null;
-    /** @var Parsers\Factory */
-    protected $parserFactory = null;
-    /** @var Loaders\Factory */
-    protected $loaderFactory = null;
+    protected array $entries = [];
+    protected Interfaces\ISource $source;
+    protected Parsers\Factory $parserFactory;
+    protected Loaders\Factory $loaderFactory;
 
-    public function __construct()
+    public function __construct(?Parsers\Factory $parserFactory = null, ?Loaders\Factory $loaderFactory = null)
     {
-        $this->parserFactory = new Parsers\Factory();
-        $this->loaderFactory = new Loaders\Factory();
+        $this->parserFactory = $parserFactory ?: new Parsers\Factory();
+        $this->loaderFactory = $loaderFactory ?: new Loaders\Factory();
         $this->source = new Sources\Basic();
     }
 
-    public function setSource($source = null): Interfaces\IInputs
+    /**
+     * Setting the variable sources - from cli (argv), _GET, _POST, _SERVER, ...
+     * @param ISource|string[]|int[]|null $source
+     * @return $this
+     */
+    public function setSource($source = null): self
     {
         if (!empty($source) && ($source instanceof Interfaces\ISource)) {
             $this->source = $source;
@@ -39,7 +42,14 @@ class Inputs implements Interfaces\IInputs
         return $this;
     }
 
-    public function loadEntries(): void
+    /**
+     * Load entries from source into the local entries which will be accessible
+     * These two calls came usually in pair
+     *
+     * $input->setSource($argv)->loadEntries()->getAllEntries();
+     * @return $this
+     */
+    public function loadEntries(): self
     {
         $this->entries = array_merge(
             $this->loadInput(Interfaces\IEntry::SOURCE_EXTERNAL, $this->source->external()),
@@ -53,11 +63,12 @@ class Inputs implements Interfaces\IInputs
             $this->loadInput(Interfaces\IEntry::SOURCE_ENV, $this->source->env()),
             $this->loadInput(Interfaces\IEntry::SOURCE_SERVER, $this->source->server())
         );
+        return $this;
     }
 
     /**
      * @param string $source
-     * @param array<string|int, string|int|bool|string[]|int[]>|array<string|int, array<string, string>|array<string, array<string, string>>>|null $inputArray
+     * @param array<string|int, string|int|bool|null|array<string, string|int|bool|null|array<string, string|int|bool|null>>>|null $inputArray
      * @return Interfaces\IEntry[]
      */
     protected function loadInput(string $source, ?array $inputArray = null): array
@@ -72,18 +83,11 @@ class Inputs implements Interfaces\IInputs
     }
 
     /**
-     * @param string|null $entryKey
-     * @param string[] $entrySources
-     * @return Traversable<string|int, Interfaces\IEntry>
+     * Get all local entries
+     * @return Interfaces\IEntry[] array for foreach
      */
-    public function getIn(?string $entryKey = null, array $entrySources = []): Traversable
+    public function getAllEntries(): array
     {
-        foreach ($this->entries as $entry) {
-            $allowedByKey = empty($entryKey) || ($entry->getKey() == $entryKey);
-            $allowedBySource = empty($entrySources) || in_array($entry->getSource(), $entrySources);
-            if ($allowedByKey && $allowedBySource) {
-                yield $entry;
-            }
-        }
+        return $this->entries;
     }
 }

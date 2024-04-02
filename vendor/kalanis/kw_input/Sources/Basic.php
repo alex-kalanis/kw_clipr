@@ -4,6 +4,7 @@ namespace kalanis\kw_input\Sources;
 
 
 use kalanis\kw_input\Interfaces;
+use kalanis\kw_input\Parsers;
 
 
 /**
@@ -15,9 +16,9 @@ use kalanis\kw_input\Interfaces;
 class Basic implements Interfaces\ISource
 {
     /** @var string[]|int[]|array<string|int, string|int|bool> */
-    protected $cliArgs = [];
+    protected array $cliArgs = [];
     /** @var string[]|int[]|array<string|int, string|int|bool> */
-    protected $externalArgs = [];
+    protected array $externalArgs = [];
 
     /**
      * @param array<string|int, string|int> $cliArgs
@@ -61,7 +62,7 @@ class Basic implements Interfaces\ISource
 
     public function server(): ?array
     {
-        return $_SERVER;
+        return $_SERVER ? Parsers\FixServer::updateAuth(Parsers\FixServer::updateVars($_SERVER)) : null;
     }
 
     public function env(): ?array

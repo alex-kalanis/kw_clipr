@@ -1,9 +1,9 @@
 # kw_clipr
 
-[![Build Status](https://app.travis-ci.com/alex-kalanis/kw_clipr.svg?branch=master)](https://app.travis-ci.com/github/alex-kalanis/kw_clipr)
+![Build Status](https://github.com/alex-kalanis/kw_clipr/actions/workflows/code_checks.yml/badge.svg)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/alex-kalanis/kw_clipr/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/alex-kalanis/kw_clipr/?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/alex-kalanis/kw_clipr/v/stable.svg?v=1)](https://packagist.org/packages/alex-kalanis/kw_clipr)
-[![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.3-8892BF.svg)](https://php.net/)
+[![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.4-8892BF.svg)](https://php.net/)
 [![Downloads](https://img.shields.io/packagist/dt/alex-kalanis/kw_clipr.svg?v1)](https://packagist.org/packages/alex-kalanis/kw_clipr)
 [![License](https://poser.pugx.org/alex-kalanis/kw_clipr/license.svg?v=1)](https://packagist.org/packages/alex-kalanis/kw_clipr)
 [![Code Coverage](https://scrutinizer-ci.com/g/alex-kalanis/kw_clipr/badges/coverage.png?b=master&v=1)](https://scrutinizer-ci.com/g/alex-kalanis/kw_clipr/?branch=master)
@@ -55,12 +55,8 @@ your needs.
 
 ### Composer
 
-```
-{
-    "require": {
-        "alex-kalanis/kw_clipr": ">=5.0"
-    }
-}
+```bash
+composer.phar require alex-kalanis/kw_clipr
 ```
 
 (Refer to [Composer Documentation](https://github.com/composer/composer/blob/master/doc/00-intro.md#introduction) if you are not

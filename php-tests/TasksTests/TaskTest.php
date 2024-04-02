@@ -8,7 +8,7 @@ use kalanis\kw_clipr\CliprException;
 use kalanis\kw_clipr\Output;
 use kalanis\kw_clipr\Tasks\DummyTask;
 use kalanis\kw_clipr\Loaders\KwLoader;
-use kalanis\kw_input\Filtered\SimpleArrays;
+use kalanis\kw_input\Filtered\SimpleFromArrays;
 
 
 class TaskTest extends CommonTestClass
@@ -20,7 +20,7 @@ class TaskTest extends CommonTestClass
     {
         $inputs = $this->getParams();
         $instance = new XDummy();
-        $instance->initTask(new Output\Web(), new SimpleArrays($inputs), new KwLoader([
+        $instance->initTask(new Output\Web(), new SimpleFromArrays($inputs), new KwLoader([
             'clipr' => [__DIR__, '..', '..', 'run'],
             'testing' => [__DIR__, '..', 'data']
         ]));

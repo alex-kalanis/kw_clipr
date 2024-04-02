@@ -76,7 +76,7 @@ class ExtSources extends Sources
      * 'Linux'
      * 'Solaris'
      */
-    protected $xFamily = '';
+    protected string $xFamily = '';
 
     public function setFamily(string $family): self
     {
